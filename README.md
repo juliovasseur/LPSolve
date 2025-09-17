@@ -28,8 +28,6 @@ Données CSV → Modélisation Mathématique → Optimisation → Décisions Act
 
 ### 🎯 **Approche Modulaire par Niveaux de Complexité**
 
-Le système suit une **architecture en couches**, inspirée des principes ALM et d'analyse PnL, sans pour autant calculer explicitement ces métriques. L'idée est de structurer l'optimisation selon une **logique financière progressive** :
-
 ### 🚀 **Accès Rapide aux Cas d'Usage**
 
 | Niveau | Cas d'Usage | Description | Accès Direct |
@@ -38,7 +36,7 @@ Le système suit une **architecture en couches**, inspirée des principes ALM et
 | 🟡 **Intermédiaire** | **[Production Industrielle](./data/furniture_production/README.md)** | Planification complexe avec 70+ contraintes (ESG, setup, pénalités) | `make run-furniture` |
 | 🔴 **Expert** | **[Finance Quantitative](./data/portfolio_optimization/README.md)** | Portefeuille 16 actifs, contraintes réglementaires, logique type ALM | `make run-portfolio` |
 
-> **💡 Conseil** : Commencez par les exemples éducatifs pour comprendre les concepts, puis progressez vers la finance quantitative.
+> **💡 Conseil** : Commencez par les exemples éducatifs pour comprendre les concepts, puis progressez vers l'approche quantitative.
 
 > **🎓 Note sur la terminologie** : Le système calcule les **valeurs marginales** (shadow prices) et **coûts de transaction**, mais ne produit pas d'analyse PnL ou ALM complète. Il suit cependant une **logique similaire** dans l'approche d'optimisation.
 
@@ -46,13 +44,29 @@ Le système suit une **architecture en couches**, inspirée des principes ALM et
 
 ```
 LPSolve/
-├── 🎛️  lp_solver_engine/           # Moteur d'optimisation
-│   ├── main.py                    # Point d'entrée générique  
-│   ├── portfolio_main.py          # Point d'entrée finance
-│   └── src/lpSolver/              # Package principal (solvers + utils)
-├── 📊 data/                        # Cas d'usage (voir tableau ci-dessus)
+├── 🎛️  lp_solver_engine/           # Moteur d'optimisation principal
+│   ├── src/lpSolver/
+│   │   ├── solvers/               # Algorithmes d'optimisation
+│   │   │   ├── solver_core.py     # Solveur générique LP/MILP
+│   │   │   └── portfolio_solver.py # Solveur spécialisé finance
+│   │   ├── utils/                 # Utilitaires et parsing
+│   │   │   ├── parsing.py         # Parsing CSV → modèle mathématique
+│   │   │   ├── model_arrays.py    # Structures de données optimisées
+│   │   │   └── modeling.py        # Construction des modèles  
+│   │   └── archive/               # Versions historiques
+│   ├── main.py                    # Point d'entrée générique
+│   ├── portfolio_main.py          # Point d'entrée finance spécialisé  
+│   └── requirements.txt           # Dépendances Python
+├── � data/                        # Cas d'usage et données
+│   ├── �📊 basic_linear_examples/   # Cas éducatifs (niveau 1)
+│   ├── 🏭 furniture_production/    # Optimisation industrielle (niveau 2)
+│   └── 💰 portfolio_optimization/  # Finance quantitative (niveau 3)
+│       └── data/
+│           ├── variables.csv      # 16 actifs (AAPL, MSFT, GOOGL...)
+│           ├── objectives.csv     # Fonction d'utilité mean-variance
+│           └── constraints.csv    # 40+ contraintes réglementaires
 ├── 📈 results/                     # Outputs d'optimisation
-└── Makefile                       # Commandes d'automatisation
+└── Makefile                       # Automation et commandes
 ```
 
 ---
