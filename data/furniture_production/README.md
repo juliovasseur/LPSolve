@@ -360,6 +360,96 @@ Répartition des coûts cachés:
 
 ---
 
+## 🏁 **BILAN FINAL - SYNTHÈSE EXECUTIVE**
+
+### 🎯 **Pourquoi ce Cas est DIFFÉRENT du Cas Basique ?**
+
+| Aspect | **Cas Basique (Ennuyeux)** | **Cas Furniture (Passionnant)** |
+|--------|----------------------------|----------------------------------|
+| **Production** | 25 chaises + 37.5 tables = Monotone | 11 chaises + 9 tables + 40 bureaux = Diversifié |
+| **Goulots** | Menuiserie partout (unique) | 3 goulots alternants (dynamique) |
+| **Contraintes Actives** | 1 seule (temps menuiserie) | 6 contraintes SATURÉES simultanément |
+| **Profit** | 2,625€ (facile à prévoir) | 1,985€ (tensions complexes) |
+| **Stratégie** | "Max chaises" évident | Arbitrages profit/ESG/service non-intuitifs |
+
+### 🔍 **LES 6 CONTRAINTES VRAIMENT ACTIVES**
+
+#### 🔴 **Goulots Opérationnels**
+1. **`cap_carp_w1`** : Menuiserie semaine 1 saturée (120h utilisées)
+2. **`setup_limit_w2`** : Limite 2 changements semaine 2 (exactement atteinte)
+3. **`setup_limit_w3`** : Limite 2 changements semaine 3 (exactement atteinte)
+
+#### 🎯 **Contraintes Business Critiques**  
+4. **`service_DE_min`** : Quota bureaux = 40 unités (respect client premium)
+5. **`carbon_total`** : Budget ESG utilisé à 60% (149/250 CO2)
+6. **`invbal_*`** : Équilibrage stocks parfait (12 contraintes d'égalité)
+
+### 💡 **RÉVÉLATIONS STRATÉGIQUES MAJEURES**
+
+#### 🌍 **1. L'ESG Change Tout**
+- Bureaux = **3× plus polluants** que chaises (3 vs 1 CO2/unité)
+- Budget carbone **limite la rentabilité** → nouveaux arbitrages
+- **60% du budget utilisé** → marge environnementale faible
+
+#### ⚙️ **2. Les Coûts de Setup Sont Énormes**  
+- **6 changements** × 200€ moyen = **1,200€ de coûts cachés**
+- Spécialisation temporelle **forcée par les coûts**
+- Flexibilité production **limitée à 2 produits/semaine**
+
+#### 💰 **3. Les Ruptures Coûtent Plus Cher que Prévu**
+- **217 unités chaises en rupture** × 10€ = 2,170€
+- **232 unités tables en rupture** × 15€ = 3,480€  
+- **48 unités bureaux en rupture** × 25€ = 1,200€
+- **Total ruptures : 6,850€** = 78% des coûts cachés !
+
+### 🎓 **APPRENTISSAGES TRANSPOSABLES**
+
+#### 🏭 **Pour la Production Industrielle**
+- **Multi-goulots** : Identifier les contraintes qui alternent selon la période
+- **Setup costs** : Optimiser le nombre de changements (coûts vs flexibilité)
+- **Planning capacité** : Lisser la charge sur les ressources critiques
+
+#### 💼 **Pour la Finance d'Entreprise**
+- **Coûts cachés** : 79% du profit théorique → importance du modèle complet
+- **Arbitrages ESG** : Contraintes durabilité impactent la rentabilité
+- **Service premium** : Quotas clients créent des contraintes rigides
+
+#### 🌍 **Pour la Stratégie ESG**
+- **Budget carbone** : Allocation optimale entre produits selon impact
+- **Trade-off rentabilité/durabilité** : Quantifier les arbitrages
+- **Pilotage performance** : Intégrer ESG dans l'optimisation opérationnelle
+
+---
+
+## 🏆 **CONCLUSION - VALEUR PÉDAGOGIQUE**
+
+Ce cas furniture démontre la **richesse de la programmation linéaire** appliquée aux **vrais problèmes industriels** :
+
+### ✅ **Ce qu'on Apprend (vs Cas Basique)**
+1. **Complexité réaliste** : 76 contraintes vs 3 contraintes  
+2. **Goulots multiples** : 6 contraintes actives vs 1 seule
+3. **Arbitrages non-intuitifs** : ESG vs profit, setup vs flexibilité
+4. **Coûts cachés majeurs** : 79% du profit brut disparaît
+5. **Optimisation sous contraintes** : Solution non-évidente révélée
+
+### 🎯 **Différenciation Totale**
+- **Cas basique** : Pédagogique mais prévisible
+- **Cas furniture** : Complexe et fascinant comme la vraie vie !
+
+> **💡 Message Final** : L'optimisation linéaire révèle des **tensions cachées** et des **arbitrages surprenants** que seule l'analyse mathématique peut découvrir. C'est ça, la magie de l'aide à la décision quantitative ! 🎯
+
+#### 🥈 **Stratégie "Bureaux Max": ~1,200€**  
+- **Simulation** : 50+ bureaux si possible
+- **Blocage** : Budget carbone explosé (50×3 = 150 > 101 slack)
+- **Conclusion** : ESG limite la stratégie "premium max"
+
+#### 🥉 **Stratégie "Chaises Max": ~800€**
+- **Simulation** : 200+ chaises comme cas basique  
+- **Blocage** : Contrainte qualité premium + service client
+- **Conclusion** : Diversification forcée par contraintes métier
+
+---
+
 ## 🏁 **CONCLUSION AVANCÉE**
 
 ### 🎯 **Valeur Ajoutée vs Cas Basique**
