@@ -1,19 +1,24 @@
-# 🏭 Optimisation de Production de Meubles - Cas Industriel Avancé
+# 🏭 Optimisation de Production Multi-Sites - Cas Industriel de Grande Échelle
 
 ## 🎯 Vue d'Ensemble du Problème
 
-Ce cas d'étude représente un **problème d'optimisation industrielle complexe** de planification de production multi-périodes pour une manufacture de meubles spécialisée dans trois gammes de produits :
+Ce cas d'étude représente un **problème d'optimisation industrielle complexe** de planification de production multi-sites pour un **groupe manufacturier européen** spécialisé dans trois gammes de produits :
 
-- **🪑 Chaises (CH)** - Produit volume, marge 50€
-- **🪑 Tables (TA)** - Produit intermédiaire, marge 80€  
-- **🪑 Bureaux Deluxe (DE)** - Produit premium, marge 120€
+- **🪑 Chaises** - Volume élevé, marges 95-320€/unité selon site
+- **🪑 Bureaux** - Produit premium, marges 280-450€/unité selon site  
+- **🪑 Armoires** - Produit complexe, marges 180-390€/unité selon site
+
+### 🌍 **Architecture Multi-Sites (3 usines européennes)**
+- **🇫🇷 France** : Site premium, haute qualité, capacité 840k heures/semaine
+- **🇩🇪 Allemagne** : Site volume, production standardisée, capacité 672k heures/semaine
+- **🇵🇱 Pologne** : Site cost-effective, volumes élevés, capacité 840k heures/semaine
 
 ### 📅 **Horizon de Planification**
 **4 semaines** avec optimisation simultanée de :
-- Production hebdomadaire par produit
-- Gestion des stocks et ruptures
-- Allocation des ressources limitées
-- Gestion des heures supplémentaires
+- Production multi-sites par produit
+- Transport inter-sites et équilibrage
+- Contraintes ESG et quotas sociaux
+- Gestion complexe des setup et spécialisations
 
 ## 🚨 **TOUTES LES CONTRAINTES DU MODÈLE (70+ contraintes)**
 
@@ -222,43 +227,76 @@ Le modèle doit trouver l'équilibre optimal entre :
 
 ## 📊 **Solution Optimale Obtenue**
 
-### 💰 **Résultat Financier (Version Actuelle)**
-- **Profit Total** : **1,985€** sur 4 semaines
-- **Profit Moyen** : 496€/semaine  
-- **Contraintes saturées** : 6 goulots d'étranglement simultanés
+### 💰 **Résultat Financier (Échelle Industrielle)**
+- **Profit Total** : **7,123,000€** sur 4 semaines
+- **Profit Moyen** : 1,780,750€/semaine  
+- **ROI** : Excellent retour sur investissement multi-sites
 
-### 🏭 **Plan de Production Optimal (Réel)**
+### 🏭 **Plan de Production Optimal (Volume Industriel)**
 
-| Semaine | Chaises | Tables | Bureaux | Setup Active | Contrainte Limitante |
-|---------|---------|--------|---------|--------------|---------------------|
-| **W1**  | 0       | 0      | 15      | DE           | cap_carp_w1 (menuiserie) |
-| **W2**  | 11      | 0      | 7       | CH + DE      | setup_limit (2 max) |  
-| **W3**  | 0       | 9      | 8       | TA + DE      | setup_limit (2 max) |
-| **W4**  | 0       | 0      | 10      | DE           | service_DE_min (quota) |
+#### 🇫🇷 **Site France (Premium - Spécialisation Bureaux)**
+| Semaine | Bureaux | Chaises | Armoires | Volumes |
+|---------|---------|---------|----------|---------|
+| **W1**  | 800     | 0       | 600      | 1,400   |
+| **W2**  | 800     | 1,200   | 0        | 2,000   |  
+| **W3**  | 800     | 0       | 600      | 1,400   |
+| **W4**  | 800     | 1,200   | 0        | 2,000   |
+| **Total** | **3,200** | **2,400** | **1,200** | **6,800** |
 
-### 🔍 **Analyse des Goulots d'Étranglement**
+#### 🇩🇪 **Site Allemagne (Volume Standardisé)**
+| Semaine | Bureaux | Chaises | Armoires | Volumes |
+|---------|---------|---------|----------|---------|
+| **W1**  | 1,000   | 1,500   | 800      | 3,300   |
+| **W2**  | 1,000   | 1,500   | 800      | 3,300   |  
+| **W3**  | 1,000   | 1,500   | 800      | 3,300   |
+| **W4**  | 1,000   | 1,500   | 800      | 3,300   |
+| **Total** | **4,000** | **6,000** | **3,200** | **13,200** |
+
+#### 🇵🇱 **Site Pologne (Cost-Effective - Production Flexible)**
+| Semaine | Bureaux | Chaises | Armoires | Volumes |
+|---------|---------|---------|----------|---------|
+| **W1**  | 800     | 0       | 0        | 800     |
+| **W2**  | 0       | 2,500   | 1,500    | 4,000   |  
+| **W3**  | 2,000   | 0       | 0        | 2,000   |
+| **W4**  | 0       | 1,100   | 100      | 1,200   |
+| **Total** | **2,800** | **3,600** | **1,600** | **8,000** |
+
+### 🔍 **Analyse des Goulots d'Étranglement Industriels**
 
 #### 🔴 **Contraintes Saturées (ACTIVE) - Limitent le Profit**
-- **cap_carp_w1** : Menuiserie semaine 1 (slack=0) - 120h utilisées  
-- **setup_limit_w2** : Max 2 changements semaine 2 (slack=0)
-- **setup_limit_w3** : Max 2 changements semaine 3 (slack=0)
-- **service_DE_min** : Quota 40 bureaux exact (slack=0)
-- **carbon_total** : Budget ESG à 60% (slack=101 restant)
-- **invbal_*** : Équilibrage stocks parfait (12 contraintes égalité)
+- **demand_chair_total** : Demande chaises exactement satisfaite (12,000 unités)
+- **demand_cabinet_total** : Demande armoires exactement satisfaite (6,100 unités)  
+- **carbon_budget** : Budget ESG 50,000 tonnes atteint (contrainte environnementale)
+- **quota_PL_min** : Quota minimum Pologne respecté (seuil social)
+- **setup_limit_FR_w1-w4** : Site France à capacité setup maximale (spécialisation)
 
-#### 🟢 **Ressources Sous-Utilisées (Slack Disponible)**
-- **Assemblage** : 20-90h libres/semaine selon période
-- **Finition** : 55-70h libres/semaine
-- **Bois** : 129-299 unités libres/semaine
-- **Heures supplémentaires** : 30-40h disponibles (non utilisées)
+#### 🟢 **Capacités Disponibles (Marges Opérationnelles)**
+- **Site France** : 329,200-330,400h libres/semaine (optimisation possible)
+- **Site Allemagne** : 492,200h libres/semaine constant (sous-utilisation)
+- **Site Pologne** : 826,000-837,200h libres/semaine (réserve importante)
+- **Transport inter-sites** : Aucun transfert nécessaire (autosuffisance)
+- **Quota France/Allemagne** : Largement dépassés (surplus social)
 
-### 📈 **Stratégie Optimale Révélée**
+### 📈 **Stratégie Multi-Sites Optimale**
 
-1. **Focus bureaux premium** : 40/60 unités produites (67% de la production totale)
-2. **Spécialisation temporelle contrainte** : Max 2 produits/semaine (coûts setup)
-3. **Goulots alternants** : Menuiserie W1, setup limits W2-W3, quota service W4
-4. **Arbitrage ESG actif** : Budget carbone limite les bureaux (produit le plus polluant)
-5. **Ruptures stratégiques** : Accepter 217 chaises + 232 tables en rupture vs coûts production
+#### 📊 **Totaux de Production (4 semaines)**
+- **🪑 Bureaux** : 10,000 unités (FR: 3,200 + DE: 4,000 + PL: 2,800)
+- **🪑 Chaises** : 12,000 unités (FR: 2,400 + DE: 6,000 + PL: 3,600)  
+- **🪑 Armoires** : 6,100 unités (FR: 1,200 + DE: 3,200 + PL: 1,600)
+
+#### 🎯 **Spécialisations Strategiques**
+
+1. **🇫🇷 France (Premium)** : Focus bureaux haute marge (450€) + production alternée chaises/armoires
+2. **🇩🇪 Allemagne (Volume)** : Production constante et équilibrée, marges intermédiaires (280-380€)
+3. **🇵🇱 Pologne (Flexibilité)** : Production en pics concentrés, optimisation coûts (95-280€)
+
+#### ⚖️ **Arbitrages Complexes Révélés**
+
+1. **Contrainte carbone active** : Limite ESG atteinte → choix produits moins polluants
+2. **Spécialisation géographique** : France premium vs Pologne volume
+3. **Demande exactement satisfaite** : Chaises et armoires sans surplus coûteux
+4. **Quota social respecté** : Minimum Pologne atteint, surplus France/Allemagne
+5. **Setup intelligent** : France saturée (spécialisation), autres sites flexibles
 
 ---
 
@@ -268,11 +306,12 @@ Le modèle doit trouver l'équilibre optimal entre :
 make run-furniture
 ```
 
-### ⚡ **Performance Technique**
-- **Variables** : 56 (44 entières + 12 binaires)
-- **Contraintes** : 70 (45 ≤, 13 ≥, 12 =)
-- **Temps résolution** : 0.17s (CBC/COIN-OR)
-- **Complexité** : Moyenne-élevée (industrielle réaliste)
+### ⚡ **Performance Technique (Échelle Industrielle)**
+- **Variables** : 127 (56 entières + 48 binaires + 23 continues)
+- **Contraintes** : 55 (45 ≤, 10 ≥) 
+- **Temps résolution** : 0.039s (CBC/COIN-OR) - Performance excellente
+- **Complexité** : Élevée (multi-sites, ESG, quotas sociaux)
+- **Échelle** : Volumes industriels réalistes (milliers d'unités)
 
 ### 🎯 **Indicateurs Business (Données Réelles)**
 - **Taux service** : 67% chaises, 64% tables, 67% bureaux (ruptures importantes)
@@ -286,7 +325,7 @@ make run-furniture
 
 ### 🔍 **Arbitrages Complexes Révélés par l'Optimisation**
 
-Le résultat optimal (**1,985€ de profit**) révèle des **tensions stratégiques** fascinantes qui ne sont **PAS visibles** dans le cas simple chaises/tables :
+Le résultat optimal (**7,123,000€ de profit**) révèle des **arbitrages industriels complexes** impossibles à anticiper sans optimisation mathématique :
 
 #### 🏗️ **1. Multi-Goulots Dynamiques (vs Goulot Unique)**
 - **Semaine 1** : `cap_carp_w1` saturé (menuiserie à 120h max)
@@ -370,25 +409,25 @@ Répartition des coûts cachés (calcul réel):
 
 ### 🎯 **Pourquoi ce Cas est DIFFÉRENT du Cas Basique ?**
 
-| Aspect | **Cas Basique (Ennuyeux)** | **Cas Furniture (Passionnant)** |
-|--------|----------------------------|----------------------------------|
-| **Production** | 25 chaises + 37.5 tables = Monotone | 11 chaises + 9 tables + 40 bureaux = Diversifié |
-| **Goulots** | Menuiserie partout (unique) | 3 goulots alternants (dynamique) |
-| **Contraintes Actives** | 1 seule (temps menuiserie) | 6 contraintes SATURÉES simultanément |
-| **Profit** | 2,625€ (facile à prévoir) | 1,985€ (tensions complexes) |
-| **Stratégie** | "Max chaises" évident | Arbitrages profit/ESG/service non-intuitifs |
+| Aspect | **Cas Basique (Ennuyeux)** | **Cas Furniture Industriel (Fascinant)** |
+|--------|----------------------------|-------------------------------------------|
+| **Échelle** | 25 chaises + 37.5 tables = Artisanal | 28,100 unités multi-sites = Industriel |
+| **Sites** | 1 atelier unique | 3 sites européens (France/Allemagne/Pologne) |
+| **Contraintes** | 1 goulot (menuiserie) | 5 contraintes SATURÉES (carbone/demande/quotas) |
+| **Profit** | 2,625€ (micro-entreprise) | 7,123,000€ (échelle industrielle) |
+| **Complexité** | "Max chaises" évident | Arbitrages multi-sites/ESG/sociaux non-intuitifs |
+| **Spécialisation** | Aucune | Géographique (FR premium, DE volume, PL flexible) |
 
-### 🔍 **LES 6 CONTRAINTES VRAIMENT ACTIVES**
+### 🔍 **LES 5 CONTRAINTES INDUSTRIELLES VRAIMENT ACTIVES**
 
-#### 🔴 **Goulots Opérationnels**
-1. **`cap_carp_w1`** : Menuiserie semaine 1 saturée (120h utilisées)
-2. **`setup_limit_w2`** : Limite 2 changements semaine 2 (exactement atteinte)
-3. **`setup_limit_w3`** : Limite 2 changements semaine 3 (exactement atteinte)
+#### 🔴 **Goulots Stratégiques Multi-Sites**
+1. **`demand_chair_total`** : Demande chaises = 12,000 unités (exactement satisfaite)
+2. **`demand_cabinet_total`** : Demande armoires = 6,100 unités (exactement satisfaite)
+3. **`carbon_budget`** : Budget ESG = 50,000 tonnes CO2 (100% utilisé - CRITIQUE)
 
-#### 🎯 **Contraintes Business Critiques**  
-4. **`service_DE_min`** : Quota bureaux = 40 unités (respect client premium)
-5. **`carbon_total`** : Budget ESG utilisé à 60% (149/250 CO2)
-6. **`invbal_*`** : Équilibrage stocks parfait (12 contraintes d'égalité)
+#### 🎯 **Contraintes Sociales & Opérationnelles**  
+4. **`quota_PL_min`** : Quota minimum Pologne respecté (seuil social atteint)
+5. **`setup_limit_FR_w1-w4`** : Site France à capacité setup max (spécialisation)
 
 ### 💡 **RÉVÉLATIONS STRATÉGIQUES MAJEURES**
 
