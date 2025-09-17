@@ -1,0 +1,12 @@
+name,expr,sense,rhs
+# Contraintes de ressources
+# Contrainte temps de menuiserie: 2h/chaise + 4h/table <= 200h disponibles
+time_carpentry,2*x_chairs + 4*x_tables,<=,200
+# Contrainte temps d'assemblage: 1h/chaise + 2h/table <= 120h disponibles  
+time_assembly,1*x_chairs + 2*x_tables,<=,120
+# Contrainte matériau bois: 1m²/chaise + 3m²/table <= 180m² disponibles
+material_wood,1*x_chairs + 3*x_tables,<=,180
+# Contrainte demande minimale chaises: au moins 10 chaises
+min_chairs,1*x_chairs,>=,10
+# Contrainte demande minimale tables: au moins 5 tables
+min_tables,1*x_tables,>=,5

@@ -1,0 +1,53 @@
+var,coeff,sense
+# Production (marges augmentées)
+prod_CH_w1,50,max
+prod_CH_w2,50,max
+prod_CH_w3,50,max
+prod_CH_w4,50,max
+prod_TA_w1,80,max
+prod_TA_w2,80,max
+prod_TA_w3,80,max
+prod_TA_w4,80,max
+prod_DE_w1,120,max
+prod_DE_w2,120,max
+prod_DE_w3,120,max
+prod_DE_w4,120,max
+# Stocks (coûts de possession)
+inv_CH_w1,-1,max
+inv_CH_w2,-1,max
+inv_CH_w3,-1,max
+inv_CH_w4,-1,max
+inv_TA_w1,-2,max
+inv_TA_w2,-2,max
+inv_TA_w3,-2,max
+inv_TA_w4,-2,max
+inv_DE_w1,-3,max
+inv_DE_w2,-3,max
+inv_DE_w3,-3,max
+inv_DE_w4,-3,max
+# Backlog: pénalités réduites
+back_CH_w4,-25,max
+back_TA_w4,-30,max
+back_DE_w4,-40,max
+# Setups (coûts fixes réduits)
+setup_CH_w1,-50,max
+setup_CH_w2,-50,max
+setup_CH_w3,-50,max
+setup_CH_w4,-50,max
+setup_TA_w1,-75,max
+setup_TA_w2,-75,max
+setup_TA_w3,-75,max
+setup_TA_w4,-75,max
+setup_DE_w1,-100,max
+setup_DE_w2,-100,max
+setup_DE_w3,-100,max
+setup_DE_w4,-100,max
+# Heures sup assemblage et menuiserie
+overtime_w1,-15,max
+overtime_w2,-15,max
+overtime_w3,-15,max
+overtime_w4,-15,max
+ot_carp_w1,-30,max
+ot_carp_w2,-30,max
+ot_carp_w3,-30,max
+ot_carp_w4,-30,max

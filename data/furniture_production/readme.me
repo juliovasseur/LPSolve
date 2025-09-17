@@ -1,0 +1,169 @@
+## 📦 Données d’exemple (4 semaines)
+
+On planifie la production de trois familles : **CH** (chaises), **TA** (tables), **DE** (bureaux). Les CSV se trouvent dans un dossier `data/`.
+
+### 1) `variables.csv`
+
+Déclare chaque variable (borne inf/sup, type). Ex. :
+
+```csv
+name,low,up,type
+prod_CH_w1,0,,integer
+inv_CH_w1,0,,integer
+back_CH_w1,0,,integer
+setup_CH_w1,0,1,binary
+# ... idem pour TA/DE et w1..w4
+```
+
+### 2) `objectives.csv`
+
+Définit **l’objectif** (somme de `coeff * var`) et le **sens** (min/max) ligne par ligne. Extraits :
+
+```csv
+# Marges unitaires
+prod_CH_w1,25,max
+prod_TA_w1,40,max
+prod_DE_w1,60,max
+# Coûts de possession / backorders / setup / heures sup
+inv_CH_w1,-1,max
+back_CH_w1,-8,max
+setup_CH_w1,-200,max
+overtime_w1,-15,max
+ot_carp_w1,-30,max
+```
+
+### 3) `constraints.csv`
+
+Contraintes **lisibles** sous forme d’expressions linéaires. Le parser gère les constantes à gauche et les déplace du bon côté. Extraits :
+
+```csv
+# Capacités hebdo — menuiserie (avec OT menuiserie)
+cap_carp_w1,3*prod_CH_w1 + 5*prod_TA_w1 + 8*prod_DE_w1 -1*ot_carp_w1,<=,240
+# Capacités hebdo — assemblage (avec heures sup)
+cap_asm_w1,2*prod_CH_w1 + 3*prod_TA_w1 + 4*prod_DE_w1 -1*overtime_w1,<=,200
+# Capacités finition / matière
+cap_fin_w1,1*prod_CH_w1 + 2*prod_TA_w1 + 3*prod_DE_w1,<=,160
+# Stockage (m³)
+storage_w1,inv_CH_w1 + inv_TA_w1 + inv_DE_w1,<=,200
+# Liaisons production↔setup (batch min / max)
+link_lower_CH_w1,prod_CH_w1 -10*setup_CH_w1,>=,0
+link_upper_CH_w1,prod_CH_w1 -100*setup_CH_w1,<=,0
+# Équilibres inv/backlog (demande en RHS)
+invbal_CH_w1,inv_CH_w1 - back_CH_w1 - prod_CH_w1,==,-40
+# Budget carbone (pondération 1/2/3 par produit)
+carbon_total,1*Σprod_CH + 2*Σprod_TA + 3*Σprod_DE,<=,1800
+# Quota de service (contrat)
+service_DE_min,Σprod_DE,>=,30
+```
+
+> L’exemple encode des **demandes hebdo** (CH : 40/50/30/60, TA : 20/25/30/35, DE : 10/15/20/25), des **ressources** (heures dans 3 ateliers), des **coûts** (stock, retard, setup, heures sup), un **stockage** limité, et un **budget carbone** global.
+
+---
+
+## 🧠 Modèle (vue math)
+
+* **Variables**
+
+  * `prod_{famille}_w{t}` : production entière
+  * `inv_{famille}_w{t}` : stock fin de semaine
+  * `back_{famille}_w{t}` : retard (backorder)
+  * `setup_{famille}_w{t}∈{0,1}` : changement de série si production
+  * `overtime_w{t}`, `ot_carp_w{t}` : heures sup (assemblage / menuiserie)
+
+* **Objectif** : **maximiser le profit** (= marges de prod – coûts de stock/retard – coûts de setup – coût des heures sup).
+
+* **Contraintes (principales)**
+
+  * **Capacités** multi‑ateliers par semaine ; heures sup augmentent la capacité.
+  * **Stocks / Retards** : équilibres inventaires avec demandes exogènes.
+  * **Setups** : si production ⇒ setup=1, avec **batch min/max**.
+  * **Stockage** : volume limité.
+  * **Carbone** : plafond global (pondérations par famille).
+  * **Service** : quota minimal sur les bureaux (contrat client).
+
+* **Interprétabilité** (sorties utiles)
+
+  * **Slack** d’une contrainte : marge restante sur la ressource.
+  * **Prix dual** (`π`) d’une ressource (LP) : **valeur marginale** d’1 unité supplémentaire de capacité/carbone.
+  * **Coût réduit** d’une variable : gain marginal net si on « entre » cette variable dans la base.
+
+---
+
+## 🚀 Démarrage
+
+### 1) Installer CBC
+
+* macOS : `brew install coin-or-tools/coinor/cbc`
+* Linux : `sudo apt-get install -y coinor-cbc`
+* Conda : `conda install -c conda-forge coincbc`
+
+> Le binaire `cbc` doit être dans le `PATH`.
+
+### 2) Dépendances Python
+
+```bash
+python -m venv .venv && source .venv/bin/activate
+pip install pulp tqdm
+```
+
+### 3) Lancer
+
+```bash
+python main.py data/ -v --report lp_report
+# options : --visualize|-v, --report <dir>, --no-color
+```
+
+**Sorties console** : statut solveur, valeur d’objectif, valeurs des variables, slacks/duals (si LP), coûts réduits.
+
+---
+
+## 🧪 Exemple métier expliqué (cas concret)
+
+Imaginez un **atelier de menuiserie** avec 3 gammes — chaises (CH), tables (TA), bureaux (DE) — et 3 ressources principales par semaine : **menuiserie**, **assemblage**, **finition**.
+
+* Les demandes clients sont connues sur 4 semaines.
+* Chaque produit consomme X heures de chaque ressource, a une **marge unitaire** et un **profil carbone**.
+* Vous pouvez **surstocker** (coût de possession), **retarder** des commandes (pénalité « backorder »), **lancer des séries** (coût fixe et batch min/max), faire des **heures sup** (coût).
+* Un **contrat** impose un minimum de bureaux sur l’horizon ; et l’entreprise s’est fixé un **budget carbone**.
+
+> Le modèle décide **quoi produire**, **quand**, **en quelle quantité**, et **où absorber les écarts** (stock vs. retard), tout en respectant les contraintes et en **maximisant le profit**.
+
+**Impact réel :**
+
+* Identifier les **goulots** (ex. assemblage saturé à w2) et leur **valeur** (prix dual) ⇒ base pour arbitrer **heures sup** ou **investissements**.
+* Mesurer le **coût d’opportunité** du carbone (shadow price) ⇒ justification d’achats de crédits carbone ou d’un **mix produit** moins émetteur.
+* Quantifier l’effet d’un **setup** supplémentaire (nouvelle série) vs. la **taille de lot**.
+
+---
+
+## 🗂️ Structure du repo
+
+```
+main.py                # CLI
+src/lpSolver/parsing.py        # Parsing CSV + expressions linéaires
+src/lpSolver/model_arrays.py   # Conversion dict -> tableaux (A, b, …)
+src/lpSolver/lite.py           # Construction & résolution PuLP/CBC
+/data/
+  variables.csv
+  objectives.csv
+  constraints.csv
+```
+
+---
+
+## 🗺️ Roadmap
+
+*
+
+---
+
+## 💼 Pourquoi c’est pertinent en finance
+
+* **Modélisation contrainte** : traduire un métier en variables/contraintes/objectif (compétence clé des **quants** pour l’allocation d’actifs, funding, exécution, optimisation de collatéral, ALM).
+* **Dualité** = **prix d’ombre** : interprétation directe en **coût du capital** ou **coût de contrainte** (règlementaire, carbone, liquidité).
+* **Coûts réduits** = opportunités marginales (similaire à une **alpha** nette de coûts/risques dans un univers contraint).
+* **What‑if** rapides\*\* : déplacer un budget (carbone ↔ liquidité), un quota (service ↔ tracking error), ou un coût fixe (setup ↔ coût de transaction) et lire l’impact.
+
+> La même mécanique sert à construire un **portefeuille contraint** (LP/QP), calibrer des **horaires d’exécution** linéarisés, ou résoudre des **problèmes d’ALM** avec demandes (flux) et pénalités (défauts/retards).
+
+---

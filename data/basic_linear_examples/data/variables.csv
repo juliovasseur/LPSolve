@@ -1,0 +1,4 @@
+name,low,up,type
+# Variables de production - Nombre d'unités à produire
+x_chairs,0,100,continuous
+x_tables,0,50,continuous

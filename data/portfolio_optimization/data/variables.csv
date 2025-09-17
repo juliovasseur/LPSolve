@@ -1,0 +1,37 @@
+name,low,up,type
+# Portfolio weights - long positions only
+w_AAPL,0,0.15,continuous
+w_MSFT,0,0.15,continuous
+w_GOOGL,0,0.12,continuous
+w_AMZN,0,0.12,continuous
+w_TSLA,0,0.08,continuous
+w_NVDA,0,0.10,continuous
+w_META,0,0.10,continuous
+w_NFLX,0,0.08,continuous
+w_JPM,0,0.12,continuous
+w_BAC,0,0.10,continuous
+w_GS,0,0.08,continuous
+w_MS,0,0.08,continuous
+w_JNJ,0,0.10,continuous
+w_PFE,0,0.08,continuous
+w_UNH,0,0.10,continuous
+w_PG,0,0.08,continuous
+# Transaction costs variables
+tc_AAPL,0,,continuous
+tc_MSFT,0,,continuous
+tc_GOOGL,0,,continuous
+tc_AMZN,0,,continuous
+tc_TSLA,0,,continuous
+tc_NVDA,0,,continuous
+tc_META,0,,continuous
+tc_NFLX,0,,continuous
+tc_JPM,0,,continuous
+tc_BAC,0,,continuous
+tc_GS,0,,continuous
+tc_MS,0,,continuous
+tc_JNJ,0,,continuous
+tc_PFE,0,,continuous
+tc_UNH,0,,continuous
+tc_PG,0,,continuous
+# Risk measure
+risk_penalty,0,,continuous
