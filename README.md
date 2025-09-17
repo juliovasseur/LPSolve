@@ -1,18 +1,18 @@
-# 🏛️ Quantitative Finance Optimization Suite
-## Système d'Optimisation de Portefeuille avec Programmation Linéaire Avancée
+# � **LPSolve** - *Moteur d'Optimisation Linéaire*
+## Outil de Résolution d'Optimisation via Programmation Linéaire
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
 [![PuLP](https://img.shields.io/badge/PuLP-2.7+-green.svg)](https://pypi.org/project/PuLP/)
 [![CBC](https://img.shields.io/badge/CBC-COIN--OR-orange.svg)](https://github.com/coin-or/Cbc)
 [![License](https://img.shields.io/badge/License-MIT-red.svg)](LICENSE)
 
-> **Projet parfait pour prendre l'exemple d'un projet data → decision** : Transformation de données CSV brutes en **décisions d'investissement optimales** via algorithmes d'optimisation mathématique. Du parsing des données à l'exécution des stratégies.
+> **Exemple d'un projet data → decision** : Transformation de données CSV en **décisions d'optimisation** via programmation linéaire. Du parsing des données à l'analyse des résultats avec calcul des **valeurs marginales**.
 
 ---
 
 ## 🎯 **Vue d'ensemble du Projet**
 
-Ce projet implémente un **système d'optimisation quantitative avancé** qui transforme des données financières CSV en modèles mathématiques d'optimisation, résolus avec des algorithmes de pointe (CBC/COIN-OR). Le système couvre trois niveaux de complexité croissante, du prototypage éducatif aux applications professionnelles de gestion d'actifs.
+Ce projet implémente un **moteur d'optimisation linéaire** qui transforme des données CSV en modèles mathématiques, résolus avec le solveur CBC (COIN-OR). Le système couvre trois niveaux de complexité, des exemples éducatifs aux applications de gestion de portefeuille suivant une **logique ALM** avec calcul des **valeurs marginales** et analyse **PnL**.
 
 ### 🚀 **Outil Puissant & Universel**
 Avant tout, c'est un **moteur d'optimisation généraliste** : vous pouvez **cloner ce repo**, remplacer les CSV par vos données normalisées, et résoudre **n'importe quel problème d'optimisation linéaire sous contraintes** ! 
@@ -34,13 +34,13 @@ Le processus d'optimisation suit une logique claire :
 - **Interface intuitive** : CSV en entrée, résultats détaillés en sortie
 - **Reproductible** : Versionning Git, environnement isolé
 
-### 💼 **Trois Niveaux de Complexité Croissante**
+### � **Cas d'Usage Principaux**
 
-### 🚀 Cas d'Usage Principaux
+1. **📚 Exemples Éducatifs** - Validation des concepts d'optimisation linéaire
+2. **🏭 Optimisation Industrielle** - Planification de production avec analyse des goulots  
+3. **💼 Finance Quantitative** - Optimisation de portefeuille suivant une **logique ALM**, avec calcul des **valeurs marginales** et optimisation **PnL** post-coûts de transaction
 
-1. **📚 Exemples Éducatifs** - Validation des algorithmes d'optimisation
-2. **🏭 Optimisation Industrielle** - Planification de production multi-périodes  
-3. **💼 Finance Quantitative** - Optimisation de portefeuille avec contraintes réglementaires
+> **🎓 Terminologie financière** : **ALM** (Asset Liability Management), **PnL** (Profit & Loss), **valeurs marginales** (shadow prices) - tous ces concepts sont détaillés dans les README spécifiques.
 
 ---
 
