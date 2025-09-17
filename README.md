@@ -1,36 +1,38 @@
 # 🏛️ Quantitative Finance Optimization Suite
-## **Moteur d'Optimisation Data-Driven** pour Décisions Financières Quantitatives
+## Système d'Optimisation de Portefeuille avec Programmation Linéaire Avancée
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
 [![PuLP](https://img.shields.io/badge/PuLP-2.7+-green.svg)](https://pypi.org/project/PuLP/)
 [![CBC](https://img.shields.io/badge/CBC-COIN--OR-orange.svg)](https://github.com/coin-or/Cbc)
 [![License](https://img.shields.io/badge/License-MIT-red.svg)](LICENSE)
 
-> **Projet parfait pour prendre l'exemple d'un projet data → decision** : Transformation de données CSV brutes en **décisions d'investissement optimales** via algorithmes d'**optimisation sous contraintes**. Pipeline complet **data-driven** du parsing à l'exécution.
+> **Projet parfait pour prendre l'exemple d'un projet data → decision** : Transformation de données CSV brutes en **décisions d'investissement optimales** via algorithmes d'optimisation mathématique. Du parsing des données à l'exécution des stratégies.
 
 ---
 
-## 🎯 **Pourquoi ce Projet ? L'Essence du Data-Driven Decision Making**
+## 🎯 **Vue d'ensemble du Projet**
+
+Ce projet implémente un **système d'optimisation quantitative avancé** qui transforme des données financières CSV en modèles mathématiques d'optimisation, résolus avec des algorithmes de pointe (CBC/COIN-OR). Le système couvre trois niveaux de complexité croissante, du prototypage éducatif aux applications professionnelles de gestion d'actifs.
 
 ### 🚀 **Outil Puissant & Universel**
 Avant tout, c'est un **moteur d'optimisation généraliste** : vous pouvez **cloner ce repo**, remplacer les CSV par vos données normalisées, et résoudre **n'importe quel problème d'optimisation linéaire sous contraintes** ! 
 
-### 📊 **Pipeline Data-Driven Complet**
+### 📊 **Pipeline Complet**
 ```
 Données CSV → Modélisation Mathématique → Optimisation → Décisions Actionables
 ```
 
-Ce système illustre parfaitement le processus **data-to-decision** moderne :
+Le processus d'optimisation suit une logique claire :
 1. **Ingestion** : Données structurées (CSV normalisés)
-2. **Modélisation** : Transformation en problème mathématique  
-3. **Solving** : Algorithmes d'optimisation (CBC/COIN-OR)
-4. **Action** : Décisions quantifiées et justifiées
+2. **Modélisation** : Construction automatique du modèle mathématique  
+3. **Résolution** : Algorithmes d'optimisation (CBC/COIN-OR)
+4. **Analyse** : Décisions quantifiées avec justifications
 
-### 🎓 **Accessible à Tous - Finance Friendly & Tech Friendly**
+### 🎓 **Accessible à Tous**
 - **Non-financiers** : Tous les termes techniques expliqués (ALM, basis points, etc.)
 - **Non-mathématiciens** : Concepts d'optimisation linéaire vulgarisés
-- **Interface simple** : CSV en entrée, résultats en sortie
-- **Reproductible** : Versionning Git, environnement Docker
+- **Interface intuitive** : CSV en entrée, résultats détaillés en sortie
+- **Reproductible** : Versionning Git, environnement isolé
 
 ### 💼 **Trois Niveaux de Complexité Croissante**
 
