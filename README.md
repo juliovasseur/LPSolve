@@ -98,6 +98,52 @@ Le rapport identifie :
 
 ## 🚀 Utilisation
 
+### 🎯 **Fonctionnement Universel du Programme**
+
+Ce programme est conçu pour résoudre **tout type de problème d'optimisation linéaire** en utilisant une approche standardisée basée sur des fichiers CSV. Peu importe votre domaine d'application (finance, production industrielle, logistique, etc.), le processus reste identique :
+
+#### 📋 **Structure CSV Requise**
+
+Le programme attend **3 fichiers CSV normalisés** dans le dossier `data/` de votre cas d'usage :
+
+1. **`variables.csv`** - Définit les variables de décision
+   ```csv
+   variable_name,lower_bound,upper_bound,var_type
+   x1,0,1,Continuous
+   x2,0,100,Integer
+   ```
+
+2. **`objectives.csv`** - Définit la fonction objectif à optimiser
+   ```csv
+   variable_name,coefficient
+   x1,10.5
+   x2,-2.3
+   ```
+
+3. **`constraints.csv`** - Définit toutes les contraintes du problème
+   ```csv
+   constraint_name,variable_name,coefficient,operator,rhs
+   budget_limit,x1,100,<=,50000
+   budget_limit,x2,200,<=,50000
+   minimum_production,x1,1,>=,10
+   ```
+
+#### 🔄 **Processus d'Exécution**
+
+1. **Préparation** : Créez votre dossier de cas d'usage avec les 3 fichiers CSV
+2. **Configuration** : Le programme parse automatiquement vos CSV
+3. **Modélisation** : Construction automatique du modèle mathématique
+4. **Résolution** : Optimisation avec le solveur CBC (COIN-OR)
+5. **Analyse** : Génération des résultats et métriques détaillées
+
+#### ✨ **Avantages de cette Approche**
+
+- **🌐 Universalité** : Fonctionne pour tout problème LP/MILP
+- **📊 Simplicité** : Interface CSV intuitive, pas de programmation requise
+- **🔧 Flexibilité** : Ajout/modification de contraintes en éditant les CSV
+- **📈 Scalabilité** : Gère des milliers de variables et contraintes
+- **🎯 Reproductibilité** : Versionning facile des modèles via Git
+
 ### ⚡ **Commandes Rapides**
 
 ```bash
@@ -114,7 +160,31 @@ make run-furniture
 make run-portfolio
 ```
 
-### 📈 **Exemple de Sortie Portfolio**
+### � **Focus sur l'Exemple Éducatif (Basic Examples)**
+
+L'exemple éducatif de **production de meubles** illustre parfaitement les concepts d'optimisation avec des **contraintes de marché réalistes** :
+
+#### 🎯 **Problème d'Optimisation**
+- **Variables** : Chaises (`x_chairs`) et Tables (`x_tables`)
+- **Objectif** : Maximiser le profit (30€/chaise + 50€/table)
+- **Contraintes** : Ressources (menuiserie, assemblage, bois) + demandes min/max
+
+#### 🔍 **Contrainte Clé : Limite de Demande Maximale**
+```bash
+# Nouvelle contrainte ajoutée
+max_chairs: x_chairs ≤ 25
+```
+
+**Rationale économique** : Même si les chaises sont plus rentables par unité de ressource, la demande du marché est limitée à 25 unités maximum. Cette contrainte force une **réallocation optimale** des ressources vers les tables.
+
+#### 📊 **Impact de la Contrainte**
+- **Sans limite** : 90 chaises + 5 tables = 2,950€
+- **Avec limite** : 25 chaises + 37.5 tables = 2,625€
+- **Perte** : -325€ (-11%) due aux contraintes de marché
+
+> 💡 **Leçon économique** : L'optimisation mathématique doit intégrer les réalités du marché. Une solution théoriquement optimale peut être commercialement impossible.
+
+### �📈 **Exemple de Sortie Portfolio**
 
 ```
 ================================================================================
@@ -148,7 +218,104 @@ make run-portfolio
 
 ---
 
-## 🛠️ Configuration Technique
+## � **Guide d'Interprétation des Résultats**
+
+### 🔍 **Comprendre l'Output du Programme**
+
+Voici l'explication détaillée de tous les termes techniques affichés lors de l'exécution :
+
+#### 📊 **Section "Variables de décision"**
+```bash
+• prod_CH_w1 = 20  [lb=0.0, ub=inf]
+• setup_TA_w2 = 1  [lb=0, ub=1]
+```
+
+**Terminologie :**
+- **Valeur optimale** : `20` = solution trouvée par le solveur
+- **`lb` (Lower Bound)** : Borne inférieure (minimum autorisé)
+- **`ub` (Upper Bound)** : Borne supérieure (maximum autorisé)
+- **`inf`** : Infini (pas de limite supérieure)
+
+#### 🔗 **Section "Contraintes (slacks)"**
+```bash
+• cap_carp_w1 (<=): slack=0 [ACTIVE]
+• cap_asm_w1 (<=): slack=52 [OK]
+• invbal_CH_w1 (==): slack=0 [ACTIVE]
+```
+
+**Statuts des contraintes :**
+
+🔴 **`[ACTIVE]` / `slack=0`** - **Contrainte saturée (goulot)**
+- La contrainte est utilisée à 100% de sa capacité
+- **Critique** : Limite directement la performance
+- Exemple : `cap_carp_w1: 240h utilisées sur 240h disponibles`
+
+🟢 **`[OK]` / `slack>0`** - **Contrainte avec marge**  
+- La contrainte n'est pas limitante
+- `slack` = marge disponible non utilisée
+- Exemple : `cap_asm_w1: slack=52` → 52h d'assemblage restantes
+
+**Types d'opérateurs :**
+- **`(<=)`** : Contrainte de capacité maximum
+- **`(>=)`** : Contrainte de minimum requis  
+- **`(==)`** : Contrainte d'égalité exacte (souvent équilibrage)
+
+#### ⚙️ **Informations Techniques**
+```bash
+🔧 Interface: PuLP (Python Linear Programming)
+⚙️ Solveur: CBC (COIN-OR Branch & Cut)
+⏱️ Temps de résolution: 0.170s
+```
+
+**Composants :**
+- **PuLP** : Interface Python pour la modélisation
+- **CBC** : Moteur d'optimisation (open source, très performant)
+- **Branch & Cut** : Algorithme pour problèmes mixtes entiers
+
+#### 🎯 **Métriques de Performance**
+```bash
+📊 MODÈLE PARSÉ
+• Variables: 56
+• Contraintes: 70  
+• Types: 44 integer, 12 binary
+```
+
+**Complexité du modèle :**
+- **Variables** : Nombre de décisions à optimiser
+- **Contraintes** : Nombre de limites/règles à respecter
+- **Integer** : Variables entières (quantités de production)
+- **Binary** : Variables 0/1 (choix oui/non, setups)
+
+### 🚨 **Analyse des Goulots d'Étranglement**
+
+#### 🔴 **Contraintes Critiques (ACTIVE)**
+- **Impact** : Limitent directement le profit maximum
+- **Action** : Investir pour augmenter ces capacités
+- **Exemple** : Menuiserie saturée → recruter menuisiers ou acheter machines
+
+#### 🟡 **Contraintes Proches de la Saturation (slack faible)**
+- **Surveillance** : Risque de devenir critiques
+- **Planification** : Prévoir montée en charge
+
+#### 🟢 **Ressources Excédentaires (slack élevé)**
+- **Opportunité** : Capacités sous-utilisées
+- **Réallocation** : Possible réduction de coûts ou réorientation
+
+### 💡 **Interprétation Business**
+
+#### 📈 **Pour Maximiser les Profits**
+1. **Éliminer les goulots** : Focus sur les contraintes `[ACTIVE]`
+2. **Exploiter les marges** : Utiliser les ressources avec `slack` élevé
+3. **Optimiser le mix** : Favoriser les produits à haute marge dans les limites
+
+#### 🔍 **Signaux d'Alerte**
+- **Trop de contraintes actives** : Modèle très contraint, peu de flexibilité
+- **Temps de résolution élevé** : Problème trop complexe, simplification nécessaire
+- **Solution non trouvée** : Contraintes contradictoires (infaisabilité)
+
+---
+
+## �🛠️ Configuration Technique
 
 ### 📦 **Dépendances**
 
@@ -209,7 +376,7 @@ make run-portfolio
 
 | Cas d'Usage | Variables | Contraintes | Temps (CBC) | Profit Optimal |
 |-------------|-----------|-------------|-------------|----------------|
-| Basic Examples | 4 | 3 | <0.01s | 2,950€ |
+| Basic Examples | 2 | 6 | <0.01s | 2,625€ |
 | Furniture Production | 32 | 70+ | 0.02s | 11,293€ |
 | **Portfolio Finance** | **77** | **40+** | **0.033s** | **13.64 bp/jour** |
 

@@ -42,7 +42,14 @@ Profit = 30€ × x_chairs + 50€ × x_tables
    x_tables ≥ 5
    ```
 
-6. **Bornes des variables**:
+6. **Demande maximale chaises** (limite du marché à 25):
+   ```
+   x_chairs ≤ 25
+   ```
+   > **Rationale économique**: Même si les chaises sont plus rentables par unité de menuiserie, 
+   > la demande du marché est limitée à 25 unités. Au-delà, les chaises ne seraient pas vendues.
+
+7. **Bornes des variables**:
    ```
    0 ≤ x_chairs ≤ 100
    0 ≤ x_tables ≤ 50
@@ -51,22 +58,33 @@ Profit = 30€ × x_chairs + 50€ × x_tables
 ## Solution Optimale Obtenue
 
 **Résultat du solveur:**
-- **x_chairs = 90** (produire 90 chaises)
-- **x_tables = 5** (produire 5 tables)  
-- **Profit maximum = 2950€**
+- **x_chairs = 25** (produire 25 chaises)
+- **x_tables = 37.5** (produire 37.5 tables)  
+- **Profit maximum = 2625€**
 
 ### Vérification Mathématique des Contraintes
-- **Profit**: 30×90 + 50×5 = 2700 + 250 = **2950€** ✓
-- **Menuiserie**: 2×90 + 4×5 = 180 + 20 = **200h** ≤ 200h ✓ (saturée)
-- **Assemblage**: 1×90 + 2×5 = 90 + 10 = **100h** ≤ 120h ✓  
-- **Bois**: 1×90 + 3×5 = 90 + 15 = **105m²** ≤ 180m² ✓
-- **Min chaises**: 90 ≥ 10 ✓
-- **Min tables**: 5 ≥ 5 ✓ (saturée)
+- **Profit**: 30×25 + 50×37.5 = 750 + 1875 = **2625€** ✓
+- **Menuiserie**: 2×25 + 4×37.5 = 50 + 150 = **200h** ≤ 200h ✓ (saturée)
+- **Assemblage**: 1×25 + 2×37.5 = 25 + 75 = **100h** ≤ 120h ✓  
+- **Bois**: 1×25 + 3×37.5 = 25 + 112.5 = **137.5m²** ≤ 180m² ✓
+- **Min chaises**: 25 ≥ 10 ✓
+- **Min tables**: 37.5 ≥ 5 ✓
+- **Max chaises**: 25 ≤ 25 ✓ (saturée)
 
 ### Analyse Économique
-- La contrainte de **menuiserie** est le goulot d'étranglement (saturée à 200h)
-- La contrainte de **demande minimale tables** est aussi saturée (exactement 5 tables)
-- Il reste 20h d'assemblage et 75m² de bois non utilisés
+🎯 **Impact de la contrainte de demande maximale:**
+- **Avant**: 90 chaises + 5 tables = 2950€ de profit
+- **Après**: 25 chaises + 37.5 tables = 2625€ de profit
+- **Perte**: -325€ (-11%) due à la limite de marché sur les chaises
+
+🔍 **Contraintes actives (goulots):**
+- **Menuiserie** (200h): Saturée - limite la production totale
+- **Demande max chaises** (25): Saturée - force à produire plus de tables
+
+📈 **Réallocation optimale des ressources:**
+- Moins de chaises (plus rentables par unité) mais limitées par la demande
+- Plus de tables (moins rentables par unité) pour utiliser les ressources disponibles
+- Il reste 20h d'assemblage et 42.5m² de bois non utilisés
 
 ## Utilisation
 

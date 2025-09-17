@@ -10,3 +10,5 @@ material_wood,1*x_chairs + 3*x_tables,<=,180
 min_chairs,1*x_chairs,>=,10
 # Contrainte demande minimale tables: au moins 5 tables
 min_tables,1*x_tables,>=,5
+# Contrainte demande maximale chaises: max 25 chaises (limite du marché)
+max_chairs,1*x_chairs,<=,25
