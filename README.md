@@ -154,8 +154,7 @@ make create-case NAME=mon_projet
 
 ### ✏️ **Personnalisation**
 1. **Éditez les CSV** avec vos données spécifiques
-2. **Modifiez le README** avec votre contexte métier
-3. **Lancez l'optimisation** : `make run-custom PROJECT=mon_projet`
+2. **Lancez l'optimisation** : `make run-custom PROJECT=mon_projet`
 
 ### 📋 **Template CSV Exemple**
 
@@ -271,11 +270,6 @@ Chaque README spécialisé contient :
 ### 🐛 **Signaler un Bug**
 - Ouvrez une **issue GitHub** avec votre cas d'usage
 - Incluez vos **fichiers CSV** et l'**erreur complète**
-
-### 💡 **Nouvelles Fonctionnalités**
-- **Fork** le projet
-- Créez une **branche feature**
-- **Pull Request** avec tests
 
 ### 📧 **Contact**
 - **GitHub** : [@juliovasseur](https://github.com/juliovasseur)
