@@ -46,48 +46,48 @@ setup_limit_w3,setup_CH_w3 + setup_TA_w3 + setup_DE_w3,<=,2
 setup_limit_w4,setup_CH_w4 + setup_TA_w4 + setup_DE_w4,<=,2
 
 # Logique setup (production implique setup)
-link_upper_CH_w1,1*prod_CH_w1 + -100*setup_CH_w1,<=,0
-link_upper_CH_w2,1*prod_CH_w2 + -100*setup_CH_w2,<=,0
-link_upper_CH_w3,1*prod_CH_w3 + -100*setup_CH_w3,<=,0
-link_upper_CH_w4,1*prod_CH_w4 + -100*setup_CH_w4,<=,0
-link_lower_CH_w1,1*prod_CH_w1 + -10*setup_CH_w1,>=,0
-link_lower_CH_w2,1*prod_CH_w2 + -10*setup_CH_w2,>=,0
-link_lower_CH_w3,1*prod_CH_w3 + -10*setup_CH_w3,>=,0
-link_lower_CH_w4,1*prod_CH_w4 + -10*setup_CH_w4,>=,0
+link_upper_CH_w1,prod_CH_w1 - 100*setup_CH_w1,<=,0
+link_upper_CH_w2,prod_CH_w2 - 100*setup_CH_w2,<=,0
+link_upper_CH_w3,prod_CH_w3 - 100*setup_CH_w3,<=,0
+link_upper_CH_w4,prod_CH_w4 - 100*setup_CH_w4,<=,0
+link_lower_CH_w1,prod_CH_w1 - 10*setup_CH_w1,>=,0
+link_lower_CH_w2,prod_CH_w2 - 10*setup_CH_w2,>=,0
+link_lower_CH_w3,prod_CH_w3 - 10*setup_CH_w3,>=,0
+link_lower_CH_w4,prod_CH_w4 - 10*setup_CH_w4,>=,0
 
-link_upper_TA_w1,1*prod_TA_w1 + -100*setup_TA_w1,<=,0
-link_upper_TA_w2,1*prod_TA_w2 + -100*setup_TA_w2,<=,0
-link_upper_TA_w3,1*prod_TA_w3 + -100*setup_TA_w3,<=,0
-link_upper_TA_w4,1*prod_TA_w4 + -100*setup_TA_w4,<=,0
-link_lower_TA_w1,1*prod_TA_w1 + -6*setup_TA_w1,>=,0
-link_lower_TA_w2,1*prod_TA_w2 + -6*setup_TA_w2,>=,0
-link_lower_TA_w3,1*prod_TA_w3 + -6*setup_TA_w3,>=,0
-link_lower_TA_w4,1*prod_TA_w4 + -6*setup_TA_w4,>=,0
+link_upper_TA_w1,prod_TA_w1 - 100*setup_TA_w1,<=,0
+link_upper_TA_w2,prod_TA_w2 - 100*setup_TA_w2,<=,0
+link_upper_TA_w3,prod_TA_w3 - 100*setup_TA_w3,<=,0
+link_upper_TA_w4,prod_TA_w4 - 100*setup_TA_w4,<=,0
+link_lower_TA_w1,prod_TA_w1 - 6*setup_TA_w1,>=,0
+link_lower_TA_w2,prod_TA_w2 - 6*setup_TA_w2,>=,0
+link_lower_TA_w3,prod_TA_w3 - 6*setup_TA_w3,>=,0
+link_lower_TA_w4,prod_TA_w4 - 6*setup_TA_w4,>=,0
 
-link_upper_DE_w1,1*prod_DE_w1 + -100*setup_DE_w1,<=,0
-link_upper_DE_w2,1*prod_DE_w2 + -100*setup_DE_w2,<=,0
-link_upper_DE_w3,1*prod_DE_w3 + -100*setup_DE_w3,<=,0
-link_upper_DE_w4,1*prod_DE_w4 + -100*setup_DE_w4,<=,0
-link_lower_DE_w1,1*prod_DE_w1 + -4*setup_DE_w1,>=,0
-link_lower_DE_w2,1*prod_DE_w2 + -4*setup_DE_w2,>=,0
-link_lower_DE_w3,1*prod_DE_w3 + -4*setup_DE_w3,>=,0
-link_lower_DE_w4,1*prod_DE_w4 + -4*setup_DE_w4,>=,0
+link_upper_DE_w1,prod_DE_w1 - 100*setup_DE_w1,<=,0
+link_upper_DE_w2,prod_DE_w2 - 100*setup_DE_w2,<=,0
+link_upper_DE_w3,prod_DE_w3 - 100*setup_DE_w3,<=,0
+link_upper_DE_w4,prod_DE_w4 - 100*setup_DE_w4,<=,0
+link_lower_DE_w1,prod_DE_w1 - 4*setup_DE_w1,>=,0
+link_lower_DE_w2,prod_DE_w2 - 4*setup_DE_w2,>=,0
+link_lower_DE_w3,prod_DE_w3 - 4*setup_DE_w3,>=,0
+link_lower_DE_w4,prod_DE_w4 - 4*setup_DE_w4,>=,0
 
 # Équilibres stock (balance comptable)
-invbal_CH_w1,1*inv_CH_w1 + -1*back_CH_w1 + -1*prod_CH_w1,==,-20
-invbal_CH_w2,1*inv_CH_w2 + -1*back_CH_w2 + -1*inv_CH_w1 + 1*back_CH_w1 + -1*prod_CH_w2,==,-25
-invbal_CH_w3,1*inv_CH_w3 + -1*back_CH_w3 + -1*inv_CH_w2 + 1*back_CH_w2 + -1*prod_CH_w3,==,-30
-invbal_CH_w4,1*inv_CH_w4 + -1*back_CH_w4 + -1*inv_CH_w3 + 1*back_CH_w3 + -1*prod_CH_w4,==,-35
+invbal_CH_w1,inv_CH_w1 - back_CH_w1 - prod_CH_w1,==,-20
+invbal_CH_w2,inv_CH_w2 - back_CH_w2 - inv_CH_w1 + back_CH_w1 - prod_CH_w2,==,-25
+invbal_CH_w3,inv_CH_w3 - back_CH_w3 - inv_CH_w2 + back_CH_w2 - prod_CH_w3,==,-30
+invbal_CH_w4,inv_CH_w4 - back_CH_w4 - inv_CH_w3 + back_CH_w3 - prod_CH_w4,==,-35
 
-invbal_TA_w1,1*inv_TA_w1 + -1*back_TA_w1 + -1*prod_TA_w1,==,-20
-invbal_TA_w2,1*inv_TA_w2 + -1*back_TA_w2 + -1*inv_TA_w1 + 1*back_TA_w1 + -1*prod_TA_w2,==,-25
-invbal_TA_w3,1*inv_TA_w3 + -1*back_TA_w3 + -1*inv_TA_w2 + 1*back_TA_w2 + -1*prod_TA_w3,==,-30
-invbal_TA_w4,1*inv_TA_w4 + -1*back_TA_w4 + -1*inv_TA_w3 + 1*back_TA_w3 + -1*prod_TA_w4,==,-35
+invbal_TA_w1,inv_TA_w1 - back_TA_w1 - prod_TA_w1,==,-20
+invbal_TA_w2,inv_TA_w2 - back_TA_w2 - inv_TA_w1 + back_TA_w1 - prod_TA_w2,==,-25
+invbal_TA_w3,inv_TA_w3 - back_TA_w3 - inv_TA_w2 + back_TA_w2 - prod_TA_w3,==,-30
+invbal_TA_w4,inv_TA_w4 - back_TA_w4 - inv_TA_w3 + back_TA_w3 - prod_TA_w4,==,-35
 
-invbal_DE_w1,1*inv_DE_w1 + -1*back_DE_w1 + -1*prod_DE_w1,==,-10
-invbal_DE_w2,1*inv_DE_w2 + -1*back_DE_w2 + -1*inv_DE_w1 + 1*back_DE_w1 + -1*prod_DE_w2,==,-15
-invbal_DE_w3,1*inv_DE_w3 + -1*back_DE_w3 + -1*inv_DE_w2 + 1*back_DE_w2 + -1*prod_DE_w3,==,-20
-invbal_DE_w4,1*inv_DE_w4 + -1*back_DE_w4 + -1*inv_DE_w3 + 1*back_DE_w3 + -1*prod_DE_w4,==,-25
+invbal_DE_w1,inv_DE_w1 - back_DE_w1 - prod_DE_w1,==,-10
+invbal_DE_w2,inv_DE_w2 - back_DE_w2 - inv_DE_w1 + back_DE_w1 - prod_DE_w2,==,-15
+invbal_DE_w3,inv_DE_w3 - back_DE_w3 - inv_DE_w2 + back_DE_w2 - prod_DE_w3,==,-20
+invbal_DE_w4,inv_DE_w4 - back_DE_w4 - inv_DE_w3 + back_DE_w3 - prod_DE_w4,==,-25
 
 # Budget carbone restrictif (goulot ESG)
 carbon_total,1*prod_CH_w1 + 1*prod_CH_w2 + 1*prod_CH_w3 + 1*prod_CH_w4 + 2*prod_TA_w1 + 2*prod_TA_w2 + 2*prod_TA_w3 + 2*prod_TA_w4 + 3*prod_DE_w1 + 3*prod_DE_w2 + 3*prod_DE_w3 + 3*prod_DE_w4,<=,250
@@ -103,7 +103,7 @@ diversif_w3,prod_CH_w3 + prod_TA_w3 + prod_DE_w3,>=,15
 cash_flow_limit,15*inv_CH_w1 + 15*inv_CH_w2 + 15*inv_CH_w3 + 15*inv_CH_w4 + 25*inv_TA_w1 + 25*inv_TA_w2 + 25*inv_TA_w3 + 25*inv_TA_w4 + 35*inv_DE_w1 + 35*inv_DE_w2 + 35*inv_DE_w3 + 35*inv_DE_w4,<=,800
 
 # Contrainte de qualité premium (équilibre mixité)
-quality_balance,1*prod_CH_w1 + 1*prod_CH_w2 + 1*prod_CH_w3 + 1*prod_CH_w4 + -1.2*prod_TA_w1 + -1.2*prod_TA_w2 + -1.2*prod_TA_w3 + -1.2*prod_TA_w4,<=,20
+quality_balance,prod_CH_w1 + prod_CH_w2 + prod_CH_w3 + prod_CH_w4 - 1.2*(prod_TA_w1 + prod_TA_w2 + prod_TA_w3 + prod_TA_w4),<=,20
 
 # Contrainte capacité maximum bureau (produit premium limité)
 premium_limit_w2,prod_DE_w2,<=,8

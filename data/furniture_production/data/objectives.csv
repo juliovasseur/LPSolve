@@ -1,17 +1,17 @@
 var,coeff,sense
-# Production (marges augmentées)
-prod_CH_w1,50,max
-prod_CH_w2,50,max
-prod_CH_w3,50,max
-prod_CH_w4,50,max
-prod_TA_w1,80,max
-prod_TA_w2,80,max
-prod_TA_w3,80,max
-prod_TA_w4,80,max
-prod_DE_w1,120,max
-prod_DE_w2,120,max
-prod_DE_w3,120,max
-prod_DE_w4,120,max
+# Production (marges différenciées pour créer des tensions)
+prod_CH_w1,40,max
+prod_CH_w2,60,max
+prod_CH_w3,45,max
+prod_CH_w4,55,max
+prod_TA_w1,120,max
+prod_TA_w2,95,max
+prod_TA_w3,110,max
+prod_TA_w4,85,max
+prod_DE_w1,180,max
+prod_DE_w2,200,max
+prod_DE_w3,160,max
+prod_DE_w4,220,max
 # Stocks (coûts de possession)
 inv_CH_w1,-1,max
 inv_CH_w2,-1,max

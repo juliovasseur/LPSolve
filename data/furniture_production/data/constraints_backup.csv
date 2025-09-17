@@ -1,0 +1,112 @@
+name,expr,sense,rhs
+# Capacités hebdo — menuiserie (avec OT menuiserie)
+cap_carp_w1,3*pro# Budget carbone total (plus restrictif)
+carbon_total,1*prod_CH_w1 + 1*prod_CH_w2 + 1*prod_CH_w3 + 1*prod_CH_w4 + 2*prod_TA_w1 + 2*prod_TA_w2 + 2*prod_TA_w3 + 2*prod_TA_w4 + 3*prod_DE_w1 + 3*prod_DE_w2 + 3*prod_DE_w3 + 3*prod_DE_w4,<=,400
+
+# Quota minimal de bureaux sur l'horizon  
+service_DE_min,prod_DE_w1 + prod_DE_w2 + prod_DE_w3 + prod_DE_w4,>=,30
+
+# Contrainte de diversification produit (au moins 20% de chaque type par semaine)
+diversif_CH_w1,prod_CH_w1,>=,0.2*(prod_CH_w1 + prod_TA_w1 + prod_DE_w1)
+diversif_TA_w1,prod_TA_w1,>=,0.2*(prod_CH_w1 + prod_TA_w1 + prod_DE_w1)
+diversif_DE_w1,prod_DE_w1,>=,0.2*(prod_CH_w1 + prod_TA_w1 + prod_DE_w1)
+diversif_CH_w2,prod_CH_w2,>=,0.2*(prod_CH_w2 + prod_TA_w2 + prod_DE_w2)
+diversif_TA_w2,prod_TA_w2,>=,0.2*(prod_CH_w2 + prod_TA_w2 + prod_DE_w2)
+diversif_DE_w2,prod_DE_w2,>=,0.2*(prod_CH_w2 + prod_TA_w2 + prod_DE_w2)
+
+# Contrainte de liquidité (coût de stockage limité)  
+cash_flow_limit,15*inv_CH_w1 + 15*inv_CH_w2 + 15*inv_CH_w3 + 15*inv_CH_w4 + 25*inv_TA_w1 + 25*inv_TA_w2 + 25*inv_TA_w3 + 25*inv_TA_w4 + 35*inv_DE_w1 + 35*inv_DE_w2 + 35*inv_DE_w3 + 35*inv_DE_w4,<=,1500
+
+# Contrainte de qualité premium (équilibre productif)
+quality_balance,prod_CH_w1 + prod_CH_w2 + prod_CH_w3 + prod_CH_w4 - 0.8*(prod_TA_w1 + prod_TA_w2 + prod_TA_w3 + prod_TA_w4 + prod_DE_w1 + prod_DE_w2 + prod_DE_w3 + prod_DE_w4),<=,50w1 + 5*prod_TA_w1 + 8*prod_DE_w1 -1*ot_carp_w1,<=,240
+cap_carp_w2,3*prod_CH_w2 + 5*prod_TA_w2 + 8*prod_DE_w2 -1*ot_carp_w2,<=,240
+cap_carp_w3,3*prod_CH_w3 + 5*prod_TA_w3 + 8*prod_DE_w3 -1*ot_carp_w3,<=,240
+cap_carp_w4,3*prod_CH_w4 + 5*prod_TA_w4 + 8*prod_DE_w4 -1*ot_carp_w4,<=,240
+
+# Capacités hebdo — assemblage (tu avais déjà l’OT d’assemblage)
+cap_asm_w1,2*prod_CH_w1 + 3*prod_TA_w1 + 4*prod_DE_w1 -1*overtime_w1,<=,200
+cap_asm_w2,2*prod_CH_w2 + 3*prod_TA_w2 + 4*prod_DE_w2 -1*overtime_w2,<=,200
+cap_asm_w3,2*prod_CH_w3 + 3*prod_TA_w3 + 4*prod_DE_w3 -1*overtime_w3,<=,200
+cap_asm_w4,2*prod_CH_w4 + 3*prod_TA_w4 + 4*prod_DE_w4 -1*overtime_w4,<=,200
+
+# Capacités hebdo — finition et bois
+cap_fin_w1,1*prod_CH_w1 + 2*prod_TA_w1 + 3*prod_DE_w1,<=,160
+cap_fin_w2,1*prod_CH_w2 + 2*prod_TA_w2 + 3*prod_DE_w2,<=,160
+cap_fin_w3,1*prod_CH_w3 + 2*prod_TA_w3 + 3*prod_DE_w3,<=,160
+cap_fin_w4,1*prod_CH_w4 + 2*prod_TA_w4 + 3*prod_DE_w4,<=,160
+cap_wood_w1,2*prod_CH_w1 + 5*prod_TA_w1 + 7*prod_DE_w1,<=,500
+cap_wood_w2,2*prod_CH_w2 + 5*prod_TA_w2 + 7*prod_DE_w2,<=,500
+cap_wood_w3,2*prod_CH_w3 + 5*prod_TA_w3 + 7*prod_DE_w3,<=,500
+cap_wood_w4,2*prod_CH_w4 + 5*prod_TA_w4 + 7*prod_DE_w4,<=,500
+
+# Bornes d’OT menuiserie et assemblage
+ot_carp_bound_w1,ot_carp_w1,<=,80
+ot_carp_bound_w2,ot_carp_w2,<=,80
+ot_carp_bound_w3,ot_carp_w3,<=,80
+ot_carp_bound_w4,ot_carp_w4,<=,80
+ot_bound_w1,overtime_w1,<=,40
+ot_bound_w2,overtime_w2,<=,40
+ot_bound_w3,overtime_w3,<=,40
+ot_bound_w4,overtime_w4,<=,40
+
+# Stockage max
+storage_w1,inv_CH_w1 + inv_TA_w1 + inv_DE_w1,<=,200
+storage_w2,inv_CH_w2 + inv_TA_w2 + inv_DE_w2,<=,200
+storage_w3,inv_CH_w3 + inv_TA_w3 + inv_DE_w3,<=,200
+storage_w4,inv_CH_w4 + inv_TA_w4 + inv_DE_w4,<=,200
+
+# Limite de setups/semaine (3 produits possibles)
+setup_limit_w1,setup_CH_w1 + setup_TA_w1 + setup_DE_w1,<=,3
+setup_limit_w2,setup_CH_w2 + setup_TA_w2 + setup_DE_w2,<=,3
+setup_limit_w3,setup_CH_w3 + setup_TA_w3 + setup_DE_w3,<=,3
+setup_limit_w4,setup_CH_w4 + setup_TA_w4 + setup_DE_w4,<=,3
+
+# Liens setup → production (Big-M + lot minimum)
+link_upper_CH_w1,prod_CH_w1 -100*setup_CH_w1,<=,0
+link_upper_CH_w2,prod_CH_w2 -100*setup_CH_w2,<=,0
+link_upper_CH_w3,prod_CH_w3 -100*setup_CH_w3,<=,0
+link_upper_CH_w4,prod_CH_w4 -100*setup_CH_w4,<=,0
+link_lower_CH_w1,prod_CH_w1 -10*setup_CH_w1,>=,0
+link_lower_CH_w2,prod_CH_w2 -10*setup_CH_w2,>=,0
+link_lower_CH_w3,prod_CH_w3 -10*setup_CH_w3,>=,0
+link_lower_CH_w4,prod_CH_w4 -10*setup_CH_w4,>=,0
+
+link_upper_TA_w1,prod_TA_w1 -100*setup_TA_w1,<=,0
+link_upper_TA_w2,prod_TA_w2 -100*setup_TA_w2,<=,0
+link_upper_TA_w3,prod_TA_w3 -100*setup_TA_w3,<=,0
+link_upper_TA_w4,prod_TA_w4 -100*setup_TA_w4,<=,0
+link_lower_TA_w1,prod_TA_w1 -6*setup_TA_w1,>=,0
+link_lower_TA_w2,prod_TA_w2 -6*setup_TA_w2,>=,0
+link_lower_TA_w3,prod_TA_w3 -6*setup_TA_w3,>=,0
+link_lower_TA_w4,prod_TA_w4 -6*setup_TA_w4,>=,0
+
+link_upper_DE_w1,prod_DE_w1 -100*setup_DE_w1,<=,0
+link_upper_DE_w2,prod_DE_w2 -100*setup_DE_w2,<=,0
+link_upper_DE_w3,prod_DE_w3 -100*setup_DE_w3,<=,0
+link_upper_DE_w4,prod_DE_w4 -100*setup_DE_w4,<=,0
+link_lower_DE_w1,prod_DE_w1 -4*setup_DE_w1,>=,0
+link_lower_DE_w2,prod_DE_w2 -4*setup_DE_w2,>=,0
+link_lower_DE_w3,prod_DE_w3 -4*setup_DE_w3,>=,0
+link_lower_DE_w4,prod_DE_w4 -4*setup_DE_w4,>=,0
+
+# Équilibres inventaire/backlog (inv_0=0, back_0=0) — signe corrigé
+invbal_CH_w1,inv_CH_w1 - back_CH_w1 - prod_CH_w1,==,-40
+invbal_CH_w2,inv_CH_w2 - back_CH_w2 - inv_CH_w1 + back_CH_w1 - prod_CH_w2,==,-50
+invbal_CH_w3,inv_CH_w3 - back_CH_w3 - inv_CH_w2 + back_CH_w2 - prod_CH_w3,==,-30
+invbal_CH_w4,inv_CH_w4 - back_CH_w4 - inv_CH_w3 + back_CH_w3 - prod_CH_w4,==,-60
+
+invbal_TA_w1,inv_TA_w1 - back_TA_w1 - prod_TA_w1,==,-20
+invbal_TA_w2,inv_TA_w2 - back_TA_w2 - inv_TA_w1 + back_TA_w1 - prod_TA_w2,==,-25
+invbal_TA_w3,inv_TA_w3 - back_TA_w3 - inv_TA_w2 + back_TA_w2 - prod_TA_w3,==,-30
+invbal_TA_w4,inv_TA_w4 - back_TA_w4 - inv_TA_w3 + back_TA_w3 - prod_TA_w4,==,-35
+
+invbal_DE_w1,inv_DE_w1 - back_DE_w1 - prod_DE_w1,==,-10
+invbal_DE_w2,inv_DE_w2 - back_DE_w2 - inv_DE_w1 + back_DE_w1 - prod_DE_w2,==,-15
+invbal_DE_w3,inv_DE_w3 - back_DE_w3 - inv_DE_w2 + back_DE_w2 - prod_DE_w3,==,-20
+invbal_DE_w4,inv_DE_w4 - back_DE_w4 - inv_DE_w3 + back_DE_w3 - prod_DE_w4,==,-25
+
+# Budget carbone total
+carbon_total,1*prod_CH_w1 + 1*prod_CH_w2 + 1*prod_CH_w3 + 1*prod_CH_w4 + 2*prod_TA_w1 + 2*prod_TA_w2 + 2*prod_TA_w3 + 2*prod_TA_w4 + 3*prod_DE_w1 + 3*prod_DE_w2 + 3*prod_DE_w3 + 3*prod_DE_w4,<=,1800
+
+# Quota minimal de bureaux sur l’horizon
+service_DE_min,prod_DE_w1 + prod_DE_w2 + prod_DE_w3 + prod_DE_w4,>=,30
