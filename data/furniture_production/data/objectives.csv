@@ -1,17 +1,46 @@
 var,coeff,sense
-# Production (marges différenciées pour créer des tensions)
-prod_CH_w1,40,max
-prod_CH_w2,60,max
-prod_CH_w3,45,max
-prod_CH_w4,55,max
-prod_TA_w1,120,max
-prod_TA_w2,95,max
-prod_TA_w3,110,max
-prod_TA_w4,85,max
-prod_DE_w1,180,max
-prod_DE_w2,200,max
-prod_DE_w3,160,max
-prod_DE_w4,220,max
+# Production Multi-Sites (marges industrielles réalistes)
+# Site France - Produits Premium
+prod_desk_FR_w1,450,max
+prod_desk_FR_w2,420,max
+prod_desk_FR_w3,480,max
+prod_desk_FR_w4,460,max
+prod_chair_FR_w1,180,max
+prod_chair_FR_w2,200,max
+prod_chair_FR_w3,170,max
+prod_chair_FR_w4,190,max
+prod_cabinet_FR_w1,320,max
+prod_cabinet_FR_w2,340,max
+prod_cabinet_FR_w3,310,max
+prod_cabinet_FR_w4,330,max
+
+# Site Allemagne - Volume Moyen
+prod_desk_DE_w1,380,max
+prod_desk_DE_w2,360,max
+prod_desk_DE_w3,400,max
+prod_desk_DE_w4,370,max
+prod_chair_DE_w1,150,max
+prod_chair_DE_w2,160,max
+prod_chair_DE_w3,145,max
+prod_chair_DE_w4,155,max
+prod_cabinet_DE_w1,280,max
+prod_cabinet_DE_w2,290,max
+prod_cabinet_DE_w3,275,max
+prod_cabinet_DE_w4,285,max
+
+# Site Pologne - Volume Élevé  
+prod_desk_PL_w1,280,max
+prod_desk_PL_w2,260,max
+prod_desk_PL_w3,300,max
+prod_desk_PL_w4,270,max
+prod_chair_PL_w1,95,max
+prod_chair_PL_w2,105,max
+prod_chair_PL_w3,90,max
+prod_chair_PL_w4,100,max
+prod_cabinet_PL_w1,180,max
+prod_cabinet_PL_w2,190,max
+prod_cabinet_PL_w3,175,max
+prod_cabinet_PL_w4,185,max
 # Stocks (coûts de possession)
 inv_CH_w1,-1,max
 inv_CH_w2,-1,max
