@@ -30,7 +30,7 @@ data/furniture_production/
 **Objectif** : Planification de production industrielle réaliste
 - **Complexité** : 56 variables, 70+ contraintes
 - **Temps** : ~0.16s
-- **Résultat** : 11,293€ de profit optimal
+- **Résultat** : 7,123,000€ de profit optimal multi-sites
 
 ### 💰 **Portfolio Optimization** (Niveau 3 - Finance Quantitative)
 ```
@@ -59,8 +59,8 @@ make run-portfolio  # Niveau 3 : Finance quantitative
 
 | Niveau | Cas d'Usage | Variables | Contraintes | Temps | Performance |
 |--------|-------------|-----------|-------------|-------|-------------|
-| 1 | Basic Examples | 2 | 5 | <0.01s | 2,950€ |
-| 2 | Furniture Prod | 56 | 70+ | 0.16s | 11,293€ |
+| 1 | Basic Examples | 2 | 5 | <0.01s | 2,625€ |
+| 2 | **Furniture Multi-Sites** | **127** | **55** | **0.039s** | **7,123,000€** |
 | 3 | **Portfolio Finance** | **33** | **40+** | **0.03s** | **13.64 bp/j** |
 
 ## 🎓 Utilisation Pédagogique

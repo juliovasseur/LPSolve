@@ -33,7 +33,7 @@ Données CSV → Modélisation Mathématique → Optimisation → Décisions Act
 | Niveau | Cas d'Usage | Description | Accès Direct |
 |--------|-------------|-------------|--------------|
 | 🟢 **Débutant** | **[Exemples Éducatifs](./data/basic_linear_examples/README.md)** | Optimisation simple chaises/tables avec contrainte de marché | `make run-basic` |
-| 🟡 **Intermédiaire** | **[Production Industrielle](./data/furniture_production/README.md)** | Planification complexe avec 70+ contraintes (ESG, setup, pénalités) | `make run-furniture` |
+| 🟡 **Intermédiaire** | **[Production Industrielle](./data/furniture_production/README.md)** | Planification multi-sites avec 55 contraintes (ESG, quotas, carbone) | `make run-furniture` |
 | 🔴 **Expert** | **[Finance Quantitative](./data/portfolio_optimization/README.md)** | Portefeuille 16 actifs, contraintes réglementaires, logique type ALM | `make run-portfolio` |
 
 > **💡 Conseil** : Commencez par les exemples éducatifs pour comprendre les concepts, puis progressez vers l'approche quantitative.
@@ -248,7 +248,7 @@ make run-basic
 
 ### 🎓 **Ressources d'Apprentissage**
 - **[Exemples Éducatifs](./data/basic_linear_examples/README.md)** : Concepts de base avec cas concret
-- **[Production Industrielle](./data/furniture_production/README.md)** : Gestion de 70+ contraintes complexes  
+- **[Production Industrielle](./data/furniture_production/README.md)** : Optimisation multi-sites (127 variables, 55 contraintes)
 - **[Finance Quantitative](./data/portfolio_optimization/README.md)** : Contraintes réglementaires et métriques de risque
 
 ### 🛠️ **Pour les Développeurs**

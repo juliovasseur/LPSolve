@@ -357,46 +357,35 @@ Impact par produit:
 
 > **🌍 Révélation ESG** : Les bureaux (produit le plus rentable) sont aussi les **plus polluants** → arbitrage profit vs durabilité !
 
-#### 💰 **4. Coûts Cachés Significatifs (vs Optimisation Naïve)**
+### 🎯 **Insights Stratégiques Business Industriels**
 
-```
-Profit brut théorique : 11×60 + 9×110 + 40×200 = 9,650€
-Profit net optimisé : 1,985€  
-Coûts cachés : 7,665€ (79% du brut !)
+#### 🏆 **Forces du Plan Optimal Multi-Sites**
+1. **Spécialisation géographique optimale** : Chaque site exploite ses avantages concurrentiels
+2. **Respect contraintes ESG** : Budget carbone 100% utilisé sans dépassement
+3. **Équilibrage social** : Quotas minimum respectés (responsabilité européenne)
+4. **Demande exactement satisfaite** : Pas de surplus coûteux ni de ruptures
 
-Répartition des coûts cachés (calcul réel):
-• Ruptures chaises : 217×10€ = 2,170€
-• Ruptures tables : 232×15€ = 3,480€  
-• Ruptures bureaux : 48×25€ = 1,200€
-• Coûts de setup : 6 changements × ~100€ = 600€
-• Coûts de stockage : 5×35€ = 175€ (stock bureaux W1)
-• Total coûts cachés : ~7,625€
-```
+#### ⚠️ **Risques Industriels Identifiés**  
+1. **Dépendance carbone critique** : 100% budget ESG utilisé → aucune marge d'erreur
+2. **Spécialisation France** : Setup saturé → risque de rigidité opérationnelle
+3. **Sous-utilisation Allemagne/Pologne** : Capacités disponibles non exploitées
+4. **Concentration géographique** : Pas de transferts → vulnérabilité site par site
 
-### 🎯 **Insights Stratégiques Business**
+### 📊 **Comparaison Stratégies Industrielles**
 
-#### 🏆 **Forces du Plan Optimal**
-1. **Diversification intelligente** : 3 gammes activées (vs mono-produit naïf)
-2. **Respect contraintes ESG** : Sous budget carbone malgré forte demande
-3. **Aucune heure supplémentaire** : Planning efficace sans surcoût RH
-4. **Service client premium** : Quota bureaux exactement respecté
+#### 🥇 **Stratégie Multi-Sites Actuelle: 7,123,000€**
+- **Avantages** : Optimisation globale, contraintes ESG respectées
+- **Méthode** : Spécialisation géographique + respect quotas sociaux
 
-#### ⚠️ **Limites Identifiées**  
-1. **Forte volatilité** : Ruptures importantes sur chaises/tables (back_orders)
-2. **Rigidité setup** : Seulement 2 changements/semaine → faible agilité
-3. **Dépendance menuiserie** : Semaine 1 saturée → risque goulet unique
-4. **Arbitrage profit/carbone** : 60% budget ESG utilisé → marge environnementale faible
+#### 🥈 **Stratégie "Site Unique France": ~4,500,000€**  
+- **Simulation** : Concentrer production sur site premium
+- **Blocage** : Capacité 840k heures insuffisante pour 28,100 unités
+- **Conclusion** : Multi-sites indispensable à cette échelle
 
-### 📊 **Comparaison avec Stratégies Alternatives**
-
-#### 🥇 **Stratégie Actuelle (Optimale): 1,985€**
-- **Avantages** : Respect toutes contraintes, mix diversifié
-- **Inconvénient** : Ruptures importantes, profit modeste
-
-#### 🥈 **Stratégie "Bureaux Max": ~1,200€**  
-- **Simulation** : 50+ bureaux si possible
-- **Blocage** : Budget carbone explosé (50×3 = 150 > 101 slack)
-- **Conclusion** : ESG limite la stratégie "premium max"
+#### � **Stratégie "Maximiser Bureaux": ~3,200,000€**
+- **Simulation** : Focus total sur marges bureaux 450€
+- **Blocage** : Budget carbone explosé (bureaux = 2.5 CO2/unité)
+- **Conclusion** : ESG impose diversification forcée
 
 #### 🥉 **Stratégie "Chaises Max": ~800€**
 - **Simulation** : 200+ chaises comme cas basique  
