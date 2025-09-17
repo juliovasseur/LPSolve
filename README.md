@@ -26,7 +26,7 @@
 🔧 Modélisation: PuLP (Mean-Variance Optimization)  
 ⚙️  Solveur: CBC (Quadratic Programming)
 ⏱️  Temps d'optimisation: 0.032s
-📈 Utilité espérée: 13.6430 bp/jour
+📈 Utilité espérée: 2.4620 bp/jour
 
 💼 ALLOCATION OPTIMALE DU PORTEFEUILLE:
   📱 Technology & Communication Services:
@@ -334,13 +334,13 @@ Voici l'explication détaillée de tous les termes techniques affichés lors de 
 #### � **Résultat Principal (Pour Tout le Monde)**
 ```bash
 ✅ SOLUTION OPTIMALE TROUVÉE
-📈 Utilité espérée: 13.6430 bp/jour  
+📈 Utilité espérée: 2.4620 bp/jour  
 ⏱️  Temps d'optimisation: 0.032s
 ```
 
 **🎓 Explication finance-friendly :**
 - **Solution optimale** = Meilleure décision possible sous toutes les contraintes
-- **13.64 bp/jour** = **Basis points** = 0.1364% de rendement par jour ≈ **50% annualisé**
+- **2.46 bp/jour** = **Basis points** = 0.0246% de rendement par jour ≈ **9% annualisé**
 - **0.032s** = Temps de calcul ultrarapide (production-ready)
 
 #### 📊 **Variables de Décision (Cœur des Résultats)**

@@ -1,21 +1,21 @@
 var,coeff,sense
-# Alpha generation - Expected excess returns (bp/day)
-w_AAPL,15.2,max
-w_MSFT,12.8,max
-w_GOOGL,18.5,max
-w_AMZN,14.1,max
-w_TSLA,22.7,max
-w_NVDA,28.3,max
-w_META,16.9,max
-w_NFLX,11.4,max
-w_JPM,8.7,max
-w_BAC,7.2,max
-w_GS,9.8,max
-w_MS,8.1,max
-w_JNJ,5.3,max
-w_PFE,4.8,max
-w_UNH,6.7,max
-w_PG,4.2,max
+# Alpha generation - Expected excess returns (bp/day) - Realistic institutional targets
+w_AAPL,2.8,max
+w_MSFT,2.4,max
+w_GOOGL,3.2,max
+w_AMZN,2.9,max
+w_TSLA,3.8,max
+w_NVDA,4.1,max
+w_META,3.1,max
+w_NFLX,2.2,max
+w_JPM,1.8,max
+w_BAC,1.4,max
+w_GS,2.1,max
+w_MS,1.9,max
+w_JNJ,1.2,max
+w_PFE,0.9,max
+w_UNH,1.6,max
+w_PG,0.8,max
 # Transaction costs - basis points
 tc_AAPL,-0.8,max
 tc_MSFT,-0.6,max
@@ -33,5 +33,5 @@ tc_JNJ,-0.4,max
 tc_PFE,-0.3,max
 tc_UNH,-0.6,max
 tc_PG,-0.3,max
-# Risk penalty - tracking error cost
-risk_penalty,-25.0,max
+# Risk penalty - tracking error cost (aversion au risque institutionnelle)
+risk_penalty,-5.8,max

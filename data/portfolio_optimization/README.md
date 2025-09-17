@@ -119,7 +119,7 @@ Positions actives: w_actif ≥ 1-2% si allocation
 ## 🎯 **Solution Optimale - Allocation Institutionnelle**
 
 ### 💰 **Performance Target Achieved**
-- **Utilité Espérée** : **13.64 bp/jour** (497 bp/an)
+- **Utilité Espérée** : **2.46 bp/jour** (900 bp/an)
 - **Information Ratio** : Supérieur benchmark (tracking error contrôlé)
 - **Temps d'optimisation** : 32ms (production-ready)
 
@@ -250,7 +250,7 @@ make run-portfolio
 - **Temps résolution** : <50ms (production-ready)
 
 ### 📈 **KPIs de Performance**
-- **Alpha généré** : 497 bp/an (net de coûts)
+- **Alpha généré** : 900 bp/an (9% net de coûts)
 - **Tracking error** : Contrôlé par contraintes factorielles
 - **Information ratio** : Maximisé sous contraintes
 - **Max drawdown** : Limité par allocation défensive obligatoire
