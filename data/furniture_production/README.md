@@ -15,6 +15,130 @@ Ce cas d'étude représente un **problème d'optimisation industrielle complexe*
 - Allocation des ressources limitées
 - Gestion des heures supplémentaires
 
+## 🚨 **TOUTES LES CONTRAINTES DU MODÈLE (70+ contraintes)**
+
+### 🏭 **1. Contraintes de Capacité de Production (20 contraintes)**
+
+#### 🔨 **Menuiserie** (4 semaines × 1 = 4 contraintes)
+```
+3h×CH + 5h×TA + 8h×DE - OT_menuiserie ≤ 240h/semaine
++ Limites heures supplémentaires: OT_menuiserie ≤ 80h/semaine
+```
+
+#### 🔧 **Assemblage** (4 semaines × 1 = 4 contraintes)
+```
+2h×CH + 3h×TA + 4h×DE - OT_assemblage ≤ 200h/semaine  
++ Limites heures supplémentaires: OT_assemblage ≤ 40h/semaine
+```
+
+#### ✨ **Finition** (4 contraintes)
+```
+1h×CH + 2h×TA + 3h×DE ≤ 160h/semaine (pas d'heures sup.)
+```
+
+#### 🌳 **Matériau Bois** (4 contraintes)
+```
+2u×CH + 5u×TA + 7u×DE ≤ 500 unités/semaine
+```
+
+### 📦 **2. Contraintes de Gestion des Stocks (16 contraintes)**
+
+#### 🔄 **Équilibrage Inventaire** (12 contraintes = 3 produits × 4 semaines)
+```
+Stock(t) = Stock(t-1) + Production(t) - Demande(t) + Rupture(t-1) - Rupture(t)
+
+Demandes hebdomadaires connues:
+- Chaises: [40, 70, 20, 80] par semaine
+- Tables: [20, 9, 39, 74] par semaine  
+- Bureaux: [10, 25, 45, 40] par semaine
+```
+
+#### 🏪 **Capacité Stockage** (4 contraintes)
+```
+inv_CH + inv_TA + inv_DE ≤ 200 unités/semaine maximum
+```
+
+### ⚙️ **3. Contraintes de Setup/Production (24 contraintes)**
+
+#### 🔗 **Liaison Setup-Production** (12 contraintes supérieures)
+```
+Si setup_produit = 0 → production_produit = 0
+production_produit ≤ 100 × setup_produit (Big-M method)
+```
+
+#### 📊 **Production Minimum si Setup** (12 contraintes inférieures)  
+```
+Si setup_produit = 1 → production_produit ≥ lot_minimum
+production_produit ≥ 10 × setup_produit (pour chaque produit)
+```
+
+### 🎯 **4. Contraintes Opérationnelles (4 contraintes)**
+
+#### 🔧 **Limites Setup Simultanés** (4 contraintes)
+```
+setup_CH + setup_TA + setup_DE ≤ 3 setups maximum/semaine
+(Limite capacité changement d'outillage)
+```
+
+### 🌍 **5. Contraintes ESG & Durabilité (2 contraintes)**
+
+#### 🌱 **Limite Carbone Totale** (1 contrainte globale)
+```
+Empreinte carbone sur 4 semaines ≤ 2000 unités CO2
+
+Détail par produit:
+• Chaises: 1.2 CO2/unité  
+• Tables: 2.1 CO2/unité
+• Bureaux: 3.5 CO2/unité
+
+Contrainte: 1.2×Σ(CH) + 2.1×Σ(TA) + 3.5×Σ(DE) ≤ 2000
+```
+
+#### 📈 **Niveau de Service Minimum** (1 contrainte)
+```
+Service client ≥ 75% pour bureaux deluxe (produit premium)
+Σ(production_DE) ≥ 0.75 × Σ(demande_DE) = 0.75 × 120 = 90 unités
+```
+
+### 💰 **6. Pénalités de Retard & Coûts Cachés (intégrés dans l'objectif)**
+
+#### 🚫 **Coûts de Rupture de Stock** (pénalités clients)
+```
+- 10€ × rupture_chaises    (perte client faible gamme)
+- 15€ × rupture_tables     (perte client moyen gamme)  
+- 25€ × rupture_bureaux    (perte client premium - CRITIQUE)
+```
+
+#### 📦 **Coûts de Possession de Stock**
+```
+- 1€ × stock_chaises/semaine   (coût stockage faible)
+- 2€ × stock_tables/semaine    (coût stockage moyen)
+- 3€ × stock_bureaux/semaine   (coût stockage élevé - produit complexe)
+```
+
+#### ⚙️ **Coûts de Setup/Changement Production**
+```
+- 20€ × setup_chaises     (changement outillage simple)
+- 30€ × setup_tables      (changement outillage moyen)
+- 50€ × setup_bureaux     (changement outillage complexe)
+```
+
+#### ⏰ **Coûts Heures Supplémentaires**
+```
+- 25€ × heure_sup_menuiserie    (1.5× salaire + surcoût équipement)
+- 20€ × heure_sup_assemblage    (1.5× salaire standard)
+```
+
+### 🎯 **RÉCAPITULATIF TOTAL: 70 CONTRAINTES**
+- **Capacités**: 20 contraintes (production + limites heures sup.)
+- **Stocks**: 16 contraintes (équilibrage + capacité stockage)  
+- **Setup**: 24 contraintes (liaison production + minimums)
+- **Opérationnel**: 4 contraintes (limites setup simultanés)
+- **ESG**: 2 contraintes (carbone + service client)
+- **Variables**: 4 contraintes implicites (bornes non-négativité)
+
+> **💡 Complexité Réaliste**: Ce modèle reflète la **réalité industrielle** avec contraintes multiples, coûts cachés, pénalités clients, et objectifs ESG - exactement ce qu'affrontent les planificateurs de production !
+
 ---
 
 ## 🏗️ **Architecture du Modèle d'Optimisation**
@@ -79,66 +203,20 @@ Détail:
 
 ---
 
-## ⚖️ **Contraintes du Modèle (70+ contraintes)**
+## 🎯 **Stratégie d'Optimisation - Équilibres Complexes**
 
-### 🏭 **Contraintes de Capacité Hebdomadaire**
+Le modèle doit trouver l'équilibre optimal entre :
 
-#### 🔨 **Menuiserie** (240h/semaine + max 80h sup.)
-```
-3h × CH + 5h × TA + 8h × DE - OT_menuiserie ≤ 240h  (par semaine)
-```
-
-#### 🔧 **Assemblage** (200h/semaine + max 40h sup.)
-```  
-2h × CH + 3h × TA + 4h × DE - OT_assemblage ≤ 200h  (par semaine)
-```
-
-#### ✨ **Finition** (160h/semaine)
-```
-1h × CH + 2h × TA + 3h × DE ≤ 160h  (par semaine)
-```
-
-#### 🌳 **Matériau Bois** (500 unités/semaine)
-```
-2u × CH + 5u × TA + 7u × DE ≤ 500u  (par semaine)
-```
-
-### 📦 **Contraintes de Gestion des Stocks**
-
-#### 🔄 **Équilibrage Inventaire**
-```
-Inventaire(t) = Inventaire(t-1) + Production(t) - Demande(t) + Rupture(t-1) - Rupture(t)
-```
-
-#### 🏪 **Capacité Stockage** (200 unités max/semaine)
-```
-inv_CH + inv_TA + inv_DE ≤ 200  (par semaine)
-```
-
-### ⚙️ **Contraintes de Setup/Production**
-
-#### 🔗 **Liaison Setup-Production**
-```
-Si setup_produit = 0  → Production_produit = 0
-Si setup_produit = 1  → Production_produit ≥ lot_minimum
-```
-
-#### 📊 **Limites Setup** (max 3 setups/semaine)
-```
-setup_CH + setup_TA + setup_DE ≤ 3  (par semaine)
-```
+### � **Trade-offs Économiques**
+- **Marges vs Demande** : Bureaux (120€) plus rentables mais demande limitée
+- **Production vs Stock** : Produire en avance (coût stock) ou risquer rupture (pénalités)  
+- **Setup vs Flexibilité** : Spécialisation (économies setup) vs diversification (service client)
+- **Heures normales vs Supplémentaires** : Capacité vs coûts majorés
 
 ### 🌍 **Contraintes ESG**
-
-#### 🌱 **Limite Carbone** (≤ 2000 unités CO2)
-```
-1.2 × CH + 2.1 × TA + 3.5 × DE ≤ 2000  (total 4 semaines)
-```
-
-#### 📈 **Niveau Service Minimum** (≥ 75% bureaux deluxe)
-```
-Σ(prod_DE) ≥ 0.75 × Σ(demande_DE)
-```
+- **Empreinte carbone** : Limite globale force choix produits moins polluants
+- **Service client** : Minimum 75% satisfaction sur gamme premium
+- **Responsabilité sociale** : Limitation heures supplémentaires excessives
 
 ---
 
