@@ -2,60 +2,7 @@
 ## **Moteur d'Optimisation Data-Driven** pour Décisions Financières Quantitatives
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
-[![PuLP](https://img.shields## 📖 **Guide d'Interprétation des Résultats - Démystifié pour Tous**
-
-### 📺 **Exemple d'Output Complet (Portfolio Optimization)**
-
-```bash
-================================================================================
-    🏛️  OPTIMISEUR DE PORTEFEUILLE QUANTITATIF v2.1
-    📊  Mean-Variance Optimization avec contraintes réglementaires
-================================================================================
-
-📋 ANALYSE DU MODÈLE FINANCIER:
-  🎯 Actifs sous gestion: 16
-  📊 Variables d'optimisation: 33
-  ⚖️  Contraintes réglementaires: 40
-
-⚙️  Construction de la matrice d'optimisation...
-✓ Modèle matriciel construit
-
-🚀 LANCEMENT DE L'OPTIMISATION QUANTITATIVE
-────────────────────────────────────────────────────────────
-✅ SOLUTION OPTIMALE TROUVÉE
-🔧 Modélisation: PuLP (Mean-Variance Optimization)  
-⚙️  Solveur: CBC (Quadratic Programming)
-⏱️  Temps d'optimisation: 0.032s
-📈 Utilité espérée: 2.4620 bp/jour
-
-💼 ALLOCATION OPTIMALE DU PORTEFEUILLE:
-  📱 Technology & Communication Services:
-    • MSFT: 14.00% ($140,000) 
-    • GOOGL: 12.00% ($120,000)
-    • NVDA: 10.00% ($100,000)
-
-📊 Variables de décision:
-  • w_MSFT = 0.14  [lb=0.0, ub=0.15]
-  • w_GOOGL = 0.12  [lb=0.0, ub=0.12] 
-
-🔗 Contraintes (slacks):
-  • fully_invested (==): slack=0 [ACTIVE]
-  • tech_concentration (<=): slack=0.05 [OK]
-  • mega_cap_minimum (>=): slack=0 [ACTIVE]
-
-🚨 ANALYSE DES CONTRAINTES RÉGLEMENTAIRES:
-  🔴 CONTRAINTES SATURÉES (Goulots):
-    • fully_invested: SATURÉE - VALEUR MARGINALE ÉLEVÉE
-
-📊 MÉTRIQUES DE RISQUE & PERFORMANCE:
-  📈 Indice Herfindahl: 0.0950 (Concentration modérée)
-  🎯 Nombre effectif d'actifs: 10.5
-================================================================================
-```
-
-### 🔍 **Décryptage Ligne par Ligne - Accessible à Tous**
-
-Voici l'explication détaillée de tous les termes techniques affichés lors de l'exécution :adge/PuLP-2.7+-green.svg)](https://pypi.org/project/PuLP/)
+[![PuLP](https://img.shields.io/badge/PuLP-2.7+-green.svg)](https://pypi.org/project/PuLP/)
 [![CBC](https://img.shields.io/badge/CBC-COIN--OR-orange.svg)](https://github.com/coin-or/Cbc)
 [![License](https://img.shields.io/badge/License-MIT-red.svg)](LICENSE)
 
