@@ -10,11 +10,11 @@ data/basic_linear_examples/
 └── data/
     ├── variables.csv    # 2 variables simples (chaises, tables)
     ├── objectives.csv   # Maximisation profit basique
-    └── constraints.csv  # 5 contraintes de ressources
+    └── constraints.csv  # 6 contraintes de ressources
 ```
 
 **Objectif** : Validation des algorithmes et apprentissage des concepts de base
-- **Complexité** : 2 variables, 5 contraintes
+- **Complexité** : 2 variables, 6 contraintes
 - **Temps** : <0.01s
 - **Résultat** : 2,950€ de profit optimal
 
@@ -22,13 +22,13 @@ data/basic_linear_examples/
 ```
 data/furniture_production/
 └── data/
-    ├── variables.csv    # 56 variables (production, stocks, setup)
+    ├── variables.csv    # 127 variables (production multi-sites, stocks, setup)
     ├── objectives.csv   # Maximisation profit avec coûts complexes
-    └── constraints.csv  # 70+ contraintes multi-périodes
+    └── constraints.csv  # 55 contraintes multi-sites
 ```
 
 **Objectif** : Planification de production industrielle réaliste
-- **Complexité** : 56 variables, 70+ contraintes
+- **Complexité** : 127 variables, 55 contraintes
 - **Temps** : ~0.16s
 - **Résultat** : 7,123,000€ de profit optimal multi-sites
 
@@ -59,7 +59,7 @@ make run-portfolio  # Niveau 3 : Finance quantitative
 
 | Niveau | Cas d'Usage | Variables | Contraintes | Temps | Performance |
 |--------|-------------|-----------|-------------|-------|-------------|
-| 1 | Basic Examples | 2 | 5 | <0.01s | 2,625€ |
+| 1 | Basic Examples | 2 | 6 | <0.01s | 2,625€ |
 | 2 | **Furniture Multi-Sites** | **127** | **55** | **0.039s** | **7,123,000€** |
 | 3 | **Portfolio Finance** | **33** | **40+** | **0.03s** | **13.64 bp/j** |
 

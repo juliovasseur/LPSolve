@@ -20,126 +20,125 @@ Ce cas d'étude représente un **problème d'optimisation industrielle complexe*
 - Contraintes ESG et quotas sociaux
 - Gestion complexe des setup et spécialisations
 
-## 🚨 **TOUTES LES CONTRAINTES DU MODÈLE (70+ contraintes)**
+## 🚨 **TOUTES LES CONTRAINTES DU MODÈLE (55 contraintes)**
 
-### 🏭 **1. Contraintes de Capacité de Production (20 contraintes)**
+### 🏭 **1. Contraintes de Capacité Multi-Sites (12 contraintes)**
 
-#### 🔨 **Menuiserie** (4 semaines × 1 = 4 contraintes)
+#### 🇫🇷 **Site France Premium** (4 semaines × 1 = 4 contraintes)
 ```
-3h×CH + 5h×TA + 8h×DE - OT_menuiserie ≤ 240h/semaine
-+ Limites heures supplémentaires: OT_menuiserie ≤ 80h/semaine
-```
-
-#### 🔧 **Assemblage** (4 semaines × 1 = 4 contraintes)
-```
-2h×CH + 3h×TA + 4h×DE - OT_assemblage ≤ 200h/semaine  
-+ Limites heures supplémentaires: OT_assemblage ≤ 40h/semaine
+Capacité production: Σ(heures_produits) ≤ 840,000h/semaine
+Produits: Bureaux premium (450€), Chaises (320€), Armoires (390€)
+Spécialisation: Focus marges élevées, setup saturé
 ```
 
-#### ✨ **Finition** (4 contraintes)
+#### 🇩🇪 **Site Allemagne Volume** (4 semaines × 1 = 4 contraintes)
 ```
-1h×CH + 2h×TA + 3h×DE ≤ 160h/semaine (pas d'heures sup.)
-```
-
-#### 🌳 **Matériau Bois** (4 contraintes)
-```
-2u×CH + 5u×TA + 7u×DE ≤ 500 unités/semaine
+Capacité production: Σ(heures_produits) ≤ 672,000h/semaine
+Produits: Mix équilibré, production constante et stable
+Spécialisation: Volume standardisé, marges intermédiaires (280-380€)
 ```
 
-### 📦 **2. Contraintes de Gestion des Stocks (16 contraintes)**
-
-#### 🔄 **Équilibrage Inventaire** (12 contraintes = 3 produits × 4 semaines)
+#### 🇵🇱 **Site Pologne Cost-Effective** (4 semaines × 1 = 4 contraintes)
 ```
-Stock(t) = Stock(t-1) + Production(t) - Demande(t) + Rupture(t-1) - Rupture(t)
-
-Demandes hebdomadaires connues:
-- Chaises: [40, 70, 20, 80] par semaine
-- Tables: [20, 9, 39, 74] par semaine  
-- Bureaux: [10, 25, 45, 40] par semaine
+Capacité production: Σ(heures_produits) ≤ 840,000h/semaine
+Produits: Production flexible en pics, coûts optimisés (95-280€)
+Spécialisation: Flexibilité opérationnelle, volumes élevés
 ```
 
-#### 🏪 **Capacité Stockage** (4 contraintes)
+### 🎯 **2. Contraintes de Demande Clients (3 contraintes)**
+
+#### � **Demandes Minimales Clients**
 ```
-inv_CH + inv_TA + inv_DE ≤ 200 unités/semaine maximum
+Demande_bureaux_totale ≥ 8,000 unités sur 4 semaines
+Demande_chaises_totale ≥ 12,000 unités sur 4 semaines  
+Demande_armoires_totale ≥ 6,000 unités sur 4 semaines
 ```
 
-### ⚙️ **3. Contraintes de Setup/Production (24 contraintes)**
+### 🚚 **3. Contraintes de Transport Inter-Sites (8 contraintes)**
 
-#### 🔗 **Liaison Setup-Production** (12 contraintes supérieures)
+#### 🔄 **Transferts France → Allemagne** (4 semaines × 1 = 4 contraintes)
 ```
-Si setup_produit = 0 → production_produit = 0
-production_produit ≤ 100 × setup_produit (Big-M method)
-```
-
-#### 📊 **Production Minimum si Setup** (12 contraintes inférieures)  
-```
-Si setup_produit = 1 → production_produit ≥ lot_minimum
-production_produit ≥ 10 × setup_produit (pour chaque produit)
+Transport_FR_to_DE ≤ 300 unités/semaine maximum
+Coût transport: Optimisation vs production locale
 ```
 
-### 🎯 **4. Contraintes Opérationnelles (4 contraintes)**
-
-#### 🔧 **Limites Setup Simultanés** (4 contraintes)
+#### 🔄 **Transferts Allemagne → Pologne** (4 semaines × 1 = 4 contraintes)
 ```
-setup_CH + setup_TA + setup_DE ≤ 3 setups maximum/semaine
-(Limite capacité changement d'outillage)
+Transport_DE_to_PL ≤ 800 unités/semaine maximum
+Éviter transport excessif, privilégier autosuffisance
 ```
 
-### 🌍 **5. Contraintes ESG & Durabilité (2 contraintes)**
+### ⚙️ **4. Contraintes de Setup & Spécialisations (24 contraintes)**
 
-#### 🌱 **Limite Carbone Totale** (1 contrainte globale)
+#### 🏭 **Limites Setup par Site** (12 contraintes = 3 sites × 4 semaines)
+```
+Setup_site_France ≤ 2 produits/semaine (spécialisation forcée)
+Setup_site_Allemagne ≤ 2 produits/semaine  
+Setup_site_Pologne ≤ 2 produits/semaine
+```
+
+#### 📊 **Production Minimums France** (4 contraintes)  
+```
+Si prod_bureaux_FR > 0 → prod_bureaux_FR ≥ 100 unités
+Contrainte de lot minimum pour efficacité opérationnelle
+```
+
+#### � **Liaisons Setup-Production** (8 contraintes)
+```
+Production_produit ≤ Big_M × Setup_produit_site
+Garantit cohérence setup vs production effective
+```
+
+### 🌍 **5. Contraintes ESG & Quotas Sociaux (4 contraintes)**
+
+#### 🌱 **Budget Carbone Global** (1 contrainte critique)
 ```
 Empreinte carbone sur 4 semaines ≤ 2000 unités CO2
 
 Détail par produit:
 • Chaises: 1.2 CO2/unité  
-• Tables: 2.1 CO2/unité
-• Bureaux: 3.5 CO2/unité
+Empreinte carbone par produit:
+• Chaises: 0.8 CO2/unité  
+• Bureaux: 2.5 CO2/unité
+• Armoires: 2.8 CO2/unité
 
-Contrainte: 1.2×Σ(CH) + 2.1×Σ(TA) + 3.5×Σ(DE) ≤ 2000
-```
-
-#### 📈 **Niveau de Service Minimum** (1 contrainte)
-```
-Service client ≥ 75% pour bureaux deluxe (produit premium)
-Σ(production_DE) ≥ 0.75 × Σ(demande_DE) = 0.75 × 120 = 90 unités
+Contrainte: 0.8×Σ(CH) + 2.5×Σ(DE) + 2.8×Σ(AR) ≤ 50,000 tonnes
 ```
 
-### 💰 **6. Pénalités de Retard & Coûts Cachés (intégrés dans l'objectif)**
-
-#### 🚫 **Coûts de Rupture de Stock** (pénalités clients)
+#### 🏭 **Quotas Sociaux Minimaux** (3 contraintes)
 ```
-- 10€ × rupture_chaises    (perte client faible gamme)
-- 15€ × rupture_tables     (perte client moyen gamme)  
-- 25€ × rupture_bureaux    (perte client premium - CRITIQUE)
+Quota_minimum_France ≥ 3,000 unités (maintien emploi)
+Quota_minimum_Allemagne ≥ 6,000 unités (engagement social)  
+Quota_minimum_Pologne ≥ 4,000 unités (développement économique)
 ```
 
-#### 📦 **Coûts de Possession de Stock**
+### 💰 **6. Fonction Objectif Multi-Sites (intégrée)**
+
+#### � **Marges par Site et Produit**
 ```
-- 1€ × stock_chaises/semaine   (coût stockage faible)
-- 2€ × stock_tables/semaine    (coût stockage moyen)
-- 3€ × stock_bureaux/semaine   (coût stockage élevé - produit complexe)
+🇫🇷 France Premium:
+• Bureaux: +450€/unité  • Chaises: +320€/unité  • Armoires: +390€/unité
+
+🇩🇪 Allemagne Volume:  
+• Bureaux: +380€/unité  • Chaises: +280€/unité  • Armoires: +350€/unité
+
+🇵🇱 Pologne Cost:
+• Bureaux: +280€/unité  • Chaises: +95€/unité   • Armoires: +180€/unité
 ```
 
-#### ⚙️ **Coûts de Setup/Changement Production**
+#### 🚚 **Coûts de Transport** (optimisation géographique)
 ```
-- 20€ × setup_chaises     (changement outillage simple)
-- 30€ × setup_tables      (changement outillage moyen)
-- 50€ × setup_bureaux     (changement outillage complexe)
-```
-
-#### ⏰ **Coûts Heures Supplémentaires**
-```
-- 25€ × heure_sup_menuiserie    (1.5× salaire + surcoût équipement)
-- 20€ × heure_sup_assemblage    (1.5× salaire standard)
+- Coût transport FR→DE: Variable selon distance
+- Coût transport DE→PL: Variable selon distance  
+- Pénalité déséquilibre: Favorise autosuffisance sites
 ```
 
-### 🎯 **RÉCAPITULATIF TOTAL: 70 CONTRAINTES**
-- **Capacités**: 20 contraintes (production + limites heures sup.)
-- **Stocks**: 16 contraintes (équilibrage + capacité stockage)  
-- **Setup**: 24 contraintes (liaison production + minimums)
-- **Opérationnel**: 4 contraintes (limites setup simultanés)
-- **ESG**: 2 contraintes (carbone + service client)
+### 🎯 **RÉCAPITULATIF TOTAL: 55 CONTRAINTES**
+- **Capacités sites**: 12 contraintes (4 par site FR/DE/PL × 3 sites)
+- **Demandes clients**: 3 contraintes (minimum chaises/bureaux/armoires)  
+- **Setup & Minimums**: 24 contraintes (limites + liaisons + quotas France)
+- **Transport inter-sites**: 8 contraintes (limites transferts FR→DE, DE→PL)
+- **ESG & Quotas sociaux**: 4 contraintes (carbone global + minimum pays)
 - **Variables**: 4 contraintes implicites (bornes non-négativité)
 
 > **💡 Complexité Réaliste**: Ce modèle reflète la **réalité industrielle** avec contraintes multiples, coûts cachés, pénalités clients, et objectifs ESG - exactement ce qu'affrontent les planificateurs de production !
