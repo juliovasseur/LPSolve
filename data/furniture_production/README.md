@@ -651,61 +651,16 @@ Ce cas **furniture avancé** démontre la **richesse de la programmation linéai
 > **💼 Bottom Line**: L'optimisation révèle que **84% du potentiel de croissance** réside dans le **déblocage de la contrainte carbone ESG**. Investir massivement en R&D durabilité = levier #1 pour doubler les profits !
 ---
 
-## 🏆 **Synthèse Exécutive - Transformation Digitale de la Décision**
+## � **Synthèse Exécutive**
 
-### 💎 **La Révolution de l'Optimisation Mathématique**
+### � **Insights Clés**
+- **Découverte #1**: Site France saturé en setup, pas en capacité → Spécialisation
+- **Découverte #2**: 84% du potentiel bloqué par contrainte carbone → R&D priorité #1
+- **Découverte #3**: Allemagne/Pologne sous-exploitées → Réallocation géographique
 
-Ce cas furniture démontre comment **l'optimisation linéaire transforme la prise de décision stratégique** :
+### 🚀 **Où Investir pour Maximiser Profit**
+1. **R&D Durabilité** (1.8M€ potentiel) - Priorité absolue
+2. **Optimisation France** (specialisation premium)  
+3. **Expansion Allemagne/Pologne** (capacité dormante)
 
-#### 🧠 **De l'Intuition aux Données**
-```
-❌ AVANT (Décision Intuitive):
-"Concentrons-nous sur les bureaux, c'est plus rentable"
-→ Résultat: Contrainte carbone explosée, profit bloqué
-
-✅ APRÈS (Optimisation Mathématique):  
-"Mix optimal France premium + Allemagne volume + Pologne flexible"
-→ Résultat: 7.123.000€ de profit avec contraintes respectées
-```
-
-#### 🎯 **Insights Business Impossibles à Deviner**
-```
-💡 DÉCOUVERTE #1: Site France saturé en setup (pas en capacité!)
-   → Solution: Spécialisation, pas expansion capacity
-
-💡 DÉCOUVERTE #2: 84% du potentiel bloqué par ESG carbone  
-   → Solution: R&D durabilité, pas marketing
-
-💡 DÉCOUVERTE #3: Sites Allemagne/Pologne sous-exploités
-   → Solution: Réallocation géographique, pas nouvelles usines
-```
-
-### 🚀 **Applications Métier Concrètes**
-
-#### 📊 **Pour les Directeurs Industriels**
-- **Budget CAPEX** : Priorisez investissements selon contraintes actives
-- **Planification S&OP** : Mix optimal production vs intuition commerciale  
-- **KPIs Opérationnels** : Suivez taux setup et empreinte carbone, pas seulement volumes
-
-#### 💰 **Pour les Directeurs Financiers**
-- **Business Cases** : ROI calculé sur déblocage contraintes, pas sur capacité brute
-- **Pricing Strategy** : Shadow prices révèlent la vraie valeur des ressources
-- **Risk Management** : Sensibilité aux contraintes ESG = risque business majeur
-
-#### 🌍 **Pour les Directeurs Développement Durable**  
-- **Impact Économique ESG** : Contrainte carbone = levier profit #1 (1.8M€ potentiel)
-- **Investissements Verts** : ROI direct via déblocage production premium
-- **Reporting Intégré** : ESG n'est plus un coût mais un driver de croissance
-
-### 🎓 **Leçons Stratégiques Universelles**
-
-> **🔑 LESSON #1**: Les vraies optimisations révèlent des **arbitrages contre-intuitifs**  
-> **🔑 LESSON #2**: Les **contraintes actives** indiquent où investir en priorité  
-> **🔑 LESSON #3**: L'**optimisation multi-sites** dépasse toujours l'optimisation locale  
-> **🔑 LESSON #4**: Les **objectifs ESG** peuvent devenir des **leviers de profit**  
-
----
-
-> **💼 Vision CEO**: Ce modèle transforme la **planification industrielle** d'un art subjectif en une **science précise**. Résultat: +240% de profit vs approche intuitive, avec contraintes ESG respectées et croissance durable assurée.
-
-**Next Step**: Déployez cette approche sur vos vrais challenges industriels ! 🎯
+> **� Bottom Line**: L'optimisation mathématique transforme 7.123.000€ de profit théorique en roadmap d'investissement concret. Les contraintes actives = votre feuille de route business.
