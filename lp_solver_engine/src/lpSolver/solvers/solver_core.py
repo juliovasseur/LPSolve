@@ -1,6 +1,7 @@
 from __future__ import annotations
 import time
 from typing import Dict, Any, List, Optional, Tuple
+from tqdm import tqdm
 from ..utils.model_arrays import LPModelData
 from pulp import (
     LpMinimize,
@@ -30,9 +31,11 @@ def solve_lp_with_progress(data: LPModelData, **kwargs) -> Dict[str, Any]:
     prob_sense = LpMinimize if sense == "min" else LpMaximize
     prob = LpProblem("LPModel", prob_sense)
 
-    # Variables
+    # Variables avec barre de progression
     lp_vars: List[LpVariable] = []
-    for i, name in enumerate(data.var_names):
+    print("🔧 Construction du modèle...")
+    for i in tqdm(range(len(data.var_names)), desc="Variables", unit="var"):
+        name = data.var_names[i]
         vtype = data.vtypes[i] if i < len(data.vtypes) else "continuous"
         low = float(data.low[i]) if i < len(data.low) and data.low[i] is not None else None
         up = float(data.up[i]) if i < len(data.up) and data.up[i] is not None else None
@@ -48,8 +51,9 @@ def solve_lp_with_progress(data: LPModelData, **kwargs) -> Dict[str, Any]:
     # Objectif
     prob += lpDot(data.c, lp_vars), "Objective"
 
-    # Contraintes
-    for j, row in enumerate(data.A):
+    # Contraintes avec barre de progression
+    for j in tqdm(range(len(data.A)), desc="Contraintes", unit="cstr"):
+        row = data.A[j]
         lhs = lpDot(row, lp_vars)
         rhs = float(data.b[j])
         op = data.senses[j].strip()
@@ -62,10 +66,17 @@ def solve_lp_with_progress(data: LPModelData, **kwargs) -> Dict[str, Any]:
         else:
             prob += (lhs == rhs), name
 
-    # Résolution
+    # Résolution avec indicateur de progression
+    print("🔍 Résolution en cours...")
     start_time = time.time()
     solver = COIN_CMD(msg=0)
-    prob.solve(solver)
+    
+    # Barre de progression simulée pour la résolution
+    with tqdm(total=100, desc="Solveur CBC", unit="%") as pbar:
+        pbar.update(20)  # Construction terminée
+        prob.solve(solver)
+        pbar.update(80)  # Résolution terminée
+    
     solve_time = time.time() - start_time
 
     # Résultats
@@ -96,7 +107,9 @@ def solve_lp_with_progress(data: LPModelData, **kwargs) -> Dict[str, Any]:
     
     if objective_value is not None:
         sensestr = "Profit" if sense == "max" else "Coût"
-        lines.append(f"💰 {sensestr}: {cfmt(f'{objective_value:.2f}€', C.bold, C.magenta)}")
+        # Format avec séparateurs de milliers
+        formatted_value = f"{objective_value:,.2f}".replace(",", ".")
+        lines.append(f"💰 {sensestr}: {cfmt(f'{formatted_value}€', C.bold, C.magenta)}")
     
     lines.append("")
     lines.append(cfmt("📊 Variables de décision:", C.bold, C.blue))
