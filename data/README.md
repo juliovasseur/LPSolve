@@ -18,19 +18,20 @@ data/basic_linear_examples/
 - **Time**: <0.01s
 - **Result**: 2,950€ optimal profit
 
-### 🏭 **Furniture Production** (Level 2 - Industrial)
+### 🏭 **Furniture Production with Supply Chain** (Level 2 - Industrial)
 ```
 data/furniture_production/
 └── data/
-    ├── variables.csv    # 127 variables (multi-site production, inventory, setup)
-    ├── objectives.csv   # Profit maximization with complex costs
-    └── constraints.csv  # 55 multi-site constraints
+    ├── variables.csv    # 155 variables (multi-site production + 24 transfer variables)
+    ├── objectives.csv   # Profit maximization with transport costs  
+    └── constraints.csv  # 87 constraints (production + supply chain)
 ```
 
-**Objective**: Realistic industrial production planning
-- **Complexity**: 127 variables, 55 constraints
-- **Time**: ~0.16s
-- **Result**: 7,123,000€ optimal multi-site profit
+**Objective**: Advanced industrial production with intelligent supply chain
+- **Complexity**: 155 variables, 87 constraints
+- **Time**: ~0.12s
+- **Result**: 6,985,500€ optimal profit (zero transfers needed!)
+- **🔍 Key Insight**: Current geographic configuration already optimal
 
 ### 💰 **Portfolio Optimization** (Level 3 - Quantitative Finance)
 ```

@@ -33,7 +33,7 @@ CSV Data → Mathematical Modeling → Optimization → Actionable Decisions
 | Level | Use Case | Description | Direct Access |
 |-------|----------|-------------|---------------|
 | 🟢 **Beginner** | **[Educational Examples](./data/basic_linear_examples/README.md)** | Simple chair/table optimization with market constraints | `make run-basic` |
-| 🟡 **Intermediate** | **[Industrial Production](./data/furniture_production/README.md)** | Multi-site planning with 55 constraints (ESG, quotas, carbon) | `make run-furniture` |
+| 🟡 **Intermediate** | **[Industrial Production](./data/furniture_production/README.md)** | Multi-site planning with supply chain (87 constraints, ESG, transfers) | `make run-furniture` |
 | 🔴 **Expert** | **[Quantitative Finance](./data/portfolio_optimization/README.md)** | 16-asset portfolio, regulatory constraints, ALM-type logic | `make run-portfolio` |
 
 > **💡 Tip**: Start with educational examples to understand concepts, then progress to quantitative approaches.
@@ -248,7 +248,7 @@ make run-basic
 
 ### 🎓 **Learning Resources**
 - **[Educational Examples](./data/basic_linear_examples/README.md)**: Basic concepts with concrete case
-- **[Industrial Production](./data/furniture_production/README.md)**: Multi-site optimization (127 variables, 55 constraints)
+- **[Industrial Production](./data/furniture_production/README.md)**: Multi-site optimization with supply chain (155 variables, 87 constraints)
 - **[Quantitative Finance](./data/portfolio_optimization/README.md)**: Regulatory constraints and risk metrics
 
 ### 🛠️ **For Developers**

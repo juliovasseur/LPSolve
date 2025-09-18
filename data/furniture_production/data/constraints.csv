@@ -80,3 +80,58 @@ carbon_budget,2*prod_desk_FR_w1 + 2*prod_desk_FR_w2 + 2*prod_desk_FR_w3 + 2*prod
 quota_FR_min,1*prod_desk_FR_w1 + 1*prod_desk_FR_w2 + 1*prod_desk_FR_w3 + 1*prod_desk_FR_w4 + 1*prod_chair_FR_w1 + 1*prod_chair_FR_w2 + 1*prod_chair_FR_w3 + 1*prod_chair_FR_w4 + 1*prod_cabinet_FR_w1 + 1*prod_cabinet_FR_w2 + 1*prod_cabinet_FR_w3 + 1*prod_cabinet_FR_w4,>=,3000
 quota_DE_min,1*prod_desk_DE_w1 + 1*prod_desk_DE_w2 + 1*prod_desk_DE_w3 + 1*prod_desk_DE_w4 + 1*prod_chair_DE_w1 + 1*prod_chair_DE_w2 + 1*prod_chair_DE_w3 + 1*prod_chair_DE_w4 + 1*prod_cabinet_DE_w1 + 1*prod_cabinet_DE_w2 + 1*prod_cabinet_DE_w3 + 1*prod_cabinet_DE_w4,>=,5000
 quota_PL_min,1*prod_desk_PL_w1 + 1*prod_desk_PL_w2 + 1*prod_desk_PL_w3 + 1*prod_desk_PL_w4 + 1*prod_chair_PL_w1 + 1*prod_chair_PL_w2 + 1*prod_chair_PL_w3 + 1*prod_chair_PL_w4 + 1*prod_cabinet_PL_w1 + 1*prod_cabinet_PL_w2 + 1*prod_cabinet_PL_w3 + 1*prod_cabinet_PL_w4,>=,8000
+
+# CONTRAINTES DE TRANSFERT INTER-SITES (Supply Chain Optimization)
+
+# Contraintes d'équilibrage - Conservation de flux par produit
+# Les transferts OUT d'un site doivent être ≤ production de ce site
+# Les transferts IN + production locale doivent satisfaire demande régionale
+
+# Équilibrage Chaises - Conservation flux
+balance_chair_PL_w1,1*prod_chair_PL_w1 + -1*transfer_chair_PL_to_DE_w1 + -1*transfer_chair_PL_to_FR_w1,>=,800
+balance_chair_PL_w2,1*prod_chair_PL_w2 + -1*transfer_chair_PL_to_DE_w2 + -1*transfer_chair_PL_to_FR_w2,>=,800
+balance_chair_PL_w3,1*prod_chair_PL_w3 + -1*transfer_chair_PL_to_DE_w3 + -1*transfer_chair_PL_to_FR_w3,>=,800
+balance_chair_PL_w4,1*prod_chair_PL_w4 + -1*transfer_chair_PL_to_DE_w4 + -1*transfer_chair_PL_to_FR_w4,>=,800
+
+balance_chair_DE_w1,1*prod_chair_DE_w1 + 1*transfer_chair_PL_to_DE_w1 + -1*transfer_chair_DE_to_FR_w1,>=,1200
+balance_chair_DE_w2,1*prod_chair_DE_w2 + 1*transfer_chair_PL_to_DE_w2 + -1*transfer_chair_DE_to_FR_w2,>=,1200
+balance_chair_DE_w3,1*prod_chair_DE_w3 + 1*transfer_chair_PL_to_DE_w3 + -1*transfer_chair_DE_to_FR_w3,>=,1200
+balance_chair_DE_w4,1*prod_chair_DE_w4 + 1*transfer_chair_PL_to_DE_w4 + -1*transfer_chair_DE_to_FR_w4,>=,1200
+
+# Demande régionale France avec apports transferts (demande premium)
+demand_chair_FR_w1,1*prod_chair_FR_w1 + 1*transfer_chair_PL_to_FR_w1 + 1*transfer_chair_DE_to_FR_w1,>=,900
+demand_chair_FR_w2,1*prod_chair_FR_w2 + 1*transfer_chair_PL_to_FR_w2 + 1*transfer_chair_DE_to_FR_w2,>=,900
+demand_chair_FR_w3,1*prod_chair_FR_w3 + 1*transfer_chair_PL_to_FR_w3 + 1*transfer_chair_DE_to_FR_w3,>=,900
+demand_chair_FR_w4,1*prod_chair_FR_w4 + 1*transfer_chair_PL_to_FR_w4 + 1*transfer_chair_DE_to_FR_w4,>=,900
+
+# Équilibrage Bureaux - Plus sélectif, marges élevées
+balance_desk_PL_w1,1*prod_desk_PL_w1 + -1*transfer_desk_PL_to_DE_w1,>=,600
+balance_desk_PL_w2,1*prod_desk_PL_w2 + -1*transfer_desk_PL_to_DE_w2,>=,600
+balance_desk_PL_w3,1*prod_desk_PL_w3 + -1*transfer_desk_PL_to_DE_w3,>=,600
+balance_desk_PL_w4,1*prod_desk_PL_w4 + -1*transfer_desk_PL_to_DE_w4,>=,600
+
+demand_desk_DE_w1,1*prod_desk_DE_w1 + 1*transfer_desk_PL_to_DE_w1 + -1*transfer_desk_DE_to_FR_w1,>=,800
+demand_desk_DE_w2,1*prod_desk_DE_w2 + 1*transfer_desk_PL_to_DE_w2 + -1*transfer_desk_DE_to_FR_w2,>=,800
+demand_desk_DE_w3,1*prod_desk_DE_w3 + 1*transfer_desk_PL_to_DE_w3 + -1*transfer_desk_DE_to_FR_w3,>=,800
+demand_desk_DE_w4,1*prod_desk_DE_w4 + 1*transfer_desk_PL_to_DE_w4 + -1*transfer_desk_DE_to_FR_w4,>=,800
+
+# Demande premium France (bureaux haut de gamme obligatoires)
+demand_desk_FR_w1,1*prod_desk_FR_w1 + 1*transfer_desk_DE_to_FR_w1,>=,650
+demand_desk_FR_w2,1*prod_desk_FR_w2 + 1*transfer_desk_DE_to_FR_w2,>=,650
+demand_desk_FR_w3,1*prod_desk_FR_w3 + 1*transfer_desk_DE_to_FR_w3,>=,650
+demand_desk_FR_w4,1*prod_desk_FR_w4 + 1*transfer_desk_DE_to_FR_w4,>=,650
+
+# Contraintes Carbone incluant Transferts (Impact transport)
+# Chaque km de transport ajoute 0.1 tonne CO2 par unité
+# PL→DE: 400km, DE→FR: 800km, PL→FR: 1200km
+carbon_transfer_w1,0.04*transfer_chair_PL_to_DE_w1 + 0.08*transfer_chair_DE_to_FR_w1 + 0.12*transfer_chair_PL_to_FR_w1 + 0.04*transfer_desk_PL_to_DE_w1 + 0.08*transfer_desk_DE_to_FR_w1 + 0.04*transfer_cabinet_PL_to_DE_w1 + 0.08*transfer_cabinet_DE_to_FR_w1,<=,800
+carbon_transfer_w2,0.04*transfer_chair_PL_to_DE_w2 + 0.08*transfer_chair_DE_to_FR_w2 + 0.12*transfer_chair_PL_to_FR_w2 + 0.04*transfer_desk_PL_to_DE_w2 + 0.08*transfer_desk_DE_to_FR_w2 + 0.04*transfer_cabinet_PL_to_DE_w2 + 0.08*transfer_cabinet_DE_to_FR_w2,<=,800
+carbon_transfer_w3,0.04*transfer_chair_PL_to_DE_w3 + 0.08*transfer_chair_DE_to_FR_w3 + 0.12*transfer_chair_PL_to_FR_w3 + 0.04*transfer_desk_PL_to_DE_w3 + 0.08*transfer_desk_DE_to_FR_w3 + 0.04*transfer_cabinet_PL_to_DE_w3 + 0.08*transfer_cabinet_DE_to_FR_w3,<=,800
+carbon_transfer_w4,0.04*transfer_chair_PL_to_DE_w4 + 0.08*transfer_chair_DE_to_FR_w4 + 0.12*transfer_chair_PL_to_FR_w4 + 0.04*transfer_desk_PL_to_DE_w4 + 0.08*transfer_desk_DE_to_FR_w4 + 0.04*transfer_cabinet_PL_to_DE_w4 + 0.08*transfer_cabinet_DE_to_FR_w4,<=,800
+
+# Contraintes de capacité logistique (camions limités)
+# Limite transport total par semaine (infrastructure existante)
+transport_capacity_w1,1*transfer_chair_PL_to_DE_w1 + 1*transfer_chair_PL_to_FR_w1 + 1*transfer_chair_DE_to_FR_w1 + 2*transfer_desk_PL_to_DE_w1 + 2*transfer_desk_DE_to_FR_w1 + 3*transfer_cabinet_PL_to_DE_w1 + 3*transfer_cabinet_DE_to_FR_w1,<=,1200
+transport_capacity_w2,1*transfer_chair_PL_to_DE_w2 + 1*transfer_chair_PL_to_FR_w2 + 1*transfer_chair_DE_to_FR_w2 + 2*transfer_desk_PL_to_DE_w2 + 2*transfer_desk_DE_to_FR_w2 + 3*transfer_cabinet_PL_to_DE_w2 + 3*transfer_cabinet_DE_to_FR_w2,<=,1200
+transport_capacity_w3,1*transfer_chair_PL_to_DE_w3 + 1*transfer_chair_PL_to_FR_w3 + 1*transfer_chair_DE_to_FR_w3 + 2*transfer_desk_PL_to_DE_w3 + 2*transfer_desk_DE_to_FR_w3 + 3*transfer_cabinet_PL_to_DE_w3 + 3*transfer_cabinet_DE_to_FR_w3,<=,1200
+transport_capacity_w4,1*transfer_chair_PL_to_DE_w4 + 1*transfer_chair_PL_to_FR_w4 + 1*transfer_chair_DE_to_FR_w4 + 2*transfer_desk_PL_to_DE_w4 + 2*transfer_desk_DE_to_FR_w4 + 3*transfer_cabinet_PL_to_DE_w4 + 3*transfer_cabinet_DE_to_FR_w4,<=,1200

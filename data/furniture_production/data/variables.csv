@@ -149,3 +149,40 @@ ot_carp_w1,0,50000
 ot_carp_w2,0,50000
 ot_carp_w3,0,50000
 ot_carp_w4,0,50000
+
+# Variables de Transfert Inter-Sites (Optimisation Supply Chain)
+# Format: transfer_[produit]_[origine]_to_[destination]_w[X]
+
+# Transferts Chaises - Flux inter-européens  
+transfer_chair_PL_to_DE_w1,0,500,integer
+transfer_chair_PL_to_DE_w2,0,500,integer
+transfer_chair_PL_to_DE_w3,0,500,integer
+transfer_chair_PL_to_DE_w4,0,500,integer
+transfer_chair_PL_to_FR_w1,0,300,integer
+transfer_chair_PL_to_FR_w2,0,300,integer
+transfer_chair_PL_to_FR_w3,0,300,integer
+transfer_chair_PL_to_FR_w4,0,300,integer
+transfer_chair_DE_to_FR_w1,0,200,integer
+transfer_chair_DE_to_FR_w2,0,200,integer
+transfer_chair_DE_to_FR_w3,0,200,integer
+transfer_chair_DE_to_FR_w4,0,200,integer
+
+# Transferts Bureaux - Logique premium 
+transfer_desk_PL_to_DE_w1,0,400,integer
+transfer_desk_PL_to_DE_w2,0,400,integer
+transfer_desk_PL_to_DE_w3,0,400,integer
+transfer_desk_PL_to_DE_w4,0,400,integer
+transfer_desk_DE_to_FR_w1,0,250,integer
+transfer_desk_DE_to_FR_w2,0,250,integer
+transfer_desk_DE_to_FR_w3,0,250,integer
+transfer_desk_DE_to_FR_w4,0,250,integer
+
+# Transferts Armoires - Spécialisation complexe
+transfer_cabinet_PL_to_DE_w1,0,300,integer
+transfer_cabinet_PL_to_DE_w2,0,300,integer
+transfer_cabinet_PL_to_DE_w3,0,300,integer
+transfer_cabinet_PL_to_DE_w4,0,300,integer
+transfer_cabinet_DE_to_FR_w1,0,150,integer
+transfer_cabinet_DE_to_FR_w2,0,150,integer
+transfer_cabinet_DE_to_FR_w3,0,150,integer
+transfer_cabinet_DE_to_FR_w4,0,150,integer

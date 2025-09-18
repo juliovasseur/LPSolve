@@ -80,3 +80,47 @@ ot_carp_w1,-30,max
 ot_carp_w2,-30,max
 ot_carp_w3,-30,max
 ot_carp_w4,-30,max
+
+# Coûts de Transfert Inter-Sites (Transport + Carbone + Manutention)
+# Coûts basés sur: Distance géographique + Impact carbone + Handling
+
+# Transferts Chaises (coûts bas, produit standardisé)
+# Pologne → Allemagne (400km): Coût base -12€/unité
+transfer_chair_PL_to_DE_w1,-12,max
+transfer_chair_PL_to_DE_w2,-12,max
+transfer_chair_PL_to_DE_w3,-12,max
+transfer_chair_PL_to_DE_w4,-12,max
+# Pologne → France (1200km): Coût élevé -25€/unité (distance + carbone)
+transfer_chair_PL_to_FR_w1,-25,max
+transfer_chair_PL_to_FR_w2,-25,max
+transfer_chair_PL_to_FR_w3,-25,max
+transfer_chair_PL_to_FR_w4,-25,max
+# Allemagne → France (800km): Coût intermédiaire -18€/unité
+transfer_chair_DE_to_FR_w1,-18,max
+transfer_chair_DE_to_FR_w2,-18,max
+transfer_chair_DE_to_FR_w3,-18,max
+transfer_chair_DE_to_FR_w4,-18,max
+
+# Transferts Bureaux (coûts plus élevés, produit premium)
+# Pologne → Allemagne: -22€/unité (produit plus lourd)
+transfer_desk_PL_to_DE_w1,-22,max
+transfer_desk_PL_to_DE_w2,-22,max
+transfer_desk_PL_to_DE_w3,-22,max
+transfer_desk_PL_to_DE_w4,-22,max
+# Allemagne → France: -35€/unité (premium handling requis)
+transfer_desk_DE_to_FR_w1,-35,max
+transfer_desk_DE_to_FR_w2,-35,max
+transfer_desk_DE_to_FR_w3,-35,max
+transfer_desk_DE_to_FR_w4,-35,max
+
+# Transferts Armoires (coûts les plus élevés, produit complexe)
+# Pologne → Allemagne: -28€/unité (complexité + poids)
+transfer_cabinet_PL_to_DE_w1,-28,max
+transfer_cabinet_PL_to_DE_w2,-28,max
+transfer_cabinet_PL_to_DE_w3,-28,max
+transfer_cabinet_PL_to_DE_w4,-28,max
+# Allemagne → France: -45€/unité (manipulation délicate premium)
+transfer_cabinet_DE_to_FR_w1,-45,max
+transfer_cabinet_DE_to_FR_w2,-45,max
+transfer_cabinet_DE_to_FR_w3,-45,max
+transfer_cabinet_DE_to_FR_w4,-45,max
