@@ -1,5 +1,18 @@
-# 🎯 **LPSolve** - *Moteur d'Optimisation Linéaire*
-## Outil de Résolution d'Optimisation via Programmation Linéaire
+# 🎯 **LPSolve** - *Moteur d'Optimisation Li```
+LPSolve/
+├──│   │   └── utils/                 # Utilitaires et parsing
+│   │       ├── parsing.py         # CSV → modèle mathématique
+│   │       ├── model_arrays.py    # Structures données optimisées
+│   │       └── modeling.py        # Construction modèles
+│   ├── main.py                    # Point d'entrée génériquelp_solver_engine/           # Moteur d'optimisation principal
+│   ├── src/lpSolver/
+│   │   ├── solvers/               # Algorithmes d'optimisation
+│   │   │   ├── solver_core.py     # Solveur générique LP/MILP
+│   │   │   └── portfolio_solver.py # Solveur spécialisé finance
+│   │   └── utils/                 # Utilitaires et parsing
+│   │       ├── parsing.py         # CSV → modèle mathématique
+│   │       ├── model_arrays.py    # Structures données optimisées
+│   │       └── modeling.py        # Construction modèlesutil de Résolution d'Optimisation via Programmation Linéaire
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
 [![PuLP](https://img.shields.io/badge/PuLP-2.7+-green.svg)](https://pypi.org/project/PuLP/)
@@ -49,11 +62,10 @@ LPSolve/
 │   │   ├── solvers/               # Algorithmes d'optimisation
 │   │   │   ├── solver_core.py     # Solveur générique LP/MILP
 │   │   │   └── portfolio_solver.py # Solveur spécialisé finance
-│   │   ├── utils/                 # Utilitaires et parsing
-│   │   │   ├── parsing.py         # Parsing CSV → modèle mathématique
-│   │   │   ├── model_arrays.py    # Structures de données optimisées
-│   │   │   └── modeling.py        # Construction des modèles  
-│   │   └── archive/               # Versions historiques
+│   │   └── utils/                 # Utilitaires et parsing
+│   │       ├── parsing.py         # Parsing CSV → modèle mathématique
+│   │       ├── model_arrays.py    # Structures de données optimisées
+│   │       └── modeling.py        # Construction des modèles  
 │   ├── main.py                    # Point d'entrée générique
 │   ├── portfolio_main.py          # Point d'entrée finance spécialisé  
 │   └── requirements.txt           # Dépendances Python

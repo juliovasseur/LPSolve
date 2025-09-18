@@ -12,11 +12,10 @@ lp_solver_engine/
 │   ├── solvers/                    # Algorithmes d'optimisation
 │   │   ├── solver_core.py          # Solveur générique LP/MILP
 │   │   └── portfolio_solver.py     # Solveur spécialisé finance
-│   ├── utils/                      # Utilitaires et parsing
-│   │   ├── parsing.py              # CSV → modèle mathématique
-│   │   ├── model_arrays.py         # Structures données optimisées
-│   │   └── modeling.py             # Construction modèles
-│   └── archive/                    # Versions historiques
+│   └── utils/                      # Utilitaires et parsing
+│       ├── parsing.py              # CSV → modèle mathématique
+│       ├── model_arrays.py         # Structures données optimisées
+│       └── modeling.py             # Construction modèles
 ├── main.py                         # Point d'entrée générique
 ├── portfolio_main.py               # Point d'entrée finance
 └── requirements.txt                # Dépendances Python
@@ -54,10 +53,6 @@ lp_solver_engine/
 - Transformation données → modèles mathématiques
 - Support contraintes complexes
 - Optimisations numériques
-
-### **Archive (`archive/`)**
-- `solver_v1_backup.py` - Version historique avec reduced costs
-- `solver_v2_experimental.py` - Version expérimentale
 
 ## 🚀 Points d'Entrée
 

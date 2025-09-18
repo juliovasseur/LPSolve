@@ -1,5 +1,14 @@
-# 🎯 **LPSolve** - *Linear Optimization Engine*
-## Industrial-Grade Linear Programming Solver
+# 🎯 **LPSolve** - *Linear Optimization Engi```
+LPSolve/
+├── 🎛️  lp_solver_engine/           # Main optimization engine
+│   ├── src/lpSolver/
+│   │   ├── solvers/               # Optimization algorithms
+│   │   │   ├── solver_core.py     # Generic LP/MILP solver
+│   │   │   └── portfolio_solver.py # Specialized finance solver
+│   │   └── utils/                 # Utilities and parsing
+│   │       ├── parsing.py         # CSV → mathematical model
+│   │       ├── model_arrays.py    # Optimized data structures
+│   │       └── modeling.py        # Model constructiontrial-Grade Linear Programming Solver
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
 [![PuLP](https://img.shields.io/badge/PuLP-2.7+-green.svg)](https://pypi.org/project/PuLP/)
@@ -49,11 +58,10 @@ LPSolve/
 │   │   ├── solvers/               # Optimization algorithms
 │   │   │   ├── solver_core.py     # Generic LP/MILP solver
 │   │   │   └── portfolio_solver.py # Specialized finance solver
-│   │   ├── utils/                 # Utilities and parsing
-│   │   │   ├── parsing.py         # CSV → mathematical model parsing
-│   │   │   ├── model_arrays.py    # Optimized data structures
-│   │   │   └── modeling.py        # Model construction  
-│   │   └── archive/               # Historical versions
+│   │   └── utils/                 # Utilities and parsing
+│   │       ├── parsing.py         # CSV → mathematical model parsing
+│   │       ├── model_arrays.py    # Optimized data structures
+│   │       └── modeling.py        # Model construction  
 │   ├── main.py                    # Generic entry point
 │   ├── portfolio_main.py          # Specialized finance entry point  
 │   └── requirements.txt           # Python dependencies
