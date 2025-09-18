@@ -4,114 +4,114 @@
 
 The **LP Solver Engine** is the core of the quantitative optimization system. It transforms CSV data into mathematical optimization models and solves them using state-of-the-art algorithms.
 
-### 📁 Structure des Modules
+### 📁 Module Structure
 
 ```
 lp_solver_engine/
 ├── src/lpSolver/
-│   ├── solvers/                    # Algorithmes d'optimisation
-│   │   ├── solver_core.py          # Solveur générique LP/MILP
-│   │   └── portfolio_solver.py     # Solveur spécialisé finance
-│   ├── utils/                      # Utilitaires et parsing
-│   │   ├── parsing.py              # CSV → modèle mathématique
-│   │   ├── model_arrays.py         # Structures données optimisées
-│   │   └── modeling.py             # Construction modèles
-│   └── archive/                    # Versions historiques
-├── main.py                         # Point d'entrée générique
-├── portfolio_main.py               # Point d'entrée finance
-└── requirements.txt                # Dépendances Python
+│   ├── solvers/                    # Optimization algorithms
+│   │   ├── solver_core.py          # Generic LP/MILP solver
+│   │   └── portfolio_solver.py     # Specialized finance solver
+│   ├── utils/                      # Utilities and parsing
+│   │   ├── parsing.py              # CSV → mathematical model
+│   │   ├── model_arrays.py         # Optimized data structures
+│   │   └── modeling.py             # Model construction
+│   └── archive/                    # Historical versions
+├── main.py                         # Generic entry point
+├── portfolio_main.py               # Finance entry point
+└── requirements.txt                # Python dependencies
 ```
 
-## 🔧 Composants Principaux
+## 🔧 Main Components
 
 ### **Solvers (`solvers/`)**
 
-#### `solver_core.py` - Solveur Générique
-- Interface PuLP standardisée
+#### `solver_core.py` - Generic Solver
+- Standardized PuLP interface
 - Support LP/MILP/QP
-- Formatage résultats avancé
-- Métriques de performance
+- Advanced result formatting
+- Performance metrics
 
-#### `portfolio_solver.py` - Solveur Finance Spécialisé  
-- Optimisation portefeuille quantitatif
-- Analyse des contraintes réglementaires
-- Métriques financières (Herfindahl, actifs effectifs)
-- Terminologie finance quantitative
+#### `portfolio_solver.py` - Specialized Finance Solver  
+- Quantitative portfolio optimization
+- Regulatory constraints analysis
+- Financial metrics (Herfindahl, effective assets)
+- Quantitative finance terminology
 
 ### **Utils (`utils/`)**
 
-#### `parsing.py` - Parsing CSV
-- Lecture fichiers variables.csv, objectives.csv, constraints.csv
-- Validation format et cohérence
-- Gestion erreurs robuste
+#### `parsing.py` - CSV Parsing
+- Reading variables.csv, objectives.csv, constraints.csv files
+- Format validation and consistency checks
+- Robust error handling
 
-#### `model_arrays.py` - Structures de Données
-- Classe `LPModelData` optimisée
-- Représentation matricielle efficace
-- Interface pour solveurs
+#### `model_arrays.py` - Data Structures
+- Optimized `LPModelData` class
+- Efficient matrix representation
+- Interface for solvers
 
-#### `modeling.py` - Construction Modèles
-- Transformation données → modèles mathématiques
-- Support contraintes complexes
-- Optimisations numériques
+#### `modeling.py` - Model Construction
+- Data transformation → mathematical models
+- Complex constraints support
+- Numerical optimizations
 
 ### **Archive (`archive/`)**
-- `solver_v1_backup.py` - Version historique avec reduced costs
-- `solver_v2_experimental.py` - Version expérimentale
+- `solver_v1_backup.py` - Historical version with reduced costs
+- `solver_v2_experimental.py` - Experimental version
 
-## 🚀 Points d'Entrée
+## 🚀 Entry Points
 
-### `main.py` - Interface Générique
+### `main.py` - Generic Interface
 ```python
-# Utilisation standard pour tous types de problèmes
+# Standard usage for all problem types
 python main.py data/folder/
 ```
 
-### `portfolio_main.py` - Interface Finance Spécialisée
+### `portfolio_main.py` - Specialized Finance Interface
 ```python  
-# Interface optimisée pour problèmes financiers
+# Optimized interface for financial problems
 python portfolio_main.py portfolio_optimization/data/
 ```
 
-## 📊 Caractéristiques Techniques
+## 📊 Technical Characteristics
 
-- **Performance** : Optimisation <50ms pour problèmes complexes
-- **Solveurs** : CBC (COIN-OR), interface PuLP
-- **Robustesse** : Gestion contraintes infaisables
-- **Scalabilité** : Support 100+ variables/contraintes  
-- **Formats** : CSV standardisé, outputs formatés
+- **Performance** : Optimization <50ms for complex problems
+- **Solvers** : CBC (COIN-OR), PuLP interface
+- **Robustness** : Infeasible constraints handling
+- **Scalability** : Support 100+ variables/constraints  
+- **Formats** : Standardized CSV, formatted outputs
 
-## 🔍 Utilisation Avancée
+## 🔍 Advanced Usage
 
-### Personnalisation Solveurs
+### Solver Customization
 ```python
 from src.lpSolver.solvers import solve_lp_with_progress
 
-# Résolution avec paramètres custom
+# Resolution with custom parameters
 result = solve_lp_with_progress(data, 
                                solver_params={'msg': 1, 'timeLimit': 300})
 ```
 
-### Extension Nouveaux Formats
+### New Format Extensions
 ```python  
 from src.lpSolver.utils import LPModelData
 
-# Création modèle custom
+# Custom model creation
 data = LPModelData(variables, objectives, constraints, sense)
 ```
 
-## 🛠️ Développement
+## 🛠️ Development
 
 ### Tests
 ```bash
-# Test tous les cas d'usage
+# Test all use cases
 make run-basic && make run-furniture && make run-portfolio
 ```
 
 ### Debugging
 ```bash
-# Mode verbose
+# Verbose mode
 PULP_CBS_MSG=1 make run-portfolio
 ```
 
-Cette architecture modulaire permet une extensibilité maximale tout en maintenant des performances optimales pour les applications quantitatives professionnelles.
+This modular architecture enables maximum extensibility while maintaining optimal performance for professional quantitative applications.
