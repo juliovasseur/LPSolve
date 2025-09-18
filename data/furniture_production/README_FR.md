@@ -1,8 +1,16 @@
-# 🏭 Multi-Site Production Optimization - Large-Scale Industrial Case
+# 🏭 Optimisation de Production Multi-Sites - Cas Industriel de Grande Échelle
 
-## 🎯 Problem Overview
+## 🎯 Vue d'Ensemble du Problème
 
-This case study represents a **complex industrial optimization problem** for multi-site production planning for a **European manufacturing group** specialized in three product lines:
+Ce cas d'étude représente un **problème d'optimisation industrielle complexe** de planification de pr## 🎯 **Stratégie d'Optimisation Multi-Sites - Équilibres Complexes**
+
+Le modèle doit trouver l'équilibre optimal entre :
+
+### 💰 **Trade-offs Géo-Économiques**
+- **Marges vs Sites** : France premium (450€ bureaux) vs Pologne cost (95€ chaises)
+- **Spécialisation vs Flexibilité** : Concentrer production ou diversifier géographiquement
+- **Transport vs Production Locale** : Coûts transferts vs autosuffisance sites
+- **Capacités vs Demandes** : Sites sous-utilisés vs contraintes saturéesmulti-sites pour un **groupe manufacturier européen** spécialisé dans trois gammes de produits :
 
 - **🪑 Chaises** - Volume élevé, marges 95-320€/unité selon site
 - **🪑 Bureaux** - Produit premium, marges 280-450€/unité selon site  

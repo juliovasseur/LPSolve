@@ -1,101 +1,101 @@
-# 🎯 **LPSolve** - *Moteur d'Optimisation Linéaire*
-## Outil de Résolution d'Optimisation via Programmation Linéaire
+# 🎯 **LPSolve** - *Linear Optimization Engine*
+## Industrial-Grade Linear Programming Solver
 
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
 [![PuLP](https://img.shields.io/badge/PuLP-2.7+-green.svg)](https://pypi.org/project/PuLP/)
 [![CBC](https://img.shields.io/badge/CBC-COIN--OR-orange.svg)](https://github.com/coin-or/Cbc)
 [![License](https://img.shields.io/badge/License-MIT-red.svg)](LICENSE)
 
-> **Exemple d'un projet data → decision** : Transformation de données CSV en **décisions d'optimisation** via programmation linéaire. Du parsing des données à l'analyse des **contraintes saturées** et calcul des **coûts marginaux**.
+> **From Data to Decisions**: Transform CSV datasets into **actionable optimization solutions** via linear programming. From data parsing to **binding constraints analysis** and **shadow price calculations**.
 
 ---
 
-## 🎯 **Vue d'ensemble du Projet**
+## 🎯 **Project Overview**
 
-Ce projet implémente un **moteur d'optimisation linéaire** qui transforme des données CSV en modèles mathématiques, résolus avec le solveur CBC (COIN-OR). Le système couvre trois niveaux de complexité, des exemples éducatifs aux applications de gestion de portefeuille avec calcul des **valeurs marginales** et analyse des **contraintes saturées**.
+This project implements an **industrial-grade linear optimization engine** that transforms CSV data into mathematical models, solved using the CBC (COIN-OR) solver. The system covers three complexity levels, from educational examples to portfolio management applications with **marginal value calculations** and **binding constraints analysis**.
 
-### 🚀 **Outil Puissant & Universel**
-Avant tout, c'est un **moteur d'optimisation généraliste** : vous pouvez **cloner ce repo**, remplacer les CSV par vos données normalisées, et résoudre **n'importe quel problème d'optimisation linéaire sous contraintes** ! 
+### 🚀 **Universal & Powerful Tool**
+Above all, this is a **generalist optimization engine**: you can **clone this repo**, replace the CSV files with your normalized data, and solve **any linear programming problem under constraints**!
 
-### 📊 **Pipeline Complet**
+### 📊 **Complete Pipeline**
 ```
-Données CSV → Modélisation Mathématique → Optimisation → Décisions Actionables
+CSV Data → Mathematical Modeling → Optimization → Actionable Decisions
 ```
 
 ---
 
 ## 🏗️ **Architecture du Système**
 
-### 🎯 **Approche Modulaire par Niveaux de Complexité**
+### 🎯 **Modular Approach by Complexity Levels**
 
-### 🚀 **Accès Rapide aux Cas d'Usage**
+### 🚀 **Quick Access to Use Cases**
 
-| Niveau | Cas d'Usage | Description | Accès Direct |
-|--------|-------------|-------------|--------------|
-| 🟢 **Débutant** | **[Exemples Éducatifs](./data/basic_linear_examples/README.md)** | Optimisation simple chaises/tables avec contrainte de marché | `make run-basic` |
-| 🟡 **Intermédiaire** | **[Production Industrielle](./data/furniture_production/README.md)** | Planification multi-sites avec 55 contraintes (ESG, quotas, carbone) | `make run-furniture` |
-| 🔴 **Expert** | **[Finance Quantitative](./data/portfolio_optimization/README.md)** | Portefeuille 16 actifs, contraintes réglementaires, logique type ALM | `make run-portfolio` |
+| Level | Use Case | Description | Direct Access |
+|-------|----------|-------------|---------------|
+| 🟢 **Beginner** | **[Educational Examples](./data/basic_linear_examples/README.md)** | Simple chair/table optimization with market constraints | `make run-basic` |
+| 🟡 **Intermediate** | **[Industrial Production](./data/furniture_production/README.md)** | Multi-site planning with 55 constraints (ESG, quotas, carbon) | `make run-furniture` |
+| 🔴 **Expert** | **[Quantitative Finance](./data/portfolio_optimization/README.md)** | 16-asset portfolio, regulatory constraints, ALM-type logic | `make run-portfolio` |
 
-> **💡 Conseil** : Commencez par les exemples éducatifs pour comprendre les concepts, puis progressez vers l'approche quantitative.
+> **💡 Tip**: Start with educational examples to understand concepts, then progress to quantitative approaches.
 
-> **🎓 Note sur la terminologie** : Le système calcule les **valeurs marginales** (shadow prices) et **coûts de transaction**, mais ne produit pas d'analyse PnL ou ALM complète. Il suit cependant une **logique similaire** dans l'approche d'optimisation.
+> **🎓 Terminology Note**: The system calculates **shadow prices** and **transaction costs**, but doesn't produce complete PnL or ALM analysis. However, it follows **similar logic** in optimization approach.
 
 ### 🏗️ **Structure Technique**
 
 ```
 LPSolve/
-├── 🎛️  lp_solver_engine/           # Moteur d'optimisation principal
+├── 🎛️  lp_solver_engine/           # Main optimization engine
 │   ├── src/lpSolver/
-│   │   ├── solvers/               # Algorithmes d'optimisation
-│   │   │   ├── solver_core.py     # Solveur générique LP/MILP
-│   │   │   └── portfolio_solver.py # Solveur spécialisé finance
-│   │   ├── utils/                 # Utilitaires et parsing
-│   │   │   ├── parsing.py         # Parsing CSV → modèle mathématique
-│   │   │   ├── model_arrays.py    # Structures de données optimisées
-│   │   │   └── modeling.py        # Construction des modèles  
-│   │   └── archive/               # Versions historiques
-│   ├── main.py                    # Point d'entrée générique
-│   ├── portfolio_main.py          # Point d'entrée finance spécialisé  
-│   └── requirements.txt           # Dépendances Python
-├── � data/                        # Cas d'usage et données
-│   ├── �📊 basic_linear_examples/   # Cas éducatifs (niveau 1)
-│   ├── 🏭 furniture_production/    # Optimisation industrielle (niveau 2)
-│   └── 💰 portfolio_optimization/  # Finance quantitative (niveau 3)
+│   │   ├── solvers/               # Optimization algorithms
+│   │   │   ├── solver_core.py     # Generic LP/MILP solver
+│   │   │   └── portfolio_solver.py # Specialized finance solver
+│   │   ├── utils/                 # Utilities and parsing
+│   │   │   ├── parsing.py         # CSV → mathematical model parsing
+│   │   │   ├── model_arrays.py    # Optimized data structures
+│   │   │   └── modeling.py        # Model construction  
+│   │   └── archive/               # Historical versions
+│   ├── main.py                    # Generic entry point
+│   ├── portfolio_main.py          # Specialized finance entry point  
+│   └── requirements.txt           # Python dependencies
+├── 📁 data/                        # Use cases and data
+│   ├── 📊 basic_linear_examples/   # Educational cases (level 1)
+│   ├── 🏭 furniture_production/    # Industrial optimization (level 2)
+│   └── 💰 portfolio_optimization/  # Quantitative finance (level 3)
 │       └── data/
-│           ├── variables.csv      # 16 actifs (AAPL, MSFT, GOOGL...)
-│           ├── objectives.csv     # Fonction d'utilité mean-variance
-│           └── constraints.csv    # 40+ contraintes réglementaires
-├── 📈 results/                     # Outputs d'optimisation
-└── Makefile                       # Automation et commandes
+│           ├── variables.csv      # 16 assets (AAPL, MSFT, GOOGL...)
+│           ├── objectives.csv     # Mean-variance utility function
+│           └── constraints.csv    # 40+ regulatory constraints
+├── 📈 results/                     # Optimization outputs
+└── Makefile                       # Automation and commands
 ```
 
 ---
 
-## 🚀 Utilisation
+## 🚀 Usage
 
-### 🎯 **Fonctionnement Universel du Programme**
+### 🎯 **Universal Program Operation**
 
-Ce programme est conçu pour résoudre **tout type de problème d'optimisation linéaire** en utilisant une approche standardisée basée sur des fichiers CSV. Peu importe votre domaine d'application (finance, production industrielle, logistique, etc.), le processus reste identique :
+This program is designed to solve **any type of linear programming problem** using a standardized CSV-based approach. Regardless of your application domain (finance, industrial production, logistics, etc.), the process remains identical:
 
-#### 📋 **Structure CSV Requise**
+#### 📋 **Required CSV Structure**
 
-Le programme attend **3 fichiers CSV normalisés** dans le dossier `data/` de votre cas d'usage :
+The program expects **3 normalized CSV files** in your use case's `data/` folder:
 
-1. **`variables.csv`** - Définit les variables de décision
+1. **`variables.csv`** - Defines decision variables
    ```csv
    variable_name,lower_bound,upper_bound,var_type
    x1,0,1,Continuous
    x2,0,100,Integer
    ```
 
-2. **`objectives.csv`** - Définit la fonction objectif à optimiser
+2. **`objectives.csv`** - Defines the objective function to optimize
    ```csv
    variable_name,coefficient
    x1,10.5
    x2,-2.3
    ```
 
-3. **`constraints.csv`** - Définit toutes les contraintes du problème
+3. **`constraints.csv`** - Defines all problem constraints
    ```csv
    constraint_name,variable_name,coefficient,operator,rhs
    budget_limit,x1,100,<=,50000
@@ -103,195 +103,195 @@ Le programme attend **3 fichiers CSV normalisés** dans le dossier `data/` de vo
    minimum_production,x1,1,>=,10
    ```
 
-#### 🔄 **Processus d'Exécution**
+#### 🔄 **Execution Process**
 
-1. **Préparation** : Créez votre dossier de cas d'usage avec les 3 fichiers CSV
-2. **Configuration** : Le programme parse automatiquement vos CSV
-3. **Modélisation** : Construction automatique du modèle mathématique
-4. **Résolution** : Optimisation avec le solveur CBC (COIN-OR)
-5. **Analyse** : Génération des résultats et métriques détaillées
+1. **Preparation**: Create your use case folder with the 3 CSV files
+2. **Configuration**: Program automatically parses your CSVs
+3. **Modeling**: Automatic mathematical model construction
+4. **Resolution**: Optimization with CBC (COIN-OR) solver
+5. **Analysis**: Results generation and detailed metrics
 
-#### ✨ **Avantages de cette Approche**
+#### ✨ **Advantages of This Approach**
 
-- **🌐 Universalité** : Fonctionne pour tout problème LP/MILP
-- **📊 Simplicité** : Interface CSV intuitive, pas de programmation requise
-- **🔧 Flexibilité** : Ajout/modification de contraintes en éditant les CSV
-- **📈 Scalabilité** : Gère des milliers de variables et contraintes
-- **🎯 Reproductibilité** : Versionning facile des modèles via Git
+- **🌐 Universality**: Works for any LP/MILP problem
+- **📊 Simplicity**: Intuitive CSV interface, no programming required
+- **🔧 Flexibility**: Add/modify constraints by editing CSVs
+- **📈 Scalability**: Handles thousands of variables and constraints
+- **🎯 Reproducibility**: Easy model versioning via Git
 
-### 📊 **Commandes Rapides**
+### 📊 **Quick Commands**
 
 ```bash
-# Lancer les trois cas d'usage principaux
-make run-basic      # 🟢 Cas éducatif simple
-make run-furniture  # 🟡 Optimisation industrielle  
-make run-portfolio  # 🔴 Finance quantitative
+# Run the three main use cases
+make run-basic      # 🟢 Simple educational case
+make run-furniture  # 🟡 Industrial optimization  
+make run-portfolio  # 🔴 Quantitative finance
 
-# Créer votre propre cas d'usage
-make create-case NAME=mon_projet
-make run-custom PROJECT=mon_projet
+# Create your own use case
+make create-case NAME=my_project
+make run-custom PROJECT=my_project
 ```
 
 ---
 
-## 🛠️ **Créer Votre Propre Cas d'Usage (En 2 Minutes !)**
+## 🛠️ **Create Your Own Use Case (In 2 Minutes!)**
 
-Vous voulez résoudre VOTRE problème d'optimisation ? Rien de plus simple !
+Want to solve YOUR optimization problem? Nothing easier!
 
-### 🚀 **Méthode Rapide avec Template**
+### 🚀 **Quick Method with Template**
 ```bash
-# Créer un nouveau cas d'usage basé sur le template
-make create-case NAME=mon_projet
+# Create a new use case based on template
+make create-case NAME=my_project
 
-# Cela crée automatiquement :
-# data/mon_projet/
+# This automatically creates:
+# data/my_project/
 #   ├── data/
-#   │   ├── variables.csv      # Template avec 2 variables exemple
-#   │   ├── objectives.csv     # Template fonction objectif
-#   │   └── constraints.csv    # Template contraintes
-#   └── README.md              # Documentation personnalisable
+#   │   ├── variables.csv      # Template with 2 example variables
+#   │   ├── objectives.csv     # Objective function template
+#   │   └── constraints.csv    # Constraints template
+#   └── README.md              # Customizable documentation
 ```
 
-### ✏️ **Personnalisation**
-1. **Éditez les CSV** avec vos données spécifiques
-2. **Lancez l'optimisation** : `make run-custom PROJECT=mon_projet`
+### ✏️ **Customization**
+1. **Edit the CSVs** with your specific data
+2. **Run optimization**: `make run-custom PROJECT=my_project`
 
-### 📋 **Template CSV Exemple**
+### 📋 **Example CSV Template**
 
-Le template génère automatiquement un problème d'optimisation simple :
-- **2 variables** : x1, x2 (continues, bornées)
-- **1 objectif** : Maximiser 10*x1 + 5*x2
-- **2 contraintes** : Budget et capacité
+The template automatically generates a simple optimization problem:
+- **2 variables**: x1, x2 (continuous, bounded)
+- **1 objective**: Maximize 10*x1 + 5*x2
+- **2 constraints**: Budget and capacity
 
-Remplacez simplement ces données par les vôtres !
+Simply replace this data with your own!
 
 ---
 
-## 📊 **Comprendre les Résultats d'Optimisation**
+## 📊 **Understanding Optimization Results**
 
-### 🎯 **Terminologie des Outputs**
+### 🎯 **Output Terminology**
 
-Quand vous lancez une optimisation, le programme affiche plusieurs métriques importantes :
+When you run an optimization, the program displays several important metrics:
 
-#### ✅ **Status de la Solution**
-- **`OK`** : Solution optimale trouvée ✅
-- **`INFEASIBLE`** : Aucune solution respectant toutes les contraintes ❌
-- **`UNBOUNDED`** : Problème mal formulé (objectif tend vers l'infini) ⚠️
+#### ✅ **Solution Status**
+- **`OK`**: Optimal solution found ✅
+- **`INFEASIBLE`**: No solution respecting all constraints ❌
+- **`UNBOUNDED`**: Poorly formulated problem (objective tends to infinity) ⚠️
 
-#### 📊 **Valeurs des Variables**
-- **Valeur optimale** : Meilleure allocation trouvée pour chaque variable
-- **Slack/Surplus** : Marge disponible sur chaque contrainte
+#### 📊 **Variable Values**
+- **Optimal value**: Best allocation found for each variable
+- **Slack/Surplus**: Available margin on each constraint
 
-#### 🔍 **Analyse des Contraintes**
-- **`ACTIVE`** (binding) : Contrainte **saturée** - limite l'optimisation 🔴
-- **`LB/UB`** : Lower/Upper Bound - bornes atteintes 📏
-- **`SLACK > 0`** : Marge disponible - contrainte non saturée 🟢
+#### 🔍 **Constraint Analysis**
+- **`ACTIVE`** (binding): **Saturated** constraint - limits optimization 🔴
+- **`LB/UB`**: Lower/Upper Bound - bounds reached 📏
+- **`SLACK > 0`**: Available margin - non-saturated constraint 🟢
 
-#### 💰 **Valeurs Marginales (Shadow Prices)**
-- **Coût marginal** : Amélioration possible si on relâche une contrainte d'1 unité
-- **Contraintes saturées** : Valeur marginale élevée = goulot d'étranglement important
-- **Contraintes avec slack** : Valeur marginale = 0 (pas d'amélioration immédiate)
+#### 💰 **Shadow Prices (Marginal Values)**
+- **Marginal cost**: Possible improvement if we relax a constraint by 1 unit
+- **Saturated constraints**: High shadow price = important bottleneck
+- **Constraints with slack**: Shadow price = 0 (no immediate improvement)
 
-> **💡 Astuce Pratique** : Les contraintes avec les **valeurs marginales les plus élevées** sont vos **priorités d'optimisation** - c'est là qu'investir des ressources supplémentaires aura le plus d'impact !
+> **💡 Practical Tip**: Constraints with the **highest shadow prices** are your **optimization priorities** - investing additional resources there will have the greatest impact!
 
 ---
 
 ## 🔧 Installation & Configuration
 
-### 📋 **Prérequis**
+### 📋 **Prerequisites**
 - **Python 3.9+** 
-- **Git** (pour cloner le repo)
+- **Git** (to clone the repo)
 
-### ⚡ **Installation Rapide**
+### ⚡ **Quick Installation**
 ```bash
-# Cloner le repository
+# Clone the repository
 git clone https://github.com/juliovasseur/LPSolve.git
 cd LPSolve
 
-# Installation des dépendances Python
+# Install Python dependencies
 pip install -r lp_solver_engine/requirements.txt
 
-# Test de l'installation
+# Test installation
 make run-basic
 ```
 
-### 📦 **Dépendances Principales**
-- **PuLP 2.7+** : Interface de modélisation mathématique
-- **CBC Solver** : Moteur d'optimisation COIN-OR (installé automatiquement)
+### 📦 **Main Dependencies**
+- **PuLP 2.7+**: Mathematical modeling interface
+- **CBC Solver**: COIN-OR optimization engine (installed automatically)
 
 ---
 
 ## 🏆 **Performances & Limitations**
 
-### ⚡ **Capacités Testées**
-- **Variables** : Testé jusqu'à 1000+ variables continues/entières
-- **Contraintes** : Testé jusqu'à 500+ contraintes linéaires
-- **Temps de résolution** : <1s pour les cas d'usage fournis
-- **Mémoire** : <100MB même sur les gros problèmes
+### ⚡ **Tested Capabilities**
+- **Variables**: Tested up to 1000+ continuous/integer variables
+- **Constraints**: Tested up to 500+ linear constraints
+- **Resolution time**: <1s for provided use cases
+- **Memory**: <100MB even on large problems
 
-### ⚠️ **Limitations Techniques**
-- **Programmation linéaire uniquement** (pas de fonctions non-linéaires)
-- **Interface CSV** (pas d'API REST/GraphQL)
-- **Solveur CBC** (pas d'accès aux solveurs commerciaux comme Gurobi/CPLEX)
+### ⚠️ **Technical Limitations**
+- **Linear programming only** (no non-linear functions)
+- **CSV interface** (no REST/GraphQL API)
+- **CBC Solver** (no access to commercial solvers like Gurobi/CPLEX)
 
-### 🎯 **Cas d'Usage Optimaux**
-- ✅ Optimisation de portefeuille avec contraintes réglementaires
-- ✅ Planification de production industrielle
-- ✅ Allocation de ressources sous contraintes
-- ✅ Problèmes de transport et logistique
-- ❌ Optimisation non-linéaire (réseaux de neurones, etc.)
-- ❌ Programmation stochastique avancée
+### 🎯 **Optimal Use Cases**
+- ✅ Portfolio optimization with regulatory constraints
+- ✅ Industrial production planning
+- ✅ Resource allocation under constraints
+- ✅ Transportation and logistics problems
+- ❌ Non-linear optimization (neural networks, etc.)
+- ❌ Advanced stochastic programming
 
 ---
 
 ## 📚 **Documentation Avancée**
 
-### 🎓 **Ressources d'Apprentissage**
-- **[Exemples Éducatifs](./data/basic_linear_examples/README.md)** : Concepts de base avec cas concret
-- **[Production Industrielle](./data/furniture_production/README.md)** : Optimisation multi-sites (127 variables, 55 contraintes)
-- **[Finance Quantitative](./data/portfolio_optimization/README.md)** : Contraintes réglementaires et métriques de risque
+### 🎓 **Learning Resources**
+- **[Educational Examples](./data/basic_linear_examples/README.md)**: Basic concepts with concrete case
+- **[Industrial Production](./data/furniture_production/README.md)**: Multi-site optimization (127 variables, 55 constraints)
+- **[Quantitative Finance](./data/portfolio_optimization/README.md)**: Regulatory constraints and risk metrics
 
-### 🛠️ **Pour les Développeurs**
-- **Code Source** : `lp_solver_engine/src/lpSolver/`
-- **Tests** : Validation sur les 3 cas d'usage fournis
-- **Extensions** : Ajout de nouveaux solveurs dans `solvers/`
+### 🛠️ **For Developers**
+- **Source Code**: `lp_solver_engine/src/lpSolver/`
+- **Tests**: Validation on the 3 provided use cases
+- **Extensions**: Add new solvers in `solvers/`
 
-### 💼 **Applications Métier**
-Chaque README spécialisé contient :
-- **Contexte business** détaillé
-- **Analyse des contraintes** une par une
-- **Interprétation des résultats** pour la prise de décision
-- **Métriques de performance** sector-specific
+### 💼 **Business Applications**
+Each specialized README contains:
+- **Detailed business context**
+- **Constraint-by-constraint analysis**
+- **Results interpretation** for decision making
+- **Sector-specific performance metrics**
 
 ---
 
 ## 🤝 **Contribution & Support**
 
-### 🐛 **Signaler un Bug**
-- Ouvrez une **issue GitHub** avec votre cas d'usage
-- Incluez vos **fichiers CSV** et l'**erreur complète**
+### 🐛 **Report a Bug**
+- Open a **GitHub issue** with your use case
+- Include your **CSV files** and **complete error**
 
 ### 📧 **Contact**
-- **GitHub** : [@juliovasseur](https://github.com/juliovasseur)
-- **Projet** : [LPSolve Repository](https://github.com/juliovasseur/LPSolve)
+- **GitHub**: [@juliovasseur](https://github.com/juliovasseur)
+- **Project**: [LPSolve Repository](https://github.com/juliovasseur/LPSolve)
 
 ---
 
 ## 📜 **Licence & Crédits**
 
-### 📋 **Licence**
-**MIT License** - Libre utilisation commerciale et personnelle
+### 📋 **License**
+**MIT License** - Free commercial and personal use
 
-### 🏆 **Technologies Utilisées**
-- **[PuLP](https://pypi.org/project/PuLP/)** : Python Linear Programming Interface
-- **[CBC](https://github.com/coin-or/Cbc)** : COIN-OR Branch & Cut Solver
-- **[Python 3.9+](https://python.org)** : Langage de développement
+### 🏆 **Technologies Used**
+- **[PuLP](https://pypi.org/project/PuLP/)**: Python Linear Programming Interface
+- **[CBC](https://github.com/coin-or/Cbc)**: COIN-OR Branch & Cut Solver
+- **[Python 3.9+](https://python.org)**: Development language
 
-### 🎯 **Inspirations Académiques**
+### 🎯 **Academic Inspirations**
 - **Markowitz Modern Portfolio Theory** (1952)
 - **Dantzig Simplex Algorithm** (1947) 
 - **Asset Liability Management** principles
 
 ---
 
-*Dernière mise à jour : Septembre 2025*
+*Last updated: September 2025*

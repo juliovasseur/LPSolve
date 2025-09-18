@@ -1,8 +1,8 @@
 # 🎛️ LP Solver Engine
 
-## 🏗️ Optimization Engine Architecture
+## 🏗️ Architecture du Moteur d'Optimisation
 
-The **LP Solver Engine** is the core of the quantitative optimization system. It transforms CSV data into mathematical optimization models and solves them using state-of-the-art algorithms.
+Le **LP Solver Engine** est le cœur du système d'optimisation quantitative. Il transforme des données CSV en modèles mathématiques d'optimisation et les résout avec des algorithmes de pointe.
 
 ### 📁 Structure des Modules
 

@@ -1,82 +1,82 @@
-# 📂 Data - Cas d'Usage et Exemples
+# 📂 Data - Use Cases and Examples
 
-Ce dossier contient **3 niveaux de complexité croissante** pour démontrer les capacités du moteur d'optimisation quantitative.
+This folder contains **3 increasing complexity levels** to demonstrate the capabilities of the quantitative optimization engine.
 
-## 🎯 Structure des Cas d'Usage
+## 🎯 Use Case Structure
 
-### 📊 **Basic Linear Examples** (Niveau 1 - Éducatif)
+### 📊 **Basic Linear Examples** (Level 1 - Educational)
 ```
 data/basic_linear_examples/
 └── data/
-    ├── variables.csv    # 2 variables simples (chaises, tables)
-    ├── objectives.csv   # Maximisation profit basique
-    └── constraints.csv  # 6 contraintes de ressources
+    ├── variables.csv    # 2 simple variables (chairs, tables)
+    ├── objectives.csv   # Basic profit maximization
+    └── constraints.csv  # 6 resource constraints
 ```
 
-**Objectif** : Validation des algorithmes et apprentissage des concepts de base
-- **Complexité** : 2 variables, 6 contraintes
-- **Temps** : <0.01s
-- **Résultat** : 2,950€ de profit optimal
+**Objective**: Algorithm validation and basic concept learning
+- **Complexity**: 2 variables, 6 constraints
+- **Time**: <0.01s
+- **Result**: 2,950€ optimal profit
 
-### 🏭 **Furniture Production** (Niveau 2 - Industriel)
+### 🏭 **Furniture Production** (Level 2 - Industrial)
 ```
 data/furniture_production/
 └── data/
-    ├── variables.csv    # 127 variables (production multi-sites, stocks, setup)
-    ├── objectives.csv   # Maximisation profit avec coûts complexes
-    └── constraints.csv  # 55 contraintes multi-sites
+    ├── variables.csv    # 127 variables (multi-site production, inventory, setup)
+    ├── objectives.csv   # Profit maximization with complex costs
+    └── constraints.csv  # 55 multi-site constraints
 ```
 
-**Objectif** : Planification de production industrielle réaliste
-- **Complexité** : 127 variables, 55 contraintes
-- **Temps** : ~0.16s
-- **Résultat** : 7,123,000€ de profit optimal multi-sites
+**Objective**: Realistic industrial production planning
+- **Complexity**: 127 variables, 55 constraints
+- **Time**: ~0.16s
+- **Result**: 7,123,000€ optimal multi-site profit
 
-### 💰 **Portfolio Optimization** (Niveau 3 - Finance Quantitative)
+### 💰 **Portfolio Optimization** (Level 3 - Quantitative Finance)
 ```
 data/portfolio_optimization/
 └── data/
-    ├── variables.csv    # 33 variables (16 actifs + coûts + risque)
-    ├── objectives.csv   # Utilité mean-variance sophistiquée
-    └── constraints.csv  # 40+ contraintes réglementaires
+    ├── variables.csv    # 33 variables (16 assets + costs + risk)
+    ├── objectives.csv   # Sophisticated mean-variance utility
+    └── constraints.csv  # 40+ regulatory constraints
 ```
 
-**Objectif** : Optimisation de portefeuille financier professionnel
-- **Complexité** : 33 variables, 40+ contraintes
-- **Temps** : ~0.03s  
-- **Résultat** : 13.64 bp/jour d'utilité espérée
+**Objective**: Professional financial portfolio optimization
+- **Complexity**: 33 variables, 40+ constraints
+- **Time**: ~0.03s  
+- **Result**: 13.64 bp/day expected utility
 
-## 🚀 Exécution
+## 🚀 Execution
 
 ```bash
-# Depuis le répertoire racine du projet
-make run-basic      # Niveau 1 : Exemples éducatifs
-make run-furniture  # Niveau 2 : Optimisation industrielle  
-make run-portfolio  # Niveau 3 : Finance quantitative
+# From project root directory
+make run-basic      # Level 1: Educational examples
+make run-furniture  # Level 2: Industrial optimization  
+make run-portfolio  # Level 3: Quantitative finance
 ```
 
-## 📈 Progression de Complexité
+## 📈 Complexity Progression
 
-| Niveau | Cas d'Usage | Variables | Contraintes | Temps | Performance |
-|--------|-------------|-----------|-------------|-------|-------------|
+| Level | Use Case | Variables | Constraints | Time | Performance |
+|-------|----------|-----------|-------------|------|-------------|
 | 1 | Basic Examples | 2 | 6 | <0.01s | 2,625€ |
 | 2 | **Furniture Multi-Sites** | **127** | **55** | **0.039s** | **7,123,000€** |
-| 3 | **Portfolio Finance** | **33** | **40+** | **0.03s** | **13.64 bp/j** |
+| 3 | **Portfolio Finance** | **33** | **40+** | **0.03s** | **13.64 bp/day** |
 
-## 🎓 Utilisation Pédagogique
+## 🎓 Educational Usage
 
-Cette progression permet de :
-- **Comprendre** les concepts sur des exemples simples
-- **Appliquer** à des problèmes industriels réalistes  
-- **Maîtriser** des optimisations financières complexes
+This progression allows to:
+- **Understand** concepts on simple examples
+- **Apply** to realistic industrial problems  
+- **Master** complex financial optimizations
 
-Chaque niveau prépare aux compétences du suivant, offrant une **montée en compétence progressive** vers la finance quantitative professionnelle.
+Each level prepares skills for the next, offering **progressive skill building** towards professional quantitative finance.
 
-## 🔧 Format des Données
+## 🔧 Data Format
 
-Tous les cas utilisent le **format CSV standardisé** :
-- `variables.csv` : Définition des variables de décision
-- `objectives.csv` : Fonction objectif à optimiser
-- `constraints.csv` : Contraintes et limites du problème
+All cases use the **standardized CSV format**:
+- `variables.csv`: Decision variables definition
+- `objectives.csv`: Objective function to optimize
+- `constraints.csv`: Problem constraints and limits
 
-Cette uniformité permet de **comparer les approches** et de **réutiliser le code** entre différents domaines d'application.
+This uniformity allows to **compare approaches** and **reuse code** between different application domains.

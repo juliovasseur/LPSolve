@@ -1,67 +1,67 @@
-# 🏛️ Quantitative Portfolio Optimization - Professional **ALM** System
+# 🏛️ Optimisation de Portefeuille Quantitatif - Système **ALM** Professionnel
 
-## 🎯 **Advanced Quantitative Architecture**
+## 🎯 **Architecture Quantitative Avancée**
 
-This system implements an **institutional portfolio optimization engine** following **ALM logic** (**Asset Liability Management**) with **UCITS IV** regulatory constraints and modern Markowitz **Mean-Variance** optimization.
+Ce système implémente un **moteur d'optimisation de portefeuille institutionnel** suivant une **logique ALM** (**Asset Liability Management**) avec contraintes réglementaires **UCITS IV** et optimisation **Mean-Variance** de Markowitz moderne.
 
-> **📖 ALM (Asset Liability Management)**: Financial discipline that simultaneously optimizes assets (investments) and liabilities (obligations) of a financial institution to maximize **risk-adjusted value** while respecting regulatory and solvency constraints.
+> **📖 ALM (Asset Liability Management)** : Discipline financière qui optimise simultanément l'actif (investissements) et le passif (obligations) d'une institution financière pour maximiser la **valeur ajustée au risque** tout en respectant les contraintes réglementaires et de solvabilité.
 
-### 🏗️ **Quantitative Modeling - Institutional Approach**
+### 🏗️ **Modélisation Quantitative - Approche Institutionnelle**
 
-#### 📊 **Multi-Factor Investment Universe**
-- **16 US Large Caps**: Capitalization >$100B, institutional liquidity
-- **GICS Level 1 Classification**: Technology (50%), Financials (25%), Healthcare (19%), Consumer Defensive (6%)
-- **Risk factors**: Beta, volatility, correlations, **ADV** liquidity (Average Daily Volume)
-- **Alpha generation**: 4.2 to 28.3 **bp/day** by asset (basis points)
+#### 📊 **Univers d'Investissement Multi-Factoriel**
+- **16 Large Caps US** : Capitalisation >$100B, liquidité institutionnelle
+- **Classification GICS Level 1** : Technology (50%), Financials (25%), Healthcare (19%), Consumer Defensive (6%)
+- **Facteurs de risque** : Beta, volatilité, corrélations, liquidité **ADV** (Average Daily Volume)
+- **Alpha génération** : 4.2 à 28.3 **bp/jour** selon actif (basis points)
 
-#### 🎯 **Utility Function - Expected-Variance Maximization**
+#### 🎯 **Fonction d'Utilité - Maximisation Espérance-Variance**
 ```mathematica
-Maximize: Σ(αᵢ × wᵢ) - Σ(TCᵢ × wᵢ) - λ × Risk_Budget
+Maximiser: Σ(αᵢ × wᵢ) - Σ(TCᵢ × wᵢ) - λ × Risk_Budget
 
-Where:
-• αᵢ = Expected alpha asset i (bp/day)
-• wᵢ = Portfolio weight asset i  
-• TCᵢ = Transaction costs (bp)
-• λ = Risk aversion (ALM parameter)
-• Risk_Budget = Allocated risk budget
+Où:
+• αᵢ = Alpha espéré actif i (bp/jour)
+• wᵢ = Poids portefeuille actif i  
+• TCᵢ = Coûts de transaction (bp)
+• λ = Aversion au risque (paramètre ALM)
+• Risk_Budget = Budget de risque alloué
 ```
 
-#### 🏦 **Optimization Variables (33 variables)**
+#### 🏦 **Variables d'Optimisation (33 variables)**
 
-**💼 Portfolio Weights (16 variables)**
+**💼 Poids de Portefeuille (16 variables)**
 ```
-w_AAPL, w_MSFT, w_GOOGL... : Optimal allocations [0, 15%]
+w_AAPL, w_MSFT, w_GOOGL... : Allocations optimales [0, 15%]
 ```
 
-**💸 Transaction Costs (16 variables)**  
+**💸 Coûts de Transaction (16 variables)**  
 ```
 tc_AAPL, tc_MSFT... : Impact costs & bid-ask spreads
-Costs: 0.5bp (JPM) to 2.1bp (TSLA) by liquidity
+Coûts: 0.5bp (JPM) à 2.1bp (TSLA) selon liquidité
 ```
 
-**📊 Risk Variables (1 variable)**
+**📊 Variables de Risque (1 variable)**
 ```
-risk_budget : Total risk budget allocation
+risk_budget : Allocation budget de risque total
 ```
 
 ---
 
-## ⚖️ **Institutional Regulatory Constraints (40+ constraints)**
+## ⚖️ **Contraintes Réglementaires Institutionnelles (40+ contraintes)**
 
-### 🏛️ **UCITS IV / MiFID II Constraints**
+### 🏛️ **Contraintes UCITS IV / MiFID II**
 
-#### 💰 **Budget Constraint**
+#### 💰 **Contrainte Budgétaire**
 ```
 Σ(wᵢ) = 1.0 [Fully Invested - 100% AUM]
 ```
 
-#### 🏢 **Issuer Concentration Limits**
+#### 🏢 **Limites de Concentration par Émetteur**
 ```
 w_AAPL ≤ 15%, w_MSFT ≤ 15%, w_GOOGL ≤ 12%...
-(Compliance with modified UCITS 5%/10% directive)
+(Respect directive 5%/10% UCITS modifiée)
 ```
 
-### 📈 **Sector Constraints (GICS Diversification)**
+### 📈 **Contraintes Sectorielles (Diversification GICS)**
 
 #### 💻 **Technology Overweight Control**
 ```
@@ -257,26 +257,26 @@ make run-portfolio
 
 ---
 
-## 💡 **Quantitative Innovation - ALM Added Value**
+## 💡 **Innovation Quantitative - Valeur Ajoutée ALM**
 
-### 🎯 **Technical Differentiators**
+### 🎯 **Différenciateurs Techniques**
 
-1. **Transaction cost integration**: Net optimization (post-costs)
-2. **Factor constraints**: Beta, liquidity, sector simultaneous  
-3. **Shadow prices**: Shadow prices for active constraint management
-4. **ALM Logic**: Optimization under real regulatory constraints
-5. **Production-ready**: Performance <50ms, institutional scalable
+1. **Intégration coûts de transaction** : Optimisation nette (post-costs)
+2. **Contraintes factorielles** : Beta, liquidité, secteur simultanés  
+3. **Valeurs marginales** : Shadow prices pour pilotage actif contraintes
+4. **ALM Logic** : Optimisation sous contraintes réglementaires réelles
+5. **Production-ready** : Performance <50ms, scalable institutional
 
-### 🏛️ **Regulatory Compliance**
-- **UCITS IV**: Issuer concentration limits respected
-- **MiFID II**: Best execution via transaction cost minimization
-- **AIFMD**: Risk management via factor constraints
-- **Solvency II**: Asset/liability ALM logic (insurance applicable)
+### 🏛️ **Conformité Réglementaire**
+- **UCITS IV** : Limites concentration émetteur respectées
+- **MiFID II** : Best execution via minimisation coûts transaction
+- **AIFMD** : Risk management via contraintes factorielles
+- **Solvabilité II** : ALM logic actif/passif (applicable assurance)
 
-### 🔮 **Possible Extensions**
-- **Multi-asset classes**: Extension equity/bonds/alternatives
-- **Dynamic hedging**: Optimization with derivatives (overlay strategies)  
-- **ESG constraints**: ESG scores integration in constraints
-- **Regime switching**: Macro-economic conditional optimization
+### 🔮 **Extensions Possibles**
+- **Multi-asset classes** : Extension actions/obligations/alternatives
+- **Dynamic hedging** : Optimisation avec dérivés (overlay strategies)  
+- **ESG constraints** : Intégration scores ESG dans contraintes
+- **Regime switching** : Optimisation conditionnelle macro-économique
 
 > **🎯 Résultat** : Un système d'optimisation **institutionnel professionnel** reproduisant les standards **buy-side** avec contraintes réglementaires réelles et optimisation **PnL** nette post-coûts.

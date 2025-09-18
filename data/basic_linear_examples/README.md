@@ -1,102 +1,152 @@
-# 📚 Exemple Éducatif d'**Optimisation Linéaire** : Production de Meubles
+# 📚 Educational **Linear Optimization** Example: Furniture Production
 
-## 🎯 **Description du Problème - Accessible à Tous**
+## 🎯 **Problem Description ### 💡 **Important Business Lessons**
 
-Ce cas pratique illustre un **problème d'optimisation linéaire classique** de production industrielle, parfait pour comprendre les concepts fondamentaux de l'**optimisation sous contraintes**.
+#### 🎯 **Insight #1: Market Constraints Change Everything**
+- **Without chair limits**: Theoretically optimal = 90 chairs + 5 tables = 2,950€
+- **With market limits**: Business reality = 25 chairs + 37.5 tables = 2,625€  
+- **Impact**: -325€ (-11%) **opportunity cost** due to market limits
 
-> **🎓 Qu'est-ce que l'optimisation linéaire ?** C'est une méthode mathématique pour trouver la **meilleure solution** (ex: maximum de profit) quand on a des **limites à respecter** (ex: budget, temps, ressources).
+#### 🏭 **Insight #2: Identify Real Bottlenecks**
+- **Carpentry** = Real operational bottleneck (priority investment)
+- **Chair demand** = Commercial bottleneck (marketing/pricing action)
+- **Assembly + Wood** = Excess capacities (optimization possible)
 
-### 🏭 **Contexte Business Simple**
+#### 📊 **Insight #3: Data-Driven Decision Making**
+Optimization reveals that the intuition "chairs more profitable → produce max chairs" is **false** when integrating all real constraints.
 
-Une entreprise de meubles doit décider combien produire de chaque produit pour **maximiser son profit** :
-- **🪑 Chaises** : 30€ de profit par unité (variable `x_chairs`)
-- **🪑 Tables** : 50€ de profit par unité (variable `x_tables`)
+---
 
-### 🎯 **Fonction Objectif** (Ce qu'on veut optimiser)
-**Maximiser le profit total :**
-```mathematica
-Profit = 30€ × nombre_chaises + 50€ × nombre_tables
+## 🚀 **Execution**
+
+```bash
+make run-basic
 ```
 
-> **💡 En termes simples** : On cherche le nombre optimal de chaises et tables à produire pour gagner le maximum d'argent possible.
+---
 
-### ⚖️ **Contraintes** (Limites à respecter)
+## 🎓 **Why is This Example Perfect for Learning?**
 
-> **🎓 Contraintes ?** Ce sont les **limites imposées** par la réalité : budget, temps, matériaux, demande du marché, etc.
+### ✅ **Accessible to Everyone**
+- **Familiar context**: Furniture production (everyone understands)
+- **Simple calculations**: Manual verification possible
+- **Concrete results**: €, hours, units (no abstractions)
 
-#### 🏭 **Ressources Limitées de Production**
+### ✅ **Key Concepts Illustrated**
+- **🎯 Optimization**: Finding maximum under constraints
+- **⚖️ Trade-offs**: Arbitrage between different choices
+- **🚨 Bottlenecks**: Identification of limiting constraints
+- **📊 Marginal analysis**: Impact of each constraint
 
-1. **🔨 Atelier Menuiserie** (200h disponibles/semaine) :
+### ✅ **Data-Driven Approach**
+- **Input**: Structured CSV data (costs, capacities, demands)
+- **Processing**: Mathematical optimization algorithm
+- **Output**: Quantified and justified decisions
+- **Insights**: Bottleneck analysis for managerial action
+
+### ✅ **Extensible & Realistic**
+- **Multiple variables**: Several products/resources
+- **Various constraints**: Capacities, demands, regulations
+- **Robust solution**: Handles conflicts between objectives
+- **Validation**: Verifiable and explained results
+
+> **🎯 Key message**: This example demonstrates that with **structured data** and **optimization algorithms**, we can make **optimal business decisions** even in complex situations with multiple conflicting constraints.o Everyone**
+
+This practical case illustrates a **classic linear optimization problem** for industrial production, perfect for understanding fundamental concepts of **constrained optimization**.
+
+> **🎓 What is linear optimization?** It's a mathematical method to find the **best solution** (e.g., maximum profit) when you have **limits to respect** (e.g., budget, time, resources).
+
+### 🏭 **Simple Business Context**
+
+A furniture company must decide how much to produce of each product to **maximize its profit**:
+- **🪑 Chairs**: 30€ profit per unit (variable `x_chairs`)
+- **🪑 Tables**: 50€ profit per unit (variable `x_tables`)
+
+### 🎯 **Objective Function** (What we want to optimize)
+**Maximize total profit:**
+```mathematica
+Profit = 30€ × number_chairs + 50€ × number_tables
+```
+
+> **💡 In simple terms**: We're looking for the optimal number of chairs and tables to produce to earn the maximum possible money.
+
+### ⚖️ **Constraints** (Limits to respect)
+
+> **🎓 Constraints?** These are **limits imposed** by reality: budget, time, materials, market demand, etc.
+
+#### 🏭 **Limited Production Resources**
+
+1. **🔨 Carpentry Workshop** (200h available/week):
    ```
-   2h/chaise + 4h/table ≤ 200h maximum
+   2h/chair + 4h/table ≤ 200h maximum
    ```
-   > *Chaque chaise prend 2h, chaque table 4h de menuiserie*
+   > *Each chair takes 2h, each table 4h of carpentry*
 
-2. **🔧 Atelier Assemblage** (120h disponibles/semaine) :
+2. **🔧 Assembly Workshop** (120h available/week):
    ```
-   1h/chaise + 2h/table ≤ 120h maximum  
+   1h/chair + 2h/table ≤ 120h maximum  
    ```
-   > *Chaque chaise prend 1h, chaque table 2h d'assemblage*
+   > *Each chair takes 1h, each table 2h of assembly*
 
-3. **🌳 Matériau Bois** (180m² disponibles/semaine) :
+3. **🌳 Wood Material** (180m² available/week):
    ```
-   1m²/chaise × x_chairs + 3m²/table × x_tables ≤ 180m²
+   1m²/chair × x_chairs + 3m²/table × x_tables ≤ 180m²
    ```
 
-4. **Demande minimale chaises** (au moins 10):
+4. **Minimum chair demand** (at least 10):
    ```
    x_chairs ≥ 10
    ```
 
-5. **Demande minimale tables** (au moins 5):
+5. **Minimum table demand** (at least 5):
    ```
    x_tables ≥ 5
    ```
 
-6. **Demande maximale chaises** (limite du marché à 25):
+6. **Maximum chair demand** (market limit at 25):
    ```
    x_chairs ≤ 25
    ```
-   > **Rationale économique**: Même si les chaises sont plus rentables par unité de menuiserie, 
-   > la demande du marché est limitée à 25 unités. Au-delà, les chaises ne seraient pas vendues.
+   > **Economic rationale**: Even though chairs are more profitable per carpentry unit, 
+   > market demand is limited to 25 units. Beyond that, chairs would not be sold.
 
-7. **Bornes des variables**:
+7. **Variable bounds**:
    ```
    0 ≤ x_chairs ≤ 100
    0 ≤ x_tables ≤ 50
    ```
 
-## 🎯 **Solution Optimale - Résultat Data-Driven**
+## 🎯 **Optimal Solution - Data-Driven Result**
 
-### 💰 **Décision Optimale du Solveur :**
-- **🪑 Chaises = 25 unités** (limite marché atteinte)
-- **🪑 Tables = 37.5 unités** (production optimisée)  
-- **💰 Profit maximum = 2,625€/semaine**
+### 💰 **Solver's Optimal Decision:**
+- **🪑 Chairs = 25 units** (market limit reached)
+- **🪑 Tables = 37.5 units** (optimized production)  
+- **💰 Maximum profit = 2,625€/week**
 
-### 🔍 **Vérification des Calculs** (Transparence totale)
+### 🔍 **Calculation Verification** (Total transparency)
 - **💰 Profit**: 30€×25 + 50€×37.5 = 750€ + 1,875€ = **2,625€** ✅
-- **🔨 Menuiserie**: 2h×25 + 4h×37.5 = 50h + 150h = **200h/200h** ✅ **[SATURÉE]**
-- **🔧 Assemblage**: 1h×25 + 2h×37.5 = 25h + 75h = **100h/120h** ✅ (20h libres)
-- **🌳 Bois**: 1m²×25 + 3m²×37.5 = 25m² + 112.5m² = **137.5m²/180m²** ✅ (42.5m² libres)
-- **📊 Demande chaises**: 25 ≤ 25 ✅ **[CONTRAINTE ACTIVE]**
+- **🔨 Carpentry**: 2h×25 + 4h×37.5 = 50h + 150h = **200h/200h** ✅ **[SATURATED]**
+- **🔧 Assembly**: 1h×25 + 2h×37.5 = 25h + 75h = **100h/120h** ✅ (20h free)
+- **🌳 Wood**: 1m²×25 + 3m²×37.5 = 25m² + 112.5m² = **137.5m²/180m²** ✅ (42.5m² free)
+- **📊 Chair demand**: 25 ≤ 25 ✅ **[ACTIVE CONSTRAINT]**
 
-### 🚨 **Analyse des Goulots d'Étranglement**
+### 🚨 **Bottleneck Analysis**
 
-#### 🔴 **Contraintes Saturées (Goulots critiques)**
-1. **🔨 Menuiserie** : 100% utilisée (200h/200h)
-   - **Impact** : Principal **goulot limitant** la production
-   - **Décision** : Investir en priorité dans cet atelier pour croître
+#### 🔴 **Saturated Constraints (Critical bottlenecks)**
+1. **🔨 Carpentry**: 100% utilized (200h/200h)
+   - **Impact**: Main **limiting bottleneck** for production
+   - **Decision**: Invest priority in this workshop to grow
 
-2. **📊 Demande chaises** : Limite marché atteinte (25/25)
-   - **Impact** : Force la production vers les tables moins rentables/h
-   - **Décision** : Développer le marché chaises ou focus qualité/prix
-- **Min chaises**: 25 ≥ 10 ✓
+2. **📊 Chair demand**: Market limit reached (25/25)
+   - **Impact**: Forces production towards less profitable tables/h
+   - **Decision**: Develop chair market or focus quality/price
+- **Min chairs**: 25 ≥ 10 ✓
 - **Min tables**: 37.5 ≥ 5 ✓
-- **Max chaises**: 25 ≤ 25 ✓ (saturée)
+- **Max chairs**: 25 ≤ 25 ✓ (saturated)
 
-#### 🟢 **Ressources Sous-Utilisées (Capacité libre)**
-- **🔧 Assemblage** : 20h libres/semaine (capacité excédentaire)
-- **🌳 Bois** : 42.5m² libres/semaine (approvisionnement suffisant)
+#### 🟢 **Under-utilized Resources (Free capacity)**
+- **🔧 Assembly**: 20h free/week (excess capacity)
+- **🌳 Wood**: 42.5m² free/week (sufficient supply)
 
 ### 💡 **Leçons Business Importantes**
 
