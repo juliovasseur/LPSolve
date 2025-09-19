@@ -54,13 +54,13 @@ Profit = 45€ × number_chairs + 50€ × number_tables
    0 ≤ x_chairs ≤ 100 (integers)
    0 ≤ x_tables ≤ 100 (integers)
    ```
-   > **Important note**: We use Integer Linear Programming because you cannot produce 37.5 tables in reality!
+   > **Important note**: We use Integer Linear Programming for realistic production units!
 
 ## 🎯 **Optimal Solution - Data-Driven Result**
 
-### 💰 **Solver's Optimal Decision (Integer Linear Programming):**
-- **🪑 Chairs = 30 units** (optimal integer solution)
-- **🪑 Tables = 30 units** (optimal integer solution)  
+### 💰 **Optimal Production Decision:**
+- **🪑 Chairs = 30 units**
+- **🪑 Tables = 30 units**  
 - **💰 Maximum profit = 2,850€/week**
 
 ### 🔍 **Calculation Verification** (Complete transparency)
@@ -70,16 +70,11 @@ Profit = 45€ × number_chairs + 50€ × number_tables
 - **🎨 Finishing**: 3h×30 + 4h×30 = 90h + 120h = **210h/240h** ✅ (30h free)
 - **📦 Storage**: 1×30 + 1×30 = 30 + 30 = **60/80 units** ✅ (20 units free)
 
-> **🔢 Integer Programming Note**: This is actually an **Integer Linear Programming (ILP)** problem since you cannot produce fractional furniture units. The continuous relaxation would give 25 chairs + 37.5 tables, but the integer solution is 30 chairs + 30 tables.
+**This is an Integer Linear Programming (ILP) problem** - we can only produce whole furniture units.
 
 ### 💡 **Important Business Lessons**
 
-#### 🎯 **Insight #1: Integer Constraints Are Reality**
-- **Continuous relaxation**: 25 chairs + 37.5 tables = 2,625€ (theoretical)
-- **Integer programming**: 30 chairs + 30 tables = 2,850€ (actual production)
-- **Impact**: +225€ (+8.6%) **because integer solution found better feasible point**
-
-#### 🎯 **Insight #2: Resource Bottlenecks Define Success**
+#### 🎯 **Insight #1: Resource Bottlenecks Define Success**
 - **Carpentry** = BINDING (240h used / 240h available) → **Zero slack**
 - **Assembly** = slack (180h used / 240h available) → **60h unused** 
 - **Finishing** = slack (210h used / 240h available) → **30h unused**
@@ -87,9 +82,9 @@ Profit = 45€ × number_chairs + 50€ × number_tables
 
 💡 Want more profit? **Invest in carpentry capacity** (hire carpenters or buy tools)!
 
-#### 🎯 **Insight #3: Decision Variables Show The Way**
+#### 🎯 **Insight #2: Decision Variables Show The Way**
 ```
-Optimal integer production plan:
+Optimal production plan:
 • x₁ (chairs) = 30 units
 • x₂ (tables) = 30 units
 Total profit = 30×45 + 30×50 = 1,350 + 1,500 = 2,850€
