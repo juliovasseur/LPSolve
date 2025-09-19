@@ -60,7 +60,7 @@ make run-portfolio  # Level 3: Quantitative finance
 
 | Level | Use Case | Variables | Constraints | Time | Performance |
 |-------|----------|-----------|-------------|------|-------------|
-| 1 | Basic Examples | 2 | 6 | <0.01s | 2,625€ |
+| 1 | Basic Examples | 2 | 6 | <0.01s | 2,850€ |
 | 2 | **Furniture Multi-Sites** | **127** | **55** | **0.039s** | **7,123,000€** |
 | 3 | **Portfolio Finance** | **33** | **40+** | **0.03s** | **13.64 bp/day** |
 
