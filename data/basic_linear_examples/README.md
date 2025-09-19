@@ -1,6 +1,18 @@
 # 📚 Educational **Linear Optimization** Example: Furniture Production
 
-## 🎯 **Problem Description - Accessible to Everyone**
+## 🎯 **Problem Description #### 🎯 **I#### 🎯 **Insight #3: Decision Variables Show The Way**
+```
+Optimal integer production plan:
+• x₁ (chairs) = 30 units
+• x₂ (tables) = 30 units
+Total profit = 30×45 + 30×50 = 1,350 + 1,500 = 2,850€
+```sight #2: Resource Bottlenecks Define Success**
+- **Carpentry** = BINDING (240h used / 240h available) → **Zero slack**
+- **Assembly** = slack (200h used / 240h available) → **40h unused** 
+- **Finishing** = slack (210h used / 240h available) → **30h unused**
+- **Storage** = slack (60 used / 80 available) → **20 units unused**
+
+💡 Want more profit? **Invest in carpentry capacity** (hire carpenters or buy tools)!cessible to Everyone**
 
 This practical case illustrates a **classic linear optimization problem** for industrial production, perfect for understanding fundamental concepts of **constrained optimization**.
 
@@ -74,32 +86,29 @@ This practical case illustrates a **classic linear optimization problem** for in
 
 ## 📊 **Optimal Solution Analysis**
 
-### 💰 **Financial Result**
-- **Optimal Solution**: 25 chairs + 37.5 tables
-- **Maximum Profit**: **2,625€/week**
+### 💰 **Financial Result (Integer Solution)**
+- **Optimal Solution**: 30 chairs + 30 tables
+- **Maximum Profit**: **2,850€/week**
 - **Key Constraint**: Carpentry (240 hours exactly used)
 
 ### 🔍 **Constraint Analysis**
 ```
-🔨 Carpentry: 3×25 + 5×37.5 = 262.5h... WAIT! > 240h limit!
+🔨 Carpentry: 3×30 + 5×30 = 90 + 150 = 240h (ACTIVE CONSTRAINT - BINDING)
+🔧 Assembly: 2×30 + 2×30 = 60 + 60 = 120h (40h available - SLACK)
+✨ Finishing: 1×30 + 4×30 = 30 + 120 = 150h (30h available - SLACK)  
+📦 Storage: 1×30 + 2×30 = 30 + 60 = 90 units (30 units available - SLACK)
+🛒 Chair limit: 30 ≤ 50 (20 chairs available - SLACK)
+🛒 Table limit: 30 ≤ 40 (10 tables available - SLACK)
 ```
 
-**Correct Analysis:**
-```
-🔨 Carpentry: 75 + 187.5 = 262.5h (ACTIVE CONSTRAINT - BINDING)
-🔧 Assembly: 50 + 75 = 125h (85h available - SLACK)
-✨ Finishing: 25 + 150 = 175h (5h available - SLACK)  
-📦 Storage: 25 + 75 = 100 units (20 units available - SLACK)
-🛒 Chair limit: 25 ≤ 50 (25 chairs available - SLACK)
-🛒 Table limit: 37.5 ≤ 40 (2.5 tables available - SLACK)
-```
+> **🔢 Integer Programming Note**: This is actually an **Integer Linear Programming (ILP)** problem since you cannot produce fractional furniture units. The continuous relaxation would give 25 chairs + 37.5 tables, but the integer solution is 30 chairs + 30 tables.
 
 ### 💡 **Important Business Lessons**
 
-#### 🎯 **Insight #1: Market Constraints Change Everything**
-- **Without chair limits**: Theoretically optimal = 90 chairs + 5 tables = 2,950€
-- **With market limits**: Business reality = 25 chairs + 37.5 tables = 2,625€  
-- **Impact**: -325€ (-11%) **opportunity cost** due to market limits
+#### 🎯 **Insight #1: Integer Constraints Are Reality**
+- **Continuous relaxation**: 25 chairs + 37.5 tables = 2,625€ (theoretical)
+- **Integer programming**: 30 chairs + 30 tables = 2,850€ (actual production)
+- **Impact**: +225€ (+8.6%) **because integer solution found better feasible point**
 
 #### 🏭 **Insight #2: Identify Real Bottlenecks**
 - **Carpentry** is the TRUE bottleneck (100% utilized)

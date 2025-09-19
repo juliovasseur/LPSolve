@@ -1,5 +1,5 @@
 var,coeff,sense
 # Fonction objectif: Maximiser le profit
-# Profit par chaise: 30€, Profit par table: 50€
-x_chairs,30,max
+# Profit par chaise: 45€, Profit par table: 50€
+x_chairs,45,max
 x_tables,50,max

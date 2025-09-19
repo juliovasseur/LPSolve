@@ -9,13 +9,13 @@ Ce cas pratique illustre un **problème d'optimisation linéaire classique** de 
 ### 🏭 **Contexte Business Simple**
 
 Une entreprise de meubles doit décider combien produire de chaque produit pour **maximiser son profit** :
-- **🪑 Chaises** : 30€ de profit par unité (variable `x_chairs`)
+- **🪑 Chaises** : 45€ de profit par unité (variable `x_chairs`)
 - **🪑 Tables** : 50€ de profit par unité (variable `x_tables`)
 
 ### 🎯 **Fonction Objectif** (Ce qu'on veut optimiser)
 **Maximiser le profit total :**
 ```mathematica
-Profit = 30€ × nombre_chaises + 50€ × nombre_tables
+Profit = 45€ × nombre_chaises + 50€ × nombre_tables
 ```
 
 > **💡 En termes simples** : On cherche le nombre optimal de chaises et tables à produire pour gagner le maximum d'argent possible.
@@ -26,58 +26,49 @@ Profit = 30€ × nombre_chaises + 50€ × nombre_tables
 
 #### 🏭 **Ressources Limitées de Production**
 
-1. **🔨 Atelier Menuiserie** (200h disponibles/semaine) :
+1. **🔨 Atelier Menuiserie** (240h disponibles/semaine) :
    ```
-   2h/chaise + 4h/table ≤ 200h maximum
+   4h/chaise + 4h/table ≤ 240h maximum
    ```
-   > *Chaque chaise prend 2h, chaque table 4h de menuiserie*
+   > *Chaque chaise prend 4h, chaque table 4h de menuiserie*
 
-2. **🔧 Atelier Assemblage** (120h disponibles/semaine) :
+2. **🔧 Atelier Assemblage** (240h disponibles/semaine) :
    ```
-   1h/chaise + 2h/table ≤ 120h maximum  
+   2h/chaise + 4h/table ≤ 240h maximum  
    ```
-   > *Chaque chaise prend 1h, chaque table 2h d'assemblage*
+   > *Chaque chaise prend 2h, chaque table 4h d'assemblage*
 
-3. **🌳 Matériau Bois** (180m² disponibles/semaine) :
+3. **� Atelier Finition** (240h disponibles/semaine) :
    ```
-   1m²/chaise × x_chairs + 3m²/table × x_tables ≤ 180m²
+   3h/chaise + 4h/table ≤ 240h maximum
    ```
+   > *Chaque chaise prend 3h, chaque table 4h de finition*
 
-4. **Demande minimale chaises** (au moins 10):
+4. **📦 Espace de Stockage** (80 unités max/semaine) :
    ```
-   x_chairs ≥ 10
-   ```
-
-5. **Demande minimale tables** (au moins 5):
-   ```
-   x_tables ≥ 5
+   1 unité/chaise + 1 unité/table ≤ 80 unités maximum
    ```
 
-6. **Demande maximale chaises** (limite du marché à 25):
+5. **Bornes des variables** (production entière seulement):
    ```
-   x_chairs ≤ 25
+   0 ≤ x_chairs ≤ 100 (entiers)
+   0 ≤ x_tables ≤ 100 (entiers)
    ```
-   > **Rationale économique**: Même si les chaises sont plus rentables par unité de menuiserie, 
-   > la demande du marché est limitée à 25 unités. Au-delà, les chaises ne seraient pas vendues.
-
-7. **Bornes des variables**:
-   ```
-   0 ≤ x_chairs ≤ 100
-   0 ≤ x_tables ≤ 50
-   ```
+   > **Note importante**: On utilise la programmation linéaire en nombres entiers car on ne peut pas produire 37.5 tables dans la réalité !
 
 ## 🎯 **Solution Optimale - Résultat Data-Driven**
 
-### 💰 **Décision Optimale du Solveur :**
-- **🪑 Chaises = 25 unités** (limite marché atteinte)
-- **🪑 Tables = 37.5 unités** (production optimisée)  
-- **💰 Profit maximum = 2,625€/semaine**
+### 💰 **Décision Optimale du Solveur (Programmation Linéaire Entière) :**
+- **🪑 Chaises = 30 unités** (solution entière optimale)
+- **🪑 Tables = 30 unités** (solution entière optimale)  
+- **💰 Profit maximum = 2,850€/semaine**
 
 ### 🔍 **Vérification des Calculs** (Transparence totale)
-- **💰 Profit**: 30€×25 + 50€×37.5 = 750€ + 1,875€ = **2,625€** ✅
-- **🔨 Menuiserie**: 2h×25 + 4h×37.5 = 50h + 150h = **200h/200h** ✅ **[SATURÉE]**
-- **🔧 Assemblage**: 1h×25 + 2h×37.5 = 25h + 75h = **100h/120h** ✅ (20h libres)
-- **🌳 Bois**: 1m²×25 + 3m²×37.5 = 25m² + 112.5m² = **137.5m²/180m²** ✅ (42.5m² libres)
+- **💰 Profit**: 45€×30 + 50€×30 = 1,350€ + 1,500€ = **2,850€** ✅
+- **🔨 Menuiserie**: 4h×30 + 4h×30 = 120h + 120h = **240h/240h** ✅ **[SATURÉE]**
+- **🔧 Assemblage**: 2h×30 + 4h×30 = 60h + 120h = **180h/240h** ✅ (60h libres)
+- **� Finition**: 3h×30 + 4h×30 = 90h + 120h = **210h/240h** ✅ (30h libres)
+- **📦 Stockage**: 1×30 + 1×30 = 30 + 30 = **60/80 unités** ✅ (20 unités libres)
 - **📊 Demande chaises**: 25 ≤ 25 ✅ **[CONTRAINTE ACTIVE]**
 
 ### 🚨 **Analyse des Goulots d'Étranglement**
@@ -87,26 +78,26 @@ Profit = 30€ × nombre_chaises + 50€ × nombre_tables
    - **Impact** : Principal **goulot limitant** la production
    - **Décision** : Investir en priorité dans cet atelier pour croître
 
-2. **📊 Demande chaises** : Limite marché atteinte (25/25)
-   - **Impact** : Force la production vers les tables moins rentables/h
-   - **Décision** : Développer le marché chaises ou focus qualité/prix
-- **Min chaises**: 25 ≥ 10 ✓
-- **Min tables**: 37.5 ≥ 5 ✓
-- **Max chaises**: 25 ≤ 25 ✓ (saturée)
+2. **📊 Production Équilibrée** : Solution entière optimale (30+30)
+   - **Impact** : Contrainte menuiserie détermine le mix optimal
+   - **Décision** : Augmenter capacité menuiserie pour plus de profit
+- **Production chaises**: 30 unités (solution entière)
+- **Production tables**: 30 unités (solution entière)
 
 #### 🟢 **Ressources Sous-Utilisées (Capacité libre)**
-- **🔧 Assemblage** : 20h libres/semaine (capacité excédentaire)
-- **🌳 Bois** : 42.5m² libres/semaine (approvisionnement suffisant)
+- **🔧 Assemblage** : 60h libres/semaine (25% capacité excédentaire)
+- **� Finition** : 30h libres/semaine (12.5% capacité excédentaire)
+- **📦 Stockage** : 20 unités libres/semaine (25% capacité excédentaire)
 
 ### 💡 **Leçons Business Importantes**
 
-#### 🎯 **Insight #1 : Les Contraintes de Marché Changent Tout**
-- **Sans limite chaises** : Théoriquement optimal = 90 chaises + 5 tables = 2,950€
-- **Avec limite marché** : Réalité business = 25 chaises + 37.5 tables = 2,625€  
-- **Impact** : -325€ (-11%) de **manque à gagner** dû aux limites marché
+#### 🎯 **Insight #1 : Les Contraintes Entières Sont la Réalité**
+- **Relaxation continue** : 25 chaises + 37.5 tables = 2,625€ (théorique)
+- **Programmation entière** : 30 chaises + 30 tables = 2,850€ (production réelle)
+- **Impact** : +225€ (+8.6%) **car la solution entière trouve un meilleur point réalisable**
 
 #### 🏭 **Insight #2 : Identifier les Vrais Goulots**
-- **Menuiserie** = Vrai goulot opérationnel (investissement prioritaire)
+- **Menuiserie** = Vrai goulot opérationnel (240h/240h utilisées, investissement prioritaire)
 - **Demande chaises** = Goulot commercial (action marketing/prix)
 - **Assemblage + Bois** = Capacités excédentaires (optimisation possible)
 
