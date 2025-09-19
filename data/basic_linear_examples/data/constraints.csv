@@ -1,10 +1,10 @@
 name,expr,sense,rhs
-# Contraintes de ressources (solution optimale: 30 chaises + 30 tables = 2,850€)
-# Contrainte temps de menuiserie: 4h/chaise + 4h/table <= 240h disponibles (BINDING)
-time_carpentry,4*x_chairs + 4*x_tables,<=,240
-# Contrainte temps d'assemblage: 2h/chaise + 4h/table <= 240h disponibles  
-time_assembly,2*x_chairs + 4*x_tables,<=,240
-# Contrainte temps de finition: 3h/chaise + 4h/table <= 240h disponibles
-time_finishing,3*x_chairs + 4*x_tables,<=,240
-# Contrainte espace de stockage: 1 unité/chaise + 1 unité/table <= 80 unités
-storage_space,1*x_chairs + 1*x_tables,<=,80
+# Contraintes réalistes d'atelier de menuiserie
+# Contrainte temps de menuiserie: 3h/chaise + 5h/table <= 240h disponibles 
+time_carpentry,3*x_chairs + 5*x_tables,<=,240
+# Contrainte temps d'assemblage: 1h/chaise + 2h/table <= 120h disponibles
+time_assembly,1*x_chairs + 2*x_tables,<=,120
+# Contrainte matériau bois: 2m²/chaise + 4m²/table <= 200m² disponibles
+material_wood,2*x_chairs + 4*x_tables,<=,200
+# Contrainte demande maximale chaises: max 50 chaises (limite marché)
+max_chairs,1*x_chairs,<=,50

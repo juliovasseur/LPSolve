@@ -268,10 +268,10 @@ Even with zero current transfers, the **transfer infrastructure provides strateg
 
 | Aspect | **Basic Case** | **Industrial Furniture Case** |
 |--------|-------------------------|---------------------------------------------|
-| **Scale** | 30 chairs + 30 tables = Artisanal | 28,100 units multi-site = Industrial |
+| **Scale** | 50 chairs + 18 tables = Artisanal | 28,100 units multi-site = Industrial |
 | **Sites** | 1 single workshop | 3 European sites (France/Germany/Poland) |
 | **Constraints** | 1 bottleneck (carpentry) | 8 SATURATED constraints (carbon/demand/quotas/transfers) |
-| **Profit** | 2,850€ (micro-business) | 6,985,500€ (integrated supply chain) |
+| **Profit** | 3,150€ (micro-business) | 6,985,500€ (integrated supply chain) |
 | **Complexity** | "Max chairs" obvious | Multi-site/ESG/social/supply chain non-intuitive trade-offs |
 | **Specialization** | None | Geographic (FR premium, DE volume, PL flexible) + supply chain |
 

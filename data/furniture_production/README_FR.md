@@ -487,10 +487,10 @@ Impact par produit:
 
 | Aspect | **Cas Basique (Simple)** | **Cas Furniture Industriel (Complexe)** |
 |--------|----------------------------|-------------------------------------------|
-| **Échelle** | 30 chaises + 30 tables = Artisanal | 28,100 unités multi-sites = Industriel |
+| **Échelle** | 50 chaises + 18 tables = Artisanal | 28,100 unités multi-sites = Industriel |
 | **Sites** | 1 atelier unique | 3 sites européens (France/Allemagne/Pologne) |
 | **Contraintes** | 1 goulot (menuiserie) | 5 contraintes SATURÉES (carbone/demande/quotas) |
-| **Profit** | 2,850€ (micro-entreprise) | 6,985,500€ (supply chain intégrée) |
+| **Profit** | 3,150€ (micro-entreprise) | 6,985,500€ (supply chain intégrée) |
 | **Complexité** | "Max chaises" évident | Arbitrages multi-sites/ESG/sociaux non-intuitifs |
 | **Spécialisation** | Aucune | Géographique (FR premium, DE volume, PL flexible) |
 

@@ -14,9 +14,9 @@ data/basic_linear_examples/
 ```
 
 **Objective**: Algorithm validation and basic concept learning
-- **Complexity**: 2 variables, 6 constraints
+- **Complexity**: 2 variables, 4 constraints
 - **Time**: <0.01s
-- **Result**: 2,950€ optimal profit
+- **Result**: 3,150€ optimal profit
 
 ### 🏭 **Furniture Production with Supply Chain** (Level 2 - Industrial)
 ```
@@ -60,7 +60,7 @@ make run-portfolio  # Level 3: Quantitative finance
 
 | Level | Use Case | Variables | Constraints | Time | Performance |
 |-------|----------|-----------|-------------|------|-------------|
-| 1 | Basic Examples | 2 | 6 | <0.01s | 2,850€ |
+| 1 | Basic Examples | 2 | 4 | <0.01s | 3,150€ |
 | 2 | **Furniture Multi-Sites** | **127** | **55** | **0.039s** | **7,123,000€** |
 | 3 | **Portfolio Finance** | **33** | **40+** | **0.03s** | **13.64 bp/day** |
 

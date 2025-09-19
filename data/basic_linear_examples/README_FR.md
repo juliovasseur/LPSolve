@@ -28,81 +28,73 @@ Profit = 45€ × nombre_chaises + 50€ × nombre_tables
 
 1. **🔨 Atelier Menuiserie** (240h disponibles/semaine) :
    ```
-   4h/chaise + 4h/table ≤ 240h maximum
+   3h/chaise + 5h/table ≤ 240h maximum
    ```
-   > *Chaque chaise prend 4h, chaque table 4h de menuiserie*
+   > *Chaque chaise prend 3h, chaque table 5h de menuiserie*
 
-2. **🔧 Atelier Assemblage** (240h disponibles/semaine) :
+2. **🔧 Atelier Assemblage** (120h disponibles/semaine) :
    ```
-   2h/chaise + 4h/table ≤ 240h maximum  
+   1h/chaise + 2h/table ≤ 120h maximum  
    ```
-   > *Chaque chaise prend 2h, chaque table 4h d'assemblage*
+   > *Chaque chaise prend 1h, chaque table 2h d'assemblage*
 
-3. **� Atelier Finition** (240h disponibles/semaine) :
+3. **🌳 Matériau Bois** (200m² disponibles/semaine) :
    ```
-   3h/chaise + 4h/table ≤ 240h maximum
+   2m²/chaise + 4m²/table ≤ 200m² maximum
    ```
-   > *Chaque chaise prend 3h, chaque table 4h de finition*
+   > *Chaque chaise nécessite 2m², chaque table 4m² de bois*
 
-4. **📦 Espace de Stockage** (80 unités max/semaine) :
+4. **📊 Limite Marché Chaises** (max 50 unités/semaine) :
    ```
-   1 unité/chaise + 1 unité/table ≤ 80 unités maximum
+   x_chairs ≤ 50
    ```
+   > *Demande du marché limitée à 50 chaises par semaine*
 
-5. **Bornes des variables** (production entière seulement):
+5. **Bornes des variables** (production entière seulement) :
    ```
    0 ≤ x_chairs ≤ 100 (entiers)
    0 ≤ x_tables ≤ 100 (entiers)
    ```
-   > **Note importante**: On utilise la programmation linéaire en nombres entiers car on ne peut pas produire 37.5 tables dans la réalité !
+   > **Note importante** : On utilise la Programmation Linéaire en Nombres Entiers pour des unités de production réalistes !
 
 ## 🎯 **Solution Optimale - Résultat Data-Driven**
 
-### 💰 **Décision Optimale du Solveur (Programmation Linéaire Entière) :**
-- **🪑 Chaises = 30 unités** (solution entière optimale)
-- **🪑 Tables = 30 unités** (solution entière optimale)  
-- **💰 Profit maximum = 2,850€/semaine**
+### 💰 **Décision Optimale du Solveur :**
+- **🪑 Chaises = 50 unités** (maximum marché)
+- **🪑 Tables = 18 unités** (capacité restante)  
+- **💰 Profit maximum = 3,150€/semaine**
 
 ### 🔍 **Vérification des Calculs** (Transparence totale)
-- **💰 Profit**: 45€×30 + 50€×30 = 1,350€ + 1,500€ = **2,850€** ✅
-- **🔨 Menuiserie**: 4h×30 + 4h×30 = 120h + 120h = **240h/240h** ✅ **[SATURÉE]**
-- **🔧 Assemblage**: 2h×30 + 4h×30 = 60h + 120h = **180h/240h** ✅ (60h libres)
-- **� Finition**: 3h×30 + 4h×30 = 90h + 120h = **210h/240h** ✅ (30h libres)
-- **📦 Stockage**: 1×30 + 1×30 = 30 + 30 = **60/80 unités** ✅ (20 unités libres)
-- **📊 Demande chaises**: 25 ≤ 25 ✅ **[CONTRAINTE ACTIVE]**
+- **💰 Profit** : 45€×50 + 50€×18 = 2,250€ + 900€ = **3,150€** ✅
+- **🔨 Menuiserie** : 3h×50 + 5h×18 = 150h + 90h = **240h/240h** ✅ **[SATURÉE]**
+- **🔧 Assemblage** : 1h×50 + 2h×18 = 50h + 36h = **86h/120h** ✅ (34h libres)
+- **🌳 Bois** : 2m²×50 + 4m²×18 = 100m² + 72m² = **172m²/200m²** ✅ (28m² libres)  
+- **📊 Limite Chaises** : 50 ≤ 50 ✅ **[SATURÉE]**
 
-### 🚨 **Analyse des Goulots d'Étranglement**
-
-#### 🔴 **Contraintes Saturées (Goulots critiques)**
-1. **🔨 Menuiserie** : 100% utilisée (200h/200h)
-   - **Impact** : Principal **goulot limitant** la production
-   - **Décision** : Investir en priorité dans cet atelier pour croître
-
-2. **📊 Production Équilibrée** : Solution entière optimale (30+30)
-   - **Impact** : Contrainte menuiserie détermine le mix optimal
-   - **Décision** : Augmenter capacité menuiserie pour plus de profit
-- **Production chaises**: 30 unités (solution entière)
-- **Production tables**: 30 unités (solution entière)
-
-#### 🟢 **Ressources Sous-Utilisées (Capacité libre)**
-- **🔧 Assemblage** : 60h libres/semaine (25% capacité excédentaire)
-- **� Finition** : 30h libres/semaine (12.5% capacité excédentaire)
-- **📦 Stockage** : 20 unités libres/semaine (25% capacité excédentaire)
+**C'est un problème de Programmation Linéaire en Nombres Entiers (PLNE)** - on ne peut produire que des unités entières de meubles.
 
 ### 💡 **Leçons Business Importantes**
 
-#### 🎯 **Insight #1 : Les Contraintes Entières Sont la Réalité**
-- **Relaxation continue** : 25 chaises + 37.5 tables = 2,625€ (théorique)
-- **Programmation entière** : 30 chaises + 30 tables = 2,850€ (production réelle)
-- **Impact** : +225€ (+8.6%) **car la solution entière trouve un meilleur point réalisable**
+#### 🎯 **Insight #1 : Prioriser les Produits les Plus Rentables**
+- **Chaises plus rentables par heure** : 45€ ÷ 3h = **15€/h menuiserie**
+- **Tables moins rentables par heure** : 50€ ÷ 5h = **10€/h menuiserie**  
+- **Stratégie** : Produire d'abord le maximum de chaises, puis compléter avec des tables
 
-#### 🏭 **Insight #2 : Identifier les Vrais Goulots**
-- **Menuiserie** = Vrai goulot opérationnel (240h/240h utilisées, investissement prioritaire)
-- **Demande chaises** = Goulot commercial (action marketing/prix)
-- **Assemblage + Bois** = Capacités excédentaires (optimisation possible)
+#### 🎯 **Insight #2 : Les Contraintes Saturées Montrent les Vrais Goulots**
+- **Menuiserie** = SATURÉE (240h utilisées exactement) → **Ressource critique**
+- **Marché Chaises** = SATURÉ (50 unités max atteintes) → **Limitation commerciale**
+- **Assemblage** = marge (34h inutilisées) → **Capacité excédentaire**
+- **Bois** = marge (28m² inutilisés) → **Approvisionnement suffisant**
 
-#### � **Insight #3 : Data-Driven Decision Making**
-L'optimisation révèle que l'intuition "chaises plus rentables → produire max chaises" est **fausse** quand on intègre toutes les contraintes réelles.
+💡 Pour augmenter le profit : **Développer la capacité menuiserie** ou **développer le marché des chaises** !
+
+#### 🎯 **Insight #3 : Allocation Optimale des Ressources**
+```
+Mix de production intelligent :
+• x₁ (chaises) = 50 unités → 2,250€ (71% du profit)
+• x₂ (tables) = 18 unités → 900€ (29% du profit)
+Profit total = 3,150€ grâce à l'allocation optimale des ressources
+```
 
 ---
 
@@ -119,24 +111,33 @@ make run-basic
 ### ✅ **Accessible à Tous**
 - **Contexte familier** : Production de meubles (tout le monde comprend)
 - **Calculs simples** : Vérification manuelle possible
-- **Résultats concrets** : €, heures, unités (pas d'abstractions)
+- **Contraintes réalistes** : Temps, matériaux, limites de marché
 
 ### ✅ **Concepts Clés Illustrés**
-- **🎯 Optimisation** : Trouver le maximum sous contraintes
-- **⚖️ Trade-offs** : Arbitrage entre différents choix
-- **🚨 Goulots** : Identification des contraintes limitantes
-- **📊 Analyse marginale** : Impact de chaque contrainte
+- **🎯 Optimisation** : Trouver le maximum de profit sous contraintes
+- **⚖️ Arbitrages** : Équilibrer différents produits de manière optimale
+- **📊 Contraintes saturées** : Identifier les vrais goulots d'étranglement
+- **💡 Intuition économique** : Pourquoi optimal ≠ intuitif
 
-### ✅ **Data-Driven Approach**
-- **Input** : Données CSV structurées (coûts, capacités, demandes)
-- **Processing** : Algorithme d'optimisation mathématique
-- **Output** : Décisions quantifiées et justifiées
-- **Insights** : Analyse des goulots pour action managériale
+### ✅ **Pertinence Professionnelle**
+- **📈 Planification de production** : Prise de décision industrielle réelle
+- **💼 Allocation de ressources** : Maximiser le ROI sous contraintes
+- **🎯 Analyse des goulots** : Concentrer les efforts d'amélioration
+- **📊 Décisions data-driven** : Les chiffres plutôt que l'intuition
 
-### ✅ **Extensible & Réaliste**
-- **Variables multiples** : Plusieurs produits/ressources
-- **Contraintes variées** : Capacités, demandes, réglementations
-- **Solution robuste** : Gère les conflits entre objectifs
-- **Validation** : Résultats vérifiables et expliqués
+L'optimisation révèle la puissance de la **pensée mathématique** : l'intuition pourrait dire "produire des quantités égales" mais les maths montrent que **50+18 bat n'importe quel mix équilibré** !
 
-> **🎯 Message clé** : Cet exemple démontre qu'avec des **données structurées** et des **algorithmes d'optimisation**, on peut prendre des **décisions business optimales** même dans des situations complexes avec multiples contraintes conflictuelles.
+---
+
+## 📋 **Structure des Fichiers**
+
+```
+data/basic_linear_examples/
+├── README.md                 # Cette documentation
+├── data/
+│   ├── objectives.csv        # Coefficients de profit (45€, 50€)
+│   ├── constraints.csv       # Limites de ressources et contraintes marché
+│   └── variables.csv         # Variables de production (entières)
+```
+
+**Modèle Mathématique** : 2 variables, 4 contraintes, formulation en programmation linéaire entière avec solution optimale **50 chaises + 18 tables = 3,150€** de profit.

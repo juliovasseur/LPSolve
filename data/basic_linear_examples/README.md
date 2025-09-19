@@ -28,26 +28,27 @@ Profit = 45€ × number_chairs + 50€ × number_tables
 
 1. **🔨 Carpentry Workshop** (240h available/week):
    ```
-   4h/chair + 4h/table ≤ 240h maximum
+   3h/chair + 5h/table ≤ 240h maximum
    ```
-   > *Each chair takes 4h, each table 4h of carpentry work*
+   > *Each chair takes 3h, each table 5h of carpentry work*
 
-2. **🔧 Assembly Workshop** (240h available/week):
+2. **🔧 Assembly Workshop** (120h available/week):
    ```
-   2h/chair + 4h/table ≤ 240h maximum  
+   1h/chair + 2h/table ≤ 120h maximum
    ```
-   > *Each chair takes 2h, each table 4h of assembly*
+   > *Each chair takes 1h, each table 2h of assembly*
 
-3. **🎨 Finishing Workshop** (240h available/week):
+3. **🌳 Wood Material** (200m² available/week):
    ```
-   3h/chair + 4h/table ≤ 240h maximum
+   2m²/chair + 4m²/table ≤ 200m² maximum
    ```
-   > *Each chair takes 3h, each table 4h of finishing*
+   > *Each chair needs 2m², each table 4m² of wood*
 
-4. **📦 Storage Space** (80 units max/week):
+4. **📊 Chair Market Limit** (max 50 units/week):
    ```
-   1 unit/chair + 1 unit/table ≤ 80 units maximum
+   x_chairs ≤ 50
    ```
+   > *Market demand limited to 50 chairs per week*
 
 5. **Variable bounds** (integer production only):
    ```
@@ -59,35 +60,40 @@ Profit = 45€ × number_chairs + 50€ × number_tables
 ## 🎯 **Optimal Solution - Data-Driven Result**
 
 ### 💰 **Optimal Production Decision:**
-- **🪑 Chairs = 30 units**
-- **🪑 Tables = 30 units**  
-- **💰 Maximum profit = 2,850€/week**
+- **🪑 Chairs = 50 units** (maximum market demand)
+- **🪑 Tables = 18 units** (remaining capacity)  
+- **💰 Maximum profit = 3,150€/week**
 
 ### 🔍 **Calculation Verification** (Complete transparency)
-- **💰 Profit**: 45€×30 + 50€×30 = 1,350€ + 1,500€ = **2,850€** ✅
-- **🔨 Carpentry**: 4h×30 + 4h×30 = 120h + 120h = **240h/240h** ✅ **[SATURATED]**
-- **🔧 Assembly**: 2h×30 + 4h×30 = 60h + 120h = **180h/240h** ✅ (60h free)
-- **🎨 Finishing**: 3h×30 + 4h×30 = 90h + 120h = **210h/240h** ✅ (30h free)
-- **📦 Storage**: 1×30 + 1×30 = 30 + 30 = **60/80 units** ✅ (20 units free)
+- **💰 Profit**: 45€×50 + 50€×18 = 2,250€ + 900€ = **3,150€** ✅
+- **🔨 Carpentry**: 3h×50 + 5h×18 = 150h + 90h = **240h/240h** ✅ **[BINDING]**
+- **🔧 Assembly**: 1h×50 + 2h×18 = 50h + 36h = **86h/120h** ✅ (34h free)
+- **🌳 Wood**: 2m²×50 + 4m²×18 = 100m² + 72m² = **172m²/200m²** ✅ (28m² free)
+- **📊 Chair Limit**: 50 ≤ 50 ✅ **[BINDING]**
 
 **This is an Integer Linear Programming (ILP) problem** - we can only produce whole furniture units.
 
 ### 💡 **Important Business Lessons**
 
-#### 🎯 **Insight #1: Resource Bottlenecks Define Success**
-- **Carpentry** = BINDING (240h used / 240h available) → **Zero slack**
-- **Assembly** = slack (180h used / 240h available) → **60h unused** 
-- **Finishing** = slack (210h used / 240h available) → **30h unused**
-- **Storage** = slack (60 used / 80 available) → **20 units unused**
+#### 🎯 **Insight #1: Prioritize High-Margin Products**
+- **Chairs more profitable per hour**: 45€ / 3h = **15€/h carpentry**
+- **Tables less profitable per hour**: 50€ / 5h = **10€/h carpentry**
+- **Strategy**: Produce maximum chairs first, then fill remaining capacity with tables
 
-💡 Want more profit? **Invest in carpentry capacity** (hire carpenters or buy tools)!
+#### 🎯 **Insight #2: Binding Constraints Show Real Bottlenecks**
+- **Carpentry** = BINDING (240h used exactly) → **Critical resource**
+- **Chair Market** = BINDING (50 units max reached) → **Sales limitation**
+- **Assembly** = slack (34h unused) → **Excess capacity**
+- **Wood** = slack (28m² unused) → **Sufficient supply**
 
-#### 🎯 **Insight #2: Decision Variables Show The Way**
+💡 To increase profit: **Expand carpentry capacity** or **develop chair market** !
+
+#### 🎯 **Insight #3: Optimal Resource Allocation**
 ```
-Optimal production plan:
-• x₁ (chairs) = 30 units
-• x₂ (tables) = 30 units
-Total profit = 30×45 + 30×50 = 1,350 + 1,500 = 2,850€
+Smart production mix:
+• x₁ (chairs) = 50 units → 2,250€ (71% of profit)
+• x₂ (tables) = 18 units → 900€ (29% of profit)
+Total profit = 3,150€ from optimal resource allocation
 ```
 
 ---
@@ -105,21 +111,21 @@ make run-basic
 ### ✅ **Accessible to Everyone**
 - **Familiar context**: Furniture production (everyone understands)
 - **Simple calculations**: Manual verification possible
-- **Concrete results**: €, hours, units (no abstractions)
+- **Realistic constraints**: Time, materials, market limits
 
 ### ✅ **Key Concepts Illustrated**
-- **🎯 Optimization**: Finding maximum under constraints
-- **⚖️ Trade-offs**: Resource allocation decisions
-- **🔄 Sensitivity**: Impact of changing constraints
-- **📊 Binding constraints**: True bottlenecks identification
+- **🎯 Optimization**: Finding maximum profit under constraints
+- **⚖️ Trade-offs**: Balancing different products optimally
+- **📊 Binding constraints**: Identifying true bottlenecks
+- **💡 Economic intuition**: Why optimal ≠ intuitive
 
 ### ✅ **Professional Relevance**
-- **📈 Production planning**: Real industrial application
-- **💼 Resource management**: Budget/time allocation
-- **🎯 Decision support**: Data-driven choices
-- **🔄 What-if analysis**: Scenario planning
+- **📈 Production planning**: Real industrial decision-making
+- **💼 Resource allocation**: Maximize ROI under limits
+- **🎯 Bottleneck analysis**: Focus improvement efforts
+- **📊 Data-driven decisions**: Numbers over gut feeling
 
-The optimization reveals that the intuition "chairs more profitable → produce max chairs" is **false** when integrating all real constraints.
+The optimization reveals the power of **mathematical thinking**: intuition might say "produce equal amounts" but math shows **50+18 beats any balanced mix**!
 
 ---
 
@@ -130,8 +136,8 @@ data/basic_linear_examples/
 ├── README.md                 # This documentation
 ├── data/
 │   ├── objectives.csv        # Profit coefficients (45€, 50€)
-│   ├── constraints.csv       # Resource limits (240h carpentry, etc.)
+│   ├── constraints.csv       # Resource limits & market constraints
 │   └── variables.csv         # Production variables (integers)
 ```
 
-**Mathematical Model**: 2 variables, 4 resource constraints, integer programming formulation with optimal solution 30+30 = 2,850€ profit.
+**Mathematical Model**: 2 variables, 4 constraints, integer programming formulation with optimal solution **50 chairs + 18 tables = 3,150€** profit.
