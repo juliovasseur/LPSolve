@@ -3,3 +3,4 @@ click
 tqdm
 numpy
 pandas
+coinor-cbc

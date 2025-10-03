@@ -733,4 +733,4 @@ Ce cas **furniture avancé** démontre la **richesse de la programmation linéai
 2. **Optimisation France** (specialisation premium)  
 3. **Expansion Allemagne/Pologne** (capacité dormante)
 
-> **� Bottom Line**: L'optimisation mathématique transforme 7.123.000€ de profit théorique en roadmap d'investissement concret. Les contraintes actives = votre feuille de route business.
+> **💼 Bottom Line**: L'optimisation mathématique transforme 6.985.500€ de profit théorique en roadmap d'investissement concret. Les contraintes actives = votre feuille de route business.
